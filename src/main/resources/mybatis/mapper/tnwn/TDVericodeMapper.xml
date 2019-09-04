@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ucss.elementary.tnwn.mapper.tnwn.TDVericodeMapper">
+ <resultMap id="BaseResultMap" type="com.ucss.elementary.tnwn.model.database.TDVericode">
+        <id column="ID" jdbcType="DECIMAL" property="id" />
+        <result column="PHONE" jdbcType="VARCHAR" property="phone" />
+        <result column="TYPE" jdbcType="DECIMAL" property="type" />
+        <result column="VERICODE" jdbcType="VARCHAR" property="vericode" />
+        <result column="USED" jdbcType="DECIMAL" property="used" />
+        <result column="VALIDTIME" jdbcType="TIMESTAMP" property="validtime" />
+        <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime" />
+        <result column="UPDATETIME" jdbcType="TIMESTAMP" property="updatetime" />
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    ID, PHONE, TYPE, VERICODE, USED, VALIDTIME, CREATETIME, UPDATETIME
+  </sql>
+    <select id="selectByExample" parameterType="com.ucss.elementary.tnwn.model.database.TDVericodeExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from T_D_VERICODE
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from T_D_VERICODE
+        where ID = #{id,jdbcType=DECIMAL}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from T_D_VERICODE
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+    <delete id="deleteByExample" parameterType="com.ucss.elementary.tnwn.model.database.TDVericodeExample">
+        delete from T_D_VERICODE
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.ucss.elementary.tnwn.model.database.TDVericode">
+    insert into T_D_VERICODE (ID, PHONE, TYPE, 
+      VERICODE, USED, VALIDTIME, 
+      CREATETIME, UPDATETIME)
+    values (#{id,jdbcType=DECIMAL}, #{phone,jdbcType=VARCHAR}, #{type,jdbcType=DECIMAL}, 
+      #{vericode,jdbcType=VARCHAR}, #{used,jdbcType=DECIMAL}, #{validtime,jdbcType=TIMESTAMP}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP})
+  </insert>
+    <insert id="insertSelective" parameterType="com.ucss.elementary.tnwn.model.database.TDVericode">
+        <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+            SELECT SEQ_PUBLIC.NEXTVAL AS id FROM DUAL
+        </selectKey>
+        insert into T_D_VERICODE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="phone != null">
+                PHONE,
+            </if>
+            <if test="type != null">
+                TYPE,
+            </if>
+            <if test="vericode != null">
+                VERICODE,
+            </if>
+            <if test="used != null">
+                USED,
+            </if>
+            <if test="validtime != null">
+                VALIDTIME,
+            </if>
+            <if test="createtime != null">
+                CREATETIME,
+            </if>
+            <if test="updatetime != null">
+                UPDATETIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=DECIMAL},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=DECIMAL},
+            </if>
+            <if test="vericode != null">
+                #{vericode,jdbcType=VARCHAR},
+            </if>
+            <if test="used != null">
+                #{used,jdbcType=DECIMAL},
+            </if>
+            <if test="validtime != null">
+                #{validtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatetime != null">
+                #{updatetime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.ucss.elementary.tnwn.model.database.TDVericodeExample" resultType="java.lang.Integer">
+        select count(*) from T_D_VERICODE
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update T_D_VERICODE
+        <set>
+            <if test="record.id != null">
+                ID = #{record.id,jdbcType=DECIMAL},
+            </if>
+            <if test="record.phone != null">
+                PHONE = #{record.phone,jdbcType=VARCHAR},
+            </if>
+            <if test="record.type != null">
+                TYPE = #{record.type,jdbcType=DECIMAL},
+            </if>
+            <if test="record.vericode != null">
+                VERICODE = #{record.vericode,jdbcType=VARCHAR},
+            </if>
+            <if test="record.used != null">
+                USED = #{record.used,jdbcType=DECIMAL},
+            </if>
+            <if test="record.validtime != null">
+                VALIDTIME = #{record.validtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.createtime != null">
+                CREATETIME = #{record.createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.updatetime != null">
+                UPDATETIME = #{record.updatetime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update T_D_VERICODE
+        set ID = #{record.id,jdbcType=DECIMAL},
+        PHONE = #{record.phone,jdbcType=VARCHAR},
+        TYPE = #{record.type,jdbcType=DECIMAL},
+        VERICODE = #{record.vericode,jdbcType=VARCHAR},
+        USED = #{record.used,jdbcType=DECIMAL},
+        VALIDTIME = #{record.validtime,jdbcType=TIMESTAMP},
+        CREATETIME = #{record.createtime,jdbcType=TIMESTAMP},
+        UPDATETIME = #{record.updatetime,jdbcType=TIMESTAMP}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ucss.elementary.tnwn.model.database.TDVericode">
+        update T_D_VERICODE
+        <set>
+            <if test="phone != null">
+                PHONE = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                TYPE = #{type,jdbcType=DECIMAL},
+            </if>
+            <if test="vericode != null">
+                VERICODE = #{vericode,jdbcType=VARCHAR},
+            </if>
+            <if test="used != null">
+                USED = #{used,jdbcType=DECIMAL},
+            </if>
+            <if test="validtime != null">
+                VALIDTIME = #{validtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createtime != null">
+                CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatetime != null">
+                UPDATETIME = #{updatetime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=DECIMAL}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ucss.elementary.tnwn.model.database.TDVericode">
+    update T_D_VERICODE
+    set PHONE = #{phone,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=DECIMAL},
+      VERICODE = #{vericode,jdbcType=VARCHAR},
+      USED = #{used,jdbcType=DECIMAL},
+      VALIDTIME = #{validtime,jdbcType=TIMESTAMP},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      UPDATETIME = #{updatetime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

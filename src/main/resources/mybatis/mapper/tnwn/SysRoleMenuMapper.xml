@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ucss.elementary.tnwn.mapper.tnwn.SysRoleMenuMapper" >
+  <resultMap id="BaseResultMap" type="com.ucss.elementary.tnwn.model.database.SysRoleMenu" >
+    <id column="ROLE_ID" property="roleId" jdbcType="DECIMAL" />
+    <id column="MENU_ID" property="menuId" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ROLE_ID, MENU_ID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ucss.elementary.tnwn.model.database.SysRoleMenuExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from SYS_ROLE_MENU
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ucss.elementary.tnwn.model.database.SysRoleMenu" >
+    delete from SYS_ROLE_MENU
+    where ROLE_ID = #{roleId,jdbcType=DECIMAL}
+      and MENU_ID = #{menuId,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ucss.elementary.tnwn.model.database.SysRoleMenuExample" >
+    delete from SYS_ROLE_MENU
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ucss.elementary.tnwn.model.database.SysRoleMenu" >
+    insert into SYS_ROLE_MENU (ROLE_ID, MENU_ID)
+    values (#{roleId,jdbcType=DECIMAL}, #{menuId,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ucss.elementary.tnwn.model.database.SysRoleMenu" >
+    insert into SYS_ROLE_MENU
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        ROLE_ID,
+      </if>
+      <if test="menuId != null" >
+        MENU_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        #{roleId,jdbcType=DECIMAL},
+      </if>
+      <if test="menuId != null" >
+        #{menuId,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ucss.elementary.tnwn.model.database.SysRoleMenuExample" resultType="java.lang.Integer" >
+    select count(*) from SYS_ROLE_MENU
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update SYS_ROLE_MENU
+    <set >
+      <if test="record.roleId != null" >
+        ROLE_ID = #{record.roleId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.menuId != null" >
+        MENU_ID = #{record.menuId,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update SYS_ROLE_MENU
+    set ROLE_ID = #{record.roleId,jdbcType=DECIMAL},
+      MENU_ID = #{record.menuId,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+
+  <insert id="batchInsert" parameterType="java.util.List">
+    INSERT INTO sys_role_menu
+    (ROLE_ID,MENU_ID)
+    SELECT A.*
+    FROM(
+    <foreach collection="list" item="item" index="index"  separator="union">
+      SELECT
+      #{item.roleId,jdbcType=VARCHAR},
+      #{item.menuId,jdbcType=VARCHAR}
+      FROM dual
+    </foreach>
+    ) A
+
+  </insert>
+</mapper>

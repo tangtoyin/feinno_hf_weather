@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ucss.elementary.tnwn.mapper.tnwn.TLServiceMapper">
+  <resultMap id="BaseResultMap" type="com.ucss.elementary.tnwn.model.database.TLService">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="APPCODE" jdbcType="VARCHAR" property="appcode" />
+    <result column="METHOD" jdbcType="VARCHAR" property="method" />
+    <result column="RESULTCODE" jdbcType="VARCHAR" property="resultcode" />
+    <result column="RESULTMESSAGE" jdbcType="VARCHAR" property="resultmessage" />
+    <result column="CLIENTIP" jdbcType="VARCHAR" property="clientip" />
+    <result column="ELAPSEDTIME" jdbcType="DECIMAL" property="elapsedtime" />
+    <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="USER_ID" jdbcType="DECIMAL" property="userId" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ucss.elementary.tnwn.model.database.TLServiceWithBLOBs">
+    <result column="REQUEST" jdbcType="CLOB" property="request" />
+    <result column="RESPONSE" jdbcType="CLOB" property="response" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, APPCODE, METHOD, RESULTCODE, RESULTMESSAGE, CLIENTIP, ELAPSEDTIME, CREATETIME, 
+    USER_ID
+  </sql>
+  <sql id="Blob_Column_List">
+    REQUEST, RESPONSE
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.ucss.elementary.tnwn.model.database.TLServiceExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from T_L_SERVICE
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.ucss.elementary.tnwn.model.database.TLServiceExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from T_L_SERVICE
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from T_L_SERVICE
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from T_L_SERVICE
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ucss.elementary.tnwn.model.database.TLServiceExample">
+    delete from T_L_SERVICE
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ucss.elementary.tnwn.model.database.TLServiceWithBLOBs">
+    insert into T_L_SERVICE (ID, APPCODE, METHOD, 
+      RESULTCODE, RESULTMESSAGE, CLIENTIP, 
+      ELAPSEDTIME, CREATETIME, USER_ID, 
+      REQUEST, RESPONSE)
+    values (#{id,jdbcType=DECIMAL}, #{appcode,jdbcType=VARCHAR}, #{method,jdbcType=VARCHAR}, 
+      #{resultcode,jdbcType=VARCHAR}, #{resultmessage,jdbcType=VARCHAR}, #{clientip,jdbcType=VARCHAR}, 
+      #{elapsedtime,jdbcType=DECIMAL}, #{createtime,jdbcType=TIMESTAMP}, #{userId,jdbcType=DECIMAL}, 
+      #{request,jdbcType=CLOB}, #{response,jdbcType=CLOB})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ucss.elementary.tnwn.model.database.TLServiceWithBLOBs">
+      <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+          SELECT SEQ_SERVICELOG.NEXTVAL AS id FROM DUAL
+      </selectKey>
+      insert into T_L_SERVICE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="appcode != null">
+        APPCODE,
+      </if>
+      <if test="method != null">
+        METHOD,
+      </if>
+      <if test="resultcode != null">
+        RESULTCODE,
+      </if>
+      <if test="resultmessage != null">
+        RESULTMESSAGE,
+      </if>
+      <if test="clientip != null">
+        CLIENTIP,
+      </if>
+      <if test="elapsedtime != null">
+        ELAPSEDTIME,
+      </if>
+      <if test="createtime != null">
+        CREATETIME,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="request != null">
+        REQUEST,
+      </if>
+      <if test="response != null">
+        RESPONSE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="appcode != null">
+        #{appcode,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null">
+        #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="resultcode != null">
+        #{resultcode,jdbcType=VARCHAR},
+      </if>
+      <if test="resultmessage != null">
+        #{resultmessage,jdbcType=VARCHAR},
+      </if>
+      <if test="clientip != null">
+        #{clientip,jdbcType=VARCHAR},
+      </if>
+      <if test="elapsedtime != null">
+        #{elapsedtime,jdbcType=DECIMAL},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="request != null">
+        #{request,jdbcType=CLOB},
+      </if>
+      <if test="response != null">
+        #{response,jdbcType=CLOB},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ucss.elementary.tnwn.model.database.TLServiceExample" resultType="java.lang.Integer">
+    select count(*) from T_L_SERVICE
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update T_L_SERVICE
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=DECIMAL},
+      </if>
+      <if test="record.appcode != null">
+        APPCODE = #{record.appcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.method != null">
+        METHOD = #{record.method,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resultcode != null">
+        RESULTCODE = #{record.resultcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resultmessage != null">
+        RESULTMESSAGE = #{record.resultmessage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clientip != null">
+        CLIENTIP = #{record.clientip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.elapsedtime != null">
+        ELAPSEDTIME = #{record.elapsedtime,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createtime != null">
+        CREATETIME = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.userId != null">
+        USER_ID = #{record.userId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.request != null">
+        REQUEST = #{record.request,jdbcType=CLOB},
+      </if>
+      <if test="record.response != null">
+        RESPONSE = #{record.response,jdbcType=CLOB},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update T_L_SERVICE
+    set ID = #{record.id,jdbcType=DECIMAL},
+      APPCODE = #{record.appcode,jdbcType=VARCHAR},
+      METHOD = #{record.method,jdbcType=VARCHAR},
+      RESULTCODE = #{record.resultcode,jdbcType=VARCHAR},
+      RESULTMESSAGE = #{record.resultmessage,jdbcType=VARCHAR},
+      CLIENTIP = #{record.clientip,jdbcType=VARCHAR},
+      ELAPSEDTIME = #{record.elapsedtime,jdbcType=DECIMAL},
+      CREATETIME = #{record.createtime,jdbcType=TIMESTAMP},
+      USER_ID = #{record.userId,jdbcType=DECIMAL},
+      REQUEST = #{record.request,jdbcType=CLOB},
+      RESPONSE = #{record.response,jdbcType=CLOB}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update T_L_SERVICE
+    set ID = #{record.id,jdbcType=DECIMAL},
+      APPCODE = #{record.appcode,jdbcType=VARCHAR},
+      METHOD = #{record.method,jdbcType=VARCHAR},
+      RESULTCODE = #{record.resultcode,jdbcType=VARCHAR},
+      RESULTMESSAGE = #{record.resultmessage,jdbcType=VARCHAR},
+      CLIENTIP = #{record.clientip,jdbcType=VARCHAR},
+      ELAPSEDTIME = #{record.elapsedtime,jdbcType=DECIMAL},
+      CREATETIME = #{record.createtime,jdbcType=TIMESTAMP},
+      USER_ID = #{record.userId,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ucss.elementary.tnwn.model.database.TLServiceWithBLOBs">
+    update T_L_SERVICE
+    <set>
+      <if test="appcode != null">
+        APPCODE = #{appcode,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null">
+        METHOD = #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="resultcode != null">
+        RESULTCODE = #{resultcode,jdbcType=VARCHAR},
+      </if>
+      <if test="resultmessage != null">
+        RESULTMESSAGE = #{resultmessage,jdbcType=VARCHAR},
+      </if>
+      <if test="clientip != null">
+        CLIENTIP = #{clientip,jdbcType=VARCHAR},
+      </if>
+      <if test="elapsedtime != null">
+        ELAPSEDTIME = #{elapsedtime,jdbcType=DECIMAL},
+      </if>
+      <if test="createtime != null">
+        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="request != null">
+        REQUEST = #{request,jdbcType=CLOB},
+      </if>
+      <if test="response != null">
+        RESPONSE = #{response,jdbcType=CLOB},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ucss.elementary.tnwn.model.database.TLServiceWithBLOBs">
+    update T_L_SERVICE
+    set APPCODE = #{appcode,jdbcType=VARCHAR},
+      METHOD = #{method,jdbcType=VARCHAR},
+      RESULTCODE = #{resultcode,jdbcType=VARCHAR},
+      RESULTMESSAGE = #{resultmessage,jdbcType=VARCHAR},
+      CLIENTIP = #{clientip,jdbcType=VARCHAR},
+      ELAPSEDTIME = #{elapsedtime,jdbcType=DECIMAL},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      USER_ID = #{userId,jdbcType=DECIMAL},
+      REQUEST = #{request,jdbcType=CLOB},
+      RESPONSE = #{response,jdbcType=CLOB}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ucss.elementary.tnwn.model.database.TLService">
+    update T_L_SERVICE
+    set APPCODE = #{appcode,jdbcType=VARCHAR},
+      METHOD = #{method,jdbcType=VARCHAR},
+      RESULTCODE = #{resultcode,jdbcType=VARCHAR},
+      RESULTMESSAGE = #{resultmessage,jdbcType=VARCHAR},
+      CLIENTIP = #{clientip,jdbcType=VARCHAR},
+      ELAPSEDTIME = #{elapsedtime,jdbcType=DECIMAL},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      USER_ID = #{userId,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

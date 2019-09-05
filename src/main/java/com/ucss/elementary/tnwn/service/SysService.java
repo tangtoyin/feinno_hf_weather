@@ -44,13 +44,28 @@ public class SysService {
     //endregion
 
     //region 字典表
-    public String getOptionNameByTypecodeAndCode(String typeCode, String code) {
-        SysDict dict = getOptionByTypecodeAndCode(typeCode, code);
-        if (dict != null) {
-            return dict.getLabel();
+    public List<SysDict> getOptionsByTypecode(String typeCode) {
+        if (StringUtils.isEmpty(typeCode)) {
+            return null;
         }
-        return "";
+        //尝试从缓存获取
+        Object objOptions = redisTemplate.opsForHash().get(CacheKeyConst.DICT, typeCode);
+        if (objOptions != null&&((List<SysDict>) objOptions).size()>0) {
+            return (List<SysDict>) objOptions;
+        }
+        //缓存中未获取到则查询数据库
+        SysDictExample example = new SysDictExample();
+        example.createCriteria().andTypeEqualTo(typeCode).andDelFlagEqualTo("0");
+        example.setOrderByClause("sort desc nulls last");
+        List<SysDict> dictInfos = sysDictMapper.selectByExample(example);
+        if (dictInfos == null) {
+            return null;
+        }
+        //保存到缓存
+        redisTemplate.opsForHash().put(CacheKeyConst.DICT, typeCode, dictInfos);
+        return dictInfos;
     }
+
     public SysDict getOptionByTypecodeAndCode(String typeCode, String code) {
         if (StringUtils.isEmpty(typeCode) || StringUtils.isEmpty(code)) {
             return null;
@@ -61,27 +76,15 @@ public class SysService {
         }
         return TConverter.GetFirstOrDefualt(dicts.stream().filter(a -> a.getValue().equals(code)).collect(Collectors.toList()));
     }
-    public List<SysDict> getOptionsByTypecode(String typeCode) {
-        if (StringUtils.isEmpty(typeCode)) {
-            return null;
+
+    public String getOptionNameByTypecodeAndCode(String typeCode, String code) {
+        SysDict dict = getOptionByTypecodeAndCode(typeCode, code);
+        if (dict != null) {
+            return dict.getLabel();
         }
-        //尝试从缓存获取
-        Object objOptions = redisTemplate.opsForHash().get(CacheKeyConst.DICT, typeCode);
-        if (objOptions != null) {
-            return (List<SysDict>) objOptions;
-        }
-        //缓存中未获取到则查询数据库
-        SysDictExample example = new SysDictExample();
-        example.createCriteria().andValueEqualTo(typeCode).andDelFlagEqualTo("0");
-        example.setOrderByClause("sort desc");
-        List<SysDict> dictInfos = sysDictMapper.selectByExample(example);
-        if (dictInfos == null) {
-            return null;
-        }
-        //保存到缓存
-        redisTemplate.opsForHash().put(CacheKeyConst.DICT, typeCode, dictInfos);
-        return dictInfos;
+        return "";
     }
+
     //endregion
 
     //region 秘钥

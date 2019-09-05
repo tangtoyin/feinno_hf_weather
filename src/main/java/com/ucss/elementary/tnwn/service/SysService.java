@@ -1,6 +1,7 @@
 package com.ucss.elementary.tnwn.service;
 
 import com.ucss.elementary.tnwn.constant.CacheKeyConst;
+import com.ucss.elementary.tnwn.mapper.tnwn.SysApikeyMapper;
 import com.ucss.elementary.tnwn.mapper.tnwn.SysDictMapper;
 import com.ucss.elementary.tnwn.mapper.tnwn.TDIpBlacklistMapper;
 import com.ucss.elementary.tnwn.mapper.tnwn.TDIpWhitelistMapper;
@@ -31,6 +32,8 @@ public class SysService {
     TDIpWhitelistMapper ipWhitelistMapper;
     @Autowired
     TDIpBlacklistMapper ipBlacklistMapper;
+    @Autowired
+    SysApikeyMapper apikeyMapper;
 
     //region 清除缓存
     public void refreshRedisDataWithPrefix(String key) {
@@ -81,6 +84,38 @@ public class SysService {
     }
     //endregion
 
+    //region 秘钥
+    public SysApikey getApikey(String partnerid){
+        try {
+            if (StringHelper.isEmpty(partnerid)) {
+                return null;
+            }
+            SysApikey partner = (SysApikey) redisTemplate.opsForValue().get(CacheKeyConst.API_KEY + partnerid);
+            if (partner == null) {
+                SysApikeyExample example=new SysApikeyExample();
+                example.createCriteria()
+                        .andPartneridEqualTo(partnerid)
+                        .andIsvalidEqualTo((short)1);
+                partner = TConverter.GetFirstOrDefualt(apikeyMapper.selectByExample(example));
+                if (partner != null ) {
+                    redisTemplate.opsForValue().set(CacheKeyConst.API_KEY + partnerid, partner);
+                }
+            }
+            return partner;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    //获取应用方的秘钥
+    public String getApikeyAppkey(String partnerid){
+        SysApikey partner=getApikey(partnerid);
+        if(partner!=null){
+            return StringHelper.toSafeString(partner.getAppkey());
+        }
+        return "";
+    }
+    //endregion
 
     //region 白名单
     //获取所有白名单

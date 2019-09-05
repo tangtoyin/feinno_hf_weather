@@ -126,7 +126,7 @@ if(min>5||min<0){//验证时间戳是否超过五分钟
         //拼接上方法如 /sample/getinfo?para1=value&para2=value2&para3=value3
         paramString = url + "?" + paramString;
         //使用hma-sha1进行加密
-        String result = EncryptHelper.hmacsha1String(paramString,sysService.getPartnerAppkey(appcode) );
+        String result = EncryptHelper.hmacsha1String(paramString,sysService.getApikeyAppkey(appcode) );
         if (!StringHelper.isTrimEmpty(result) && sig.toUpperCase().equals(result.toUpperCase())) {
             if (null == requestWrapper) {
                 chain.doFilter(req, res);

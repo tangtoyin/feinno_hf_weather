@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ucss.elementary.tnwn.mapper.tnwn.SysApikeyMapper">
+  <resultMap id="BaseResultMap" type="com.ucss.elementary.tnwn.model.database.tnwn.SysApikey">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="PARTNERID" jdbcType="VARCHAR" property="partnerid" />
+    <result column="APPKEY" jdbcType="VARCHAR" property="appkey" />
+    <result column="ISVALID" jdbcType="DECIMAL" property="isvalid" />
+    <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="UPDATETIME" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="USER_ID" jdbcType="DECIMAL" property="userId" />
+    <result column="ISFORBIDDEN" jdbcType="DECIMAL" property="isforbidden" />
+  </resultMap>
+  <resultMap id="BaseResultMapExtension" extends="BaseResultMap" type="com.ucss.elementary.tnwn.model.database.SysApiKeyExtension">
+    <result column="NICKNAME" property="nickname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, NAME, PARTNERID, APPKEY, ISVALID, CREATETIME, UPDATETIME, USER_ID, ISFORBIDDEN
+  </sql>
+  <select id="selectByExample" parameterType="com.ucss.elementary.tnwn.model.database.tnwn.SysApikeyExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from SYS_APIKEY
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from SYS_APIKEY
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from SYS_APIKEY
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ucss.elementary.tnwn.model.database.tnwn.SysApikeyExample">
+    delete from SYS_APIKEY
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ucss.elementary.tnwn.model.database.tnwn.SysApikey">
+    insert into SYS_APIKEY (ID, NAME, PARTNERID,
+      APPKEY, ISVALID, CREATETIME,
+      UPDATETIME, USER_ID, ISFORBIDDEN
+      )
+    values (#{id,jdbcType=DECIMAL}, #{name,jdbcType=VARCHAR}, #{partnerid,jdbcType=VARCHAR},
+      #{appkey,jdbcType=VARCHAR}, #{isvalid,jdbcType=DECIMAL}, #{createtime,jdbcType=TIMESTAMP},
+      #{updatetime,jdbcType=TIMESTAMP}, #{userId,jdbcType=DECIMAL}, #{isforbidden,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ucss.elementary.tnwn.model.database.tnwn.SysApikey">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      SELECT SEQ_PUBLIC.NEXTVAL FROM DUAL
+    </selectKey>
+    insert into SYS_APIKEY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="partnerid != null">
+        PARTNERID,
+      </if>
+      <if test="appkey != null">
+        APPKEY,
+      </if>
+      <if test="isvalid != null">
+        ISVALID,
+      </if>
+      <if test="createtime != null">
+        CREATETIME,
+      </if>
+      <if test="updatetime != null">
+        UPDATETIME,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="isforbidden != null">
+        ISFORBIDDEN,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="partnerid != null">
+        #{partnerid,jdbcType=VARCHAR},
+      </if>
+      <if test="appkey != null">
+        #{appkey,jdbcType=VARCHAR},
+      </if>
+      <if test="isvalid != null">
+        #{isvalid,jdbcType=DECIMAL},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="isforbidden != null">
+        #{isforbidden,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ucss.elementary.tnwn.model.database.tnwn.SysApikeyExample" resultType="java.lang.Integer">
+    select count(*) from SYS_APIKEY
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update SYS_APIKEY
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=DECIMAL},
+      </if>
+      <if test="record.name != null">
+        NAME = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.partnerid != null">
+        PARTNERID = #{record.partnerid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appkey != null">
+        APPKEY = #{record.appkey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isvalid != null">
+        ISVALID = #{record.isvalid,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createtime != null">
+        CREATETIME = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatetime != null">
+        UPDATETIME = #{record.updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.userId != null">
+        USER_ID = #{record.userId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.isforbidden != null">
+        ISFORBIDDEN = #{record.isforbidden,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update SYS_APIKEY
+    set ID = #{record.id,jdbcType=DECIMAL},
+      NAME = #{record.name,jdbcType=VARCHAR},
+      PARTNERID = #{record.partnerid,jdbcType=VARCHAR},
+      APPKEY = #{record.appkey,jdbcType=VARCHAR},
+      ISVALID = #{record.isvalid,jdbcType=DECIMAL},
+      CREATETIME = #{record.createtime,jdbcType=TIMESTAMP},
+      UPDATETIME = #{record.updatetime,jdbcType=TIMESTAMP},
+      USER_ID = #{record.userId,jdbcType=DECIMAL},
+      ISFORBIDDEN = #{record.isforbidden,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ucss.elementary.tnwn.model.database.tnwn.SysApikey">
+    update SYS_APIKEY
+    <set>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="partnerid != null">
+        PARTNERID = #{partnerid,jdbcType=VARCHAR},
+      </if>
+      <if test="appkey != null">
+        APPKEY = #{appkey,jdbcType=VARCHAR},
+      </if>
+      <if test="isvalid != null">
+        ISVALID = #{isvalid,jdbcType=DECIMAL},
+      </if>
+      <if test="createtime != null">
+        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        UPDATETIME = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="isforbidden != null">
+        ISFORBIDDEN = #{isforbidden,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ucss.elementary.tnwn.model.database.tnwn.SysApikey">
+    update SYS_APIKEY
+    set NAME = #{name,jdbcType=VARCHAR},
+      PARTNERID = #{partnerid,jdbcType=VARCHAR},
+      APPKEY = #{appkey,jdbcType=VARCHAR},
+      ISVALID = #{isvalid,jdbcType=DECIMAL},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      UPDATETIME = #{updatetime,jdbcType=TIMESTAMP},
+      USER_ID = #{userId,jdbcType=DECIMAL},
+      ISFORBIDDEN = #{isforbidden,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+
+  <select id="getapikeyList" parameterType="map" resultMap="BaseResultMapExtension">
+    select s.*, t.NICKNAME NICKNAME
+    from SYS_APIKEY s
+    left join T_D_USER t
+    on s.USER_ID = t.ID
+    <where>
+    <if test="isvalid!=null">
+      and s.ISVALID = #{isvalid}
+    </if>
+    <if test="keyword!=null">
+      and (s.NAME like #{keyword} or s.PARTNERID like #{keyword} or t.NICKNAME like #{keyword})
+    </if>
+    <if test="userid!=null">
+      and s.USER_ID = #{userid}
+    </if>
+    <if test="isforbidden!=null">
+      and s.ISFORBIDDEN = #{isforbidden}
+    </if>
+    </where>
+    order by
+    s.updatetime desc nulls last,
+    s.createtime desc nulls last
+  </select>
+
+</mapper>

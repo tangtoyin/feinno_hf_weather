@@ -4,7 +4,6 @@ import com.ucss.elementary.tnwn.constant.CacheKeyConst;
 import com.ucss.elementary.tnwn.mapper.tnwn.SysDictMapper;
 import com.ucss.elementary.tnwn.mapper.tnwn.TDIpBlacklistMapper;
 import com.ucss.elementary.tnwn.mapper.tnwn.TDIpWhitelistMapper;
-import com.ucss.elementary.tnwn.mapper.tnwn.TDPartnerMapper;
 import com.ucss.elementary.tnwn.model.database.*;
 import com.ucss.elementary.tnwn.util.StringHelper;
 import com.ucss.elementary.tnwn.util.TConverter;
@@ -27,8 +26,6 @@ public class SysService {
     @Value("${spring.application.name}")
     String redisPrefix;
     @Autowired
-    private TDPartnerMapper partnerMapper;
-    @Autowired
     private SysDictMapper sysDictMapper;
     @Autowired
     TDIpWhitelistMapper ipWhitelistMapper;
@@ -41,7 +38,9 @@ public class SysService {
         Set<String> setkey = redisTemplate.keys(redisPrefix + "tnwn." + key);
         redisTemplate.delete(setkey);
     }
+    //endregion
 
+    //region 字典表
     public String getOptionNameByTypecodeAndCode(String typeCode, String code) {
         SysDict dict = getOptionByTypecodeAndCode(typeCode, code);
         if (dict != null) {
@@ -80,37 +79,7 @@ public class SysService {
         redisTemplate.opsForHash().put(CacheKeyConst.DICT, typeCode, dictInfos);
         return dictInfos;
     }
-
-    //获取应用方的秘钥
-    public String getPartnerAppkey(String partnerid){
-        TDPartner partner=getPartner(partnerid);
-        if(partner!=null){
-            return StringHelper.toSafeString(partner.getAppkey());
-        }
-        return "";
-    }
-    public TDPartner getPartner(String partnerid){
-        try {
-            if (StringHelper.isEmpty(partnerid)) {
-                return null;
-            }
-            TDPartner partner = (TDPartner) redisTemplate.opsForValue().get(CacheKeyConst.PARTNERID + partnerid);
-            if (partner == null) {
-                TDPartnerExample example=new TDPartnerExample();
-                example.createCriteria()
-                        .andPartneridEqualTo(partnerid)
-                        .andIsvalidEqualTo(1);
-                partner = TConverter.GetFirstOrDefualt(partnerMapper.selectByExample(example));
-                if (partner != null ) {
-                    redisTemplate.opsForValue().set(CacheKeyConst.PARTNERID + partnerid, partner);
-                }
-            }
-            return partner;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
+    //endregion
 
 
     //region 白名单

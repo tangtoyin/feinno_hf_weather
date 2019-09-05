@@ -1,5 +1,6 @@
 package com.ucss.elementary.tnwn.controller.base;
 
+import com.ucss.elementary.tnwn.model.database.SysDict;
 import com.ucss.elementary.tnwn.model.response.BaseResponse;
 import com.ucss.elementary.tnwn.service.SysService;
 import io.swagger.annotations.ApiImplicitParam;
@@ -22,9 +23,31 @@ import org.springframework.web.bind.annotation.RestController;
 public class SysController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
     @Autowired
     private SysService sysService;
+
+    //region 通用字典表
+    @ApiOperation("根据typecode获取列表")
+    @PostMapping("optionbytypecode")
+    BaseResponse optionByTypecode(@RequestParam("typecode") String typecode) {
+        return new BaseResponse(sysService.getOptionsByTypecode(typecode));
+    }
+
+    @ApiOperation("根据typecode和code获取值")
+    @PostMapping("option")
+    BaseResponse optionByTypecodeAndCode(@RequestParam("typecode") String typecode
+            , @RequestParam("code") String code) {
+        SysDict dict = sysService.getOptionByTypecodeAndCode(typecode, code);
+        if (dict == null) {
+            return new BaseResponse("");
+        }
+        else {
+            return new BaseResponse(dict.getLabel());
+        }
+    }
+    //endregion
+
+    //region  缓存
     @ApiOperation("清楚缓存")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "appcode", dataType = "String", paramType = "query"),
@@ -38,5 +61,6 @@ public class SysController {
         sysService.refreshRedisDataWithPrefix(key);
         return new BaseResponse("成功");
     }
+    //endregion
 
 }

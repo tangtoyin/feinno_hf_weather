@@ -41,7 +41,7 @@ public class IpWhitelistController {
         List<TDIpWhitelist> list = ipWhitelistService.getCmsIpWhitelists(keyword);
         return new BaseResponse(new MapFromPageInfo<>(list));
     }
-
+    
     @ApiOperation("获取详情")
     @CmsPermission("ipwhitelist:detail")
     @PostMapping("detail")

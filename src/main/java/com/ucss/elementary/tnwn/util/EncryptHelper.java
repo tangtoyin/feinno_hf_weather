@@ -134,7 +134,7 @@ public final class EncryptHelper {
         }
         return null;
     }
-
+//1B6D5DE5284239FA3568BF4F9940F2E4A3A5CDD1
 
     //二行制转字符串
     public static String byte2hex(byte[] b) {
@@ -152,8 +152,9 @@ public final class EncryptHelper {
 
 
     public static void main(String[] args){
-        System.out.println(EncryptHelper.hmacsha1String("123456","a_!a02+fLc1IW*"));
+        String str="/tnwn/UserInfo/detail?PARAM={phonenum:13429852091,platformcode:110}&appcode=appcode_0111&rnd=86299524&ts=1569397196585";
+        String key="MGUiL7e3";
+        System.out.println(EncryptHelper.hmacsha1String(str,key));
     }
-
 
 }

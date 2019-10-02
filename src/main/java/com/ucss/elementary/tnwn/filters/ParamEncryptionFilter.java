@@ -2,9 +2,15 @@ package com.ucss.elementary.tnwn.filters;
 
 import com.alibaba.fastjson.JSON;
 import com.ucss.elementary.tnwn.constant.ReturnCodeConst;
+import com.ucss.elementary.tnwn.constant.tnwn.Status;
 import com.ucss.elementary.tnwn.model.response.BaseResponse;
+import com.ucss.elementary.tnwn.model.response.ErrorResponse;
+import com.ucss.elementary.tnwn.model.response.TnwnBaseResponse;
+import com.ucss.elementary.tnwn.model.response.TnwnsBaseResponse;
+import com.ucss.elementary.tnwn.model.tnwn.NumberArea;
 import com.ucss.elementary.tnwn.service.SysService;
 import com.ucss.elementary.tnwn.util.EncryptHelper;
+import com.ucss.elementary.tnwn.util.EntityUtil;
 import com.ucss.elementary.tnwn.util.StringHelper;
 import com.ucss.elementary.tnwn.util.TConverter;
 import io.undertow.servlet.spec.HttpServletRequestImpl;
@@ -22,6 +28,8 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.util.Map;
 import java.util.TreeMap;
+
+import org.apache.commons.codec.binary.Base64;
 
 /*
 *
@@ -53,49 +61,71 @@ public class ParamEncryptionFilter implements Filter {
         if (url.startsWith("//")) {
             url = url.replaceAll("//", "/");
         }
+
+
         //直接访问swagger地址，则不进行判断
         if (url.trim().contains("swagger") || url.trim().contains("/v2/api-docs")) {
             chain.doFilter(req, res);
             return;
         }
+
         String appcode = req.getParameter("appcode");
         if (StringHelper.isTrimEmpty(appcode)) {
-            response = new BaseResponse(ReturnCodeConst.EMPTY, "appcode不存在");
-            filterError(req, res, response);
+               // response = new BaseResponse(ReturnCodeConst.EMPTY, "appcode不存在");
+               // filterError(req, res, response);
+            Object o=EntityUtil.doChange(url,Status.error14,"appcode不存在");
+            System.out.println("appcode不存在");
+            filterErrorExtend(req, res,o);
             return;
+
         }
+
         if ("appcode_test0000".equals(appcode)) {
             chain.doFilter(req, res);
             return;
         }
+
         //时间戳
         String ts = req.getParameter("ts");
         if (StringHelper.isTrimEmpty(ts)) {
-            response = new BaseResponse(ReturnCodeConst.EMPTY, "ts不存在");
-            filterError(req, res, response);
+           // response = new BaseResponse(ReturnCodeConst.EMPTY, "ts不存在");
+           // filterError(req, res, response);
+            Object o=EntityUtil.doChange(url,Status.error14,"ts不存在");
+            System.out.println("ts不存在");
+            filterErrorExtend(req, res,o);
             return;
         }
+
         long min=(System.currentTimeMillis()-TConverter.ObjectToLong(ts))/60000;
-if(min>5||min<0){//验证时间戳是否超过五分钟
-            response = new BaseResponse(ReturnCodeConst.ERROR, "ts已失效");
-            filterError(req, res, response);
-            return;
+            if(min>5||min<0){//验证时间戳是否超过五分钟
+           // response = new BaseResponse(ReturnCodeConst.ERROR, "ts已失效");
+            //filterError(req, res, response);
+              //  Object o=EntityUtil.doChange(url,Status.error13,"ts已失效");
+               // filterErrorExtend(req, res,o);
+               //  return;
         }
 
         //随机数
         String rnd = req.getParameter("rnd");
         if (StringHelper.isTrimEmpty(rnd)) {
-            response = new BaseResponse(ReturnCodeConst.EMPTY, "rnd不存在");
-            filterError(req, res, response);
+           // response = new BaseResponse(ReturnCodeConst.EMPTY, "rnd不存在");
+           // filterError(req, res, response);
+            Object o=EntityUtil.doChange(url,Status.error14,"rnd不存在");
+            System.out.println("rnd不存在");
+            filterErrorExtend(req, res,o);
             return;
         }
         //获取加密串sig
         String sig = req.getParameter("sig");
         if (StringHelper.isTrimEmpty(sig)) {
-            response = new BaseResponse(ReturnCodeConst.EMPTY, "加密sig不存在");
-            filterError(req, res, response);
+           // response = new BaseResponse(ReturnCodeConst.EMPTY, "加密sig不存在");
+            //filterError(req, res, response);
+            Object o=EntityUtil.doChange(url,Status.error14,"加密sig不存在");
+            System.out.println("加密sig不存在");
+            filterErrorExtend(req, res,o);
             return;
         }
+
         Map<String, Object> parms = new TreeMap<>();
         Map<String, String[]> map = req.getParameterMap();
         //获取不包含sig的参数到parms中
@@ -115,6 +145,7 @@ if(min>5||min<0){//验证时间戳是否超过五分钟
         if(!StringHelper.isTrimEmpty(param)){
             parms.put("body",param);
         }
+
         //业务参数加上公共参数，按照参数名进行排序，然后再拼接成形如 para1=value&para2=value2&para3=value3的字符串
         String paramString = "";
         for (String key : parms.keySet()) {
@@ -125,8 +156,10 @@ if(min>5||min<0){//验证时间戳是否超过五分钟
         }
         //拼接上方法如 /sample/getinfo?para1=value&para2=value2&para3=value3
         paramString = url + "?" + paramString;
+        System.out.println(paramString);
         //使用hma-sha1进行加密
         String result = EncryptHelper.hmacsha1String(paramString,sysService.getApikeyAppkey(appcode) );
+        System.out.println("result:"+result);
         if (!StringHelper.isTrimEmpty(result) && sig.toUpperCase().equals(result.toUpperCase())) {
             if (null == requestWrapper) {
                 chain.doFilter(req, res);
@@ -134,13 +167,17 @@ if(min>5||min<0){//验证时间戳是否超过五分钟
                 chain.doFilter(requestWrapper, res);
             }
         } else {
-            response = new BaseResponse("999", "参数有误");
-            filterError(req, res, response);
+          //  response = new BaseResponse("999", "参数有误");
+            // filterError(req, res, response);
+            Object o=EntityUtil.doChange(url,Status.error12,"参数有误");
+            filterErrorExtend(req, res,o);
         }
     }
 
+
     @Override
     public void init(FilterConfig filterConfig) {
+
     }
 
     @Override
@@ -184,4 +221,29 @@ if(min>5||min<0){//验证时间戳是否超过五分钟
         }
         return response;
     }
+
+    private void filterErrorExtend(ServletRequest req, ServletResponse res, Object response) throws IOException, ServletException {
+        PrintWriter writer = null;
+        OutputStreamWriter osw = null;
+        try {
+            osw = new OutputStreamWriter(res.getOutputStream(), "UTF-8");
+            writer = new PrintWriter(osw, true);
+            String jsonStr = JSON.toJSONString(response);
+            writer.write(jsonStr);
+            writer.flush();
+            writer.close();
+            osw.close();
+        } catch (Exception e) {
+            logger.error("过滤器返回信息失败:" + e.getMessage(), e);
+        } finally {
+            if (null != writer) {
+                writer.close();
+            }
+            if (null != osw) {
+                osw.close();
+            }
+        }
+    }
+
+
 }

@@ -1,5 +1,8 @@
 package com.ucss.elementary.tnwn.util;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -235,4 +238,23 @@ public class TQ24SolarTerms {
         result.put("大寒","1月"+getSolarTermNum(year, SolarTermsEnum.DAHAN.name())+"日");
         return result;
     }
+
+    public static long getLastDayByMin(){
+        long min=0L;
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Calendar ca = Calendar.getInstance();
+        ca.set(Calendar.DAY_OF_MONTH, ca.getActualMaximum(Calendar.DAY_OF_MONTH));
+        String last = format.format(ca.getTime())+" 23:59:59";
+        try {
+            long second=sdf.parse(last).getTime()-System.currentTimeMillis();
+            min=second/(1000*60);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+            min=0L;
+        }
+        return min;
+    }
+
 }

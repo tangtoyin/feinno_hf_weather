@@ -119,7 +119,7 @@ public class ServiceLogAspect {
         /**System.out.println(DateHelper.date2Str(endTime) + "执行完毕：" + TConverter.toSafeString(endTime.getTime() - startTime.getTime()));
          //System.out.println("执行结果：" + JSON.toJSONString(result));*/
 
-        try {
+    /*    try {
             if (result != null) {
                 response = JSON.toJSONString(result);
                 resultCode = ((BaseResponse) result).getCode();
@@ -140,7 +140,7 @@ public class ServiceLogAspect {
             logService.newLog(tlService);
         } catch (Exception ex) {
             logger.error("记录接口日志结果时出错", ex);
-        }
+        }*/
         return result;
 
     }

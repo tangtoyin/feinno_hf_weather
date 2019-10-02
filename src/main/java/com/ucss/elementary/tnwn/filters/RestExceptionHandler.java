@@ -34,6 +34,7 @@ import java.io.IOException;
  MissingServletRequestParameterException 400 (Bad Request)
  *
  */
+
 @ControllerAdvice
 public class RestExceptionHandler {
     //运行时异常

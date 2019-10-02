@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ucss.elementary.tnwn.mapper.tnwn.TBLongareacodeMapper" >
+  <resultMap id="BaseResultMap" type="com.ucss.elementary.tnwn.model.database.TBLongareacode" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="PROCID" property="procid" jdbcType="VARCHAR" />
+    <result column="OPERTYPE" property="opertype" jdbcType="VARCHAR" />
+    <result column="AREACODE" property="areacode" jdbcType="VARCHAR" />
+    <result column="PROVCODE" property="provcode" jdbcType="VARCHAR" />
+    <result column="AREANAME" property="areaname" jdbcType="VARCHAR" />
+    <result column="VALIDDATE" property="validdate" jdbcType="VARCHAR" />
+    <result column="EXPIREDATE" property="expiredate" jdbcType="VARCHAR" />
+    <result column="TIMESTAMP" property="timestamp" jdbcType="VARCHAR" />
+    <result column="ISVALID" property="isvalid" jdbcType="DECIMAL" />
+    <result column="LOCATIONCODE" property="locationcode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, PROCID, OPERTYPE, AREACODE, PROVCODE, AREANAME, VALIDDATE, EXPIREDATE, TIMESTAMP, 
+    ISVALID, LOCATIONCODE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ucss.elementary.tnwn.model.database.TBLongareacodeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from T_B_LONGAREACODE
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_B_LONGAREACODE
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from T_B_LONGAREACODE
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ucss.elementary.tnwn.model.database.TBLongareacodeExample" >
+    delete from T_B_LONGAREACODE
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ucss.elementary.tnwn.model.database.TBLongareacode" >
+    insert into T_B_LONGAREACODE (ID, PROCID, OPERTYPE, 
+      AREACODE, PROVCODE, AREANAME, 
+      VALIDDATE, EXPIREDATE, TIMESTAMP, 
+      ISVALID, LOCATIONCODE)
+    values (#{id,jdbcType=DECIMAL}, #{procid,jdbcType=VARCHAR}, #{opertype,jdbcType=VARCHAR}, 
+      #{areacode,jdbcType=VARCHAR}, #{provcode,jdbcType=VARCHAR}, #{areaname,jdbcType=VARCHAR}, 
+      #{validdate,jdbcType=VARCHAR}, #{expiredate,jdbcType=VARCHAR}, #{timestamp,jdbcType=VARCHAR}, 
+      #{isvalid,jdbcType=DECIMAL}, #{locationcode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ucss.elementary.tnwn.model.database.TBLongareacode" >
+    insert into T_B_LONGAREACODE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="procid != null" >
+        PROCID,
+      </if>
+      <if test="opertype != null" >
+        OPERTYPE,
+      </if>
+      <if test="areacode != null" >
+        AREACODE,
+      </if>
+      <if test="provcode != null" >
+        PROVCODE,
+      </if>
+      <if test="areaname != null" >
+        AREANAME,
+      </if>
+      <if test="validdate != null" >
+        VALIDDATE,
+      </if>
+      <if test="expiredate != null" >
+        EXPIREDATE,
+      </if>
+      <if test="timestamp != null" >
+        TIMESTAMP,
+      </if>
+      <if test="isvalid != null" >
+        ISVALID,
+      </if>
+      <if test="locationcode != null" >
+        LOCATIONCODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="procid != null" >
+        #{procid,jdbcType=VARCHAR},
+      </if>
+      <if test="opertype != null" >
+        #{opertype,jdbcType=VARCHAR},
+      </if>
+      <if test="areacode != null" >
+        #{areacode,jdbcType=VARCHAR},
+      </if>
+      <if test="provcode != null" >
+        #{provcode,jdbcType=VARCHAR},
+      </if>
+      <if test="areaname != null" >
+        #{areaname,jdbcType=VARCHAR},
+      </if>
+      <if test="validdate != null" >
+        #{validdate,jdbcType=VARCHAR},
+      </if>
+      <if test="expiredate != null" >
+        #{expiredate,jdbcType=VARCHAR},
+      </if>
+      <if test="timestamp != null" >
+        #{timestamp,jdbcType=VARCHAR},
+      </if>
+      <if test="isvalid != null" >
+        #{isvalid,jdbcType=DECIMAL},
+      </if>
+      <if test="locationcode != null" >
+        #{locationcode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ucss.elementary.tnwn.model.database.TBLongareacodeExample" resultType="java.lang.Integer" >
+    select count(*) from T_B_LONGAREACODE
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update T_B_LONGAREACODE
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=DECIMAL},
+      </if>
+      <if test="record.procid != null" >
+        PROCID = #{record.procid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.opertype != null" >
+        OPERTYPE = #{record.opertype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areacode != null" >
+        AREACODE = #{record.areacode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.provcode != null" >
+        PROVCODE = #{record.provcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaname != null" >
+        AREANAME = #{record.areaname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.validdate != null" >
+        VALIDDATE = #{record.validdate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expiredate != null" >
+        EXPIREDATE = #{record.expiredate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.timestamp != null" >
+        TIMESTAMP = #{record.timestamp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isvalid != null" >
+        ISVALID = #{record.isvalid,jdbcType=DECIMAL},
+      </if>
+      <if test="record.locationcode != null" >
+        LOCATIONCODE = #{record.locationcode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update T_B_LONGAREACODE
+    set ID = #{record.id,jdbcType=DECIMAL},
+      PROCID = #{record.procid,jdbcType=VARCHAR},
+      OPERTYPE = #{record.opertype,jdbcType=VARCHAR},
+      AREACODE = #{record.areacode,jdbcType=VARCHAR},
+      PROVCODE = #{record.provcode,jdbcType=VARCHAR},
+      AREANAME = #{record.areaname,jdbcType=VARCHAR},
+      VALIDDATE = #{record.validdate,jdbcType=VARCHAR},
+      EXPIREDATE = #{record.expiredate,jdbcType=VARCHAR},
+      TIMESTAMP = #{record.timestamp,jdbcType=VARCHAR},
+      ISVALID = #{record.isvalid,jdbcType=DECIMAL},
+      LOCATIONCODE = #{record.locationcode,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ucss.elementary.tnwn.model.database.TBLongareacode" >
+    update T_B_LONGAREACODE
+    <set >
+      <if test="procid != null" >
+        PROCID = #{procid,jdbcType=VARCHAR},
+      </if>
+      <if test="opertype != null" >
+        OPERTYPE = #{opertype,jdbcType=VARCHAR},
+      </if>
+      <if test="areacode != null" >
+        AREACODE = #{areacode,jdbcType=VARCHAR},
+      </if>
+      <if test="provcode != null" >
+        PROVCODE = #{provcode,jdbcType=VARCHAR},
+      </if>
+      <if test="areaname != null" >
+        AREANAME = #{areaname,jdbcType=VARCHAR},
+      </if>
+      <if test="validdate != null" >
+        VALIDDATE = #{validdate,jdbcType=VARCHAR},
+      </if>
+      <if test="expiredate != null" >
+        EXPIREDATE = #{expiredate,jdbcType=VARCHAR},
+      </if>
+      <if test="timestamp != null" >
+        TIMESTAMP = #{timestamp,jdbcType=VARCHAR},
+      </if>
+      <if test="isvalid != null" >
+        ISVALID = #{isvalid,jdbcType=DECIMAL},
+      </if>
+      <if test="locationcode != null" >
+        LOCATIONCODE = #{locationcode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ucss.elementary.tnwn.model.database.TBLongareacode" >
+    update T_B_LONGAREACODE
+    set PROCID = #{procid,jdbcType=VARCHAR},
+      OPERTYPE = #{opertype,jdbcType=VARCHAR},
+      AREACODE = #{areacode,jdbcType=VARCHAR},
+      PROVCODE = #{provcode,jdbcType=VARCHAR},
+      AREANAME = #{areaname,jdbcType=VARCHAR},
+      VALIDDATE = #{validdate,jdbcType=VARCHAR},
+      EXPIREDATE = #{expiredate,jdbcType=VARCHAR},
+      TIMESTAMP = #{timestamp,jdbcType=VARCHAR},
+      ISVALID = #{isvalid,jdbcType=DECIMAL},
+      LOCATIONCODE = #{locationcode,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

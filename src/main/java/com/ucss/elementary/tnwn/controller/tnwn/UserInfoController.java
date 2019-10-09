@@ -12,9 +12,11 @@ import com.ucss.elementary.tnwn.model.response.BaseResponse;
 import com.ucss.elementary.tnwn.model.response.TnwnBaseResponse;
 import com.ucss.elementary.tnwn.model.response.TnwnsBaseResponse;
 import com.ucss.elementary.tnwn.model.tnwn.*;
+import com.ucss.elementary.tnwn.service.tnwn.LogService;
 import com.ucss.elementary.tnwn.service.tnwn.SegmentService;
 import com.ucss.elementary.tnwn.service.tnwn.UserInfoService;
 import com.ucss.elementary.tnwn.util.EntityUtil;
+import com.ucss.elementary.tnwn.util.IpUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -24,10 +26,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.swing.text.html.parser.Entity;
 import java.util.List;
 
@@ -51,6 +56,12 @@ public class UserInfoController {
 
     @Autowired
     private SegmentService segmentService;
+
+    @Autowired
+    LogService logService;
+
+    @Autowired
+    private Environment env;
     /**
      * 获取用户携网转号详情单一查询
      *
@@ -65,16 +76,21 @@ public class UserInfoController {
             @ApiImplicitParam(name = "sig", dataType = "String", paramType = "query"),
     })
     @RequestMapping(value = "/detail", method = RequestMethod.POST)
-    TnwnBaseResponse getUserInfoV1(@RequestParam(value = "PARAM") String param) {
-        System.out.println("param:" + param);
+    TnwnBaseResponse getUserInfoV1(@RequestParam(value = "PARAM") String param, HttpServletRequest req, HttpServletResponse res) {
         JSONObject jsonObject = JSONObject.parseObject(param);
-
         TnwnBaseResponse response = new TnwnBaseResponse();
+        // TODO 存放外部编码，返回
+        SingleUserReInfo singleUserReInfo=null;
+        Exception ex=null;
+        String OUTERIFCODE="";
+        String OUTERIFRESULT="";
+        String phonenumber = jsonObject.get("phonenum").toString();
+        String platformcode = jsonObject.get("platformcode").toString();
         try {
-            String phonenumber = jsonObject.get("phonenum").toString();
-            String platformcode = jsonObject.get("platformcode").toString();
-
-            SingleUserReInfo singleUserReInfo=userInfoService.getUserInfoV1Temp(phonenumber, platformcode);
+            long start=System.currentTimeMillis();
+            singleUserReInfo=userInfoService.getUserInfoV1(phonenumber, platformcode,OUTERIFCODE,OUTERIFRESULT);
+            long end=System.currentTimeMillis();
+            logger.info("接口总共所需时间:"+(end-start));
             if (singleUserReInfo == null) {
                 response.setResultcode(Status.noUserInfo);
                 response.setResult(null);
@@ -88,11 +104,20 @@ public class UserInfoController {
                 }
                 response.setResultcode(singleUserReInfo.getResultCode());
             }
-
         } catch (Exception e) {
             e.printStackTrace();
+            ex=e;
             response = new TnwnBaseResponse(Status.error,null);
             logger.info("获取用户携转信息异常",e);
+        }finally {
+            try {
+                logger.info("OUTERIFCODE1:"+singleUserReInfo.getOUTERIFCODE());
+                logger.info("OUTERIFRESULT1:"+singleUserReInfo.getOUTERIFRESULT());
+                logService.insertLog(req, phonenumber, platformcode, response, ex , singleUserReInfo.getOUTERIFCODE(),singleUserReInfo.getOUTERIFRESULT(),singleUserReInfo.getURL(),"单号码携转信息查询");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return response;
     }
@@ -118,7 +143,7 @@ public class UserInfoController {
         List<String> list = EntityUtil.checkCellphone(phonenumber);
         TnwnsBaseResponse response = new TnwnsBaseResponse();
         try {
-            BatchUserReInfo batchUserReInfo=userInfoService.getUserInfoV2Temp(list, platformcode);
+            BatchUserReInfo batchUserReInfo=userInfoService.getUserInfoV2(list, platformcode);
             if (batchUserReInfo==null) {
                 response.setBatchresultcode(Status.noUserInfo);
                 response.setBatchresult(null);
@@ -135,13 +160,11 @@ public class UserInfoController {
                 }
                 response.setBatchresultcode(batchUserReInfo.getBatchResultCode());
             }
-
         } catch (Exception e) {
             e.printStackTrace();
             response = new TnwnsBaseResponse( Status.error,null);
             logger.info("批量获取用户携转信息异常",e);
         }
-
         return response;
 
     }

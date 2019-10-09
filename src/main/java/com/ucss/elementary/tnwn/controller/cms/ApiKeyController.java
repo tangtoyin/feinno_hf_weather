@@ -159,7 +159,7 @@ public class ApiKeyController {
     @PostMapping("resetApiKey")
     public BaseResponse resetApiKey(
             @RequestParam(value ="id") Long id){
-
+        
         String key = UUID.randomUUID().toString().replaceAll("-", "").substring(0,24);
         SysApikey sysApikey = new SysApikey();
         sysApikey.setAppkey(key);

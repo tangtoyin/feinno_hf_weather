@@ -60,7 +60,6 @@ public class UserApplyController {
         return new BaseResponse(new MapFromPageInfo<>(list));
     }
 
-
     @ApiOperation(value = "批量审核用户修改申请", notes = "批量审核用户修改申请")
     @CmsPermission("userapply:audit")
     @ApiImplicitParams({
@@ -80,6 +79,7 @@ public class UserApplyController {
         if(ids==null||ids.size()<=0) {
             return new BaseResponse(ReturnCodeConst.ERROR, "没有待审核项");
         }
+        
         short isvalid=0;
         if(auditstatus==1){
             isvalid=1;

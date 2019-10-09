@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.ucss.elementary.tnwn.constant.tnwn.Status;
+import com.ucss.elementary.tnwn.constant.tnwn.TimerApplication;
 import com.ucss.elementary.tnwn.model.database.TUserInfoTemp;
 import com.ucss.elementary.tnwn.model.response.BaseResponse;
 import com.ucss.elementary.tnwn.model.response.TnwnBaseResponse;
@@ -22,8 +23,8 @@ import java.util.regex.Pattern;
  */
 public class EntityUtil
 {
-    final Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    private static final Logger log= LoggerFactory.getLogger(EntityUtil.class);
     public static UserTnwnInfo TransUserInfo(CarryAroundInfo tUserInfoTemp){
         UserTnwnInfo userTnwnInfo=null;
         try{
@@ -31,19 +32,31 @@ public class EntityUtil
             userTnwnInfo=(UserTnwnInfo)JSONObject.parseObject(ob, UserTnwnInfo.class);
             userTnwnInfo.setPhonenum(tUserInfoTemp.getServiceNum());
             userTnwnInfo.setLastoperators(tUserInfoTemp.getPortOutIdDesc());
-            userTnwnInfo.setLastoperatorscode(tUserInfoTemp.getPortOutId());
+            String last_mobile_type=null;
+            if(tUserInfoTemp.getPortOutIdDesc()!=null){
+                if(tUserInfoTemp.getPortOutIdDesc().indexOf("移动")>-1){
+                    last_mobile_type="01";
+                }else if(tUserInfoTemp.getPortOutIdDesc().indexOf("联通")>-1){
+                    last_mobile_type="02";
+                }else if(tUserInfoTemp.getPortOutIdDesc().indexOf("电信")>-1){
+                    last_mobile_type="03";
+                }
+            }
+           // userTnwnInfo.setLastoperatorscode(tUserInfoTemp.getPortOutId());
+            userTnwnInfo.setLastoperatorscode(last_mobile_type);
             userTnwnInfo.setOperators(tUserInfoTemp.getPortInIdDesc());
-
+            log.info("tUserInfoTemp:"+tUserInfoTemp.getNetId());
             String mobile_type="01";
-            if(tUserInfoTemp.getPortInIdDesc().indexOf("移动")>-1){
+            //TODO 因为集团接口与我们自己定义的运营商类型不同，所以用或
+            if(tUserInfoTemp.getNetId().equals("002")||tUserInfoTemp.getNetId().equals("01")){
                 mobile_type="01";
-            }else if(tUserInfoTemp.getPortInIdDesc().indexOf("联")>-1){
+            }else if(tUserInfoTemp.getNetId().equals("003")||tUserInfoTemp.getNetId().equals("02")){
                 mobile_type="02";
-            }else if(tUserInfoTemp.getPortInIdDesc().indexOf("电信")>-1){
+            }else if(tUserInfoTemp.getNetId().equals("001")||tUserInfoTemp.getNetId().equals("03")){
                 mobile_type="03";
             }
             userTnwnInfo.setOperatorscode(mobile_type);
-            userTnwnInfo.setIschinammobile(tUserInfoTemp.getPortInIdDesc().indexOf("移动")>-1?"1":"0");
+            userTnwnInfo.setIschinammobile( mobile_type.equals("01")?"1":"0");
             userTnwnInfo.setRegioncode(tUserInfoTemp.getRegion());
             userTnwnInfo.setProvincecode(tUserInfoTemp.getProvince());
 
@@ -54,7 +67,7 @@ public class EntityUtil
         return userTnwnInfo;
     }
 
-    public static UserTnwnInfo TransUserInfo(TUserInfoTemp tUserInfoTemp){
+   /* public static UserTnwnInfo TransUserInfo(TUserInfoTemp tUserInfoTemp){
         UserTnwnInfo userTnwnInfo=null;
         try{
             String ob = JSONObject.toJSONString(tUserInfoTemp);
@@ -63,12 +76,11 @@ public class EntityUtil
             userTnwnInfo.setLastoperators(tUserInfoTemp.getPortoutiddesc());
             userTnwnInfo.setLastoperatorscode(tUserInfoTemp.getPortoutid());
             userTnwnInfo.setOperators(tUserInfoTemp.getPortiniddesc());
-           // userTnwnInfo.setOperatorscode(tUserInfoTemp.getPortinid());
 
             String mobile_type="01";
             if(tUserInfoTemp.getPortiniddesc().indexOf("移动")>-1){
                 mobile_type="01";
-            }else if(tUserInfoTemp.getPortiniddesc().indexOf("联")>-1){
+            }else if(tUserInfoTemp.getPortiniddesc().indexOf("联通")>-1){
                 mobile_type="02";
             }else if(tUserInfoTemp.getPortiniddesc().indexOf("电信")>-1){
                 mobile_type="03";
@@ -83,10 +95,10 @@ public class EntityUtil
         }
 
         return userTnwnInfo;
-    }
+    }*/
 
 
-    public static List<UserTnwnInfo> TransUserInfos(List<TUserInfoTemp> list_tUserInfoTemp){
+   /* public static List<UserTnwnInfo> TransUserInfos(List<TUserInfoTemp> list_tUserInfoTemp){
 
         List<UserTnwnInfo> list=new ArrayList<>();
         for(TUserInfoTemp tUserInfoTemp:list_tUserInfoTemp){
@@ -96,13 +108,13 @@ public class EntityUtil
             userTnwnInfo.setPhonenum(tUserInfoTemp.getServicenum());
             userTnwnInfo.setLastoperators(tUserInfoTemp.getPortoutiddesc());
             userTnwnInfo.setLastoperatorscode(tUserInfoTemp.getPortoutid());
-            userTnwnInfo.setOperators(tUserInfoTemp.getPortiniddesc());
+            userTnwnInfo.setOperators(tUserInfoTemp.getNetiddesc());
             //userTnwnInfo.setOperatorscode(tUserInfoTemp.getPortinid());
 
             String mobile_type="01";
             if(tUserInfoTemp.getPortiniddesc().indexOf("移动")>-1){
                 mobile_type="01";
-            }else if(tUserInfoTemp.getPortiniddesc().indexOf("联")>-1){
+            }else if(tUserInfoTemp.getPortiniddesc().indexOf("联通")>-1){
                 mobile_type="02";
             }else if(tUserInfoTemp.getPortiniddesc().indexOf("电信")>-1){
                 mobile_type="03";
@@ -115,31 +127,8 @@ public class EntityUtil
             list.add(userTnwnInfo);
         }
         return list;
-    }
-
-   /* public static List<UserTnwnInfo> TransBatchUserInfos(BatchUserReInfo batchUserReInfo){
-        List<UserTnwnInfo> list=new ArrayList<>();
-        List<BatchCarryAroundInfo> l=batchUserReInfo.getBatchResult();
-        for(BatchCarryAroundInfo batchCarryAroundInfo:l){
-            CarryAroundInfo cai=batchCarryAroundInfo.getCarryAroundInfo();
-            String ob = JSONObject.toJSONString(cai);
-            UserTnwnInfo userTnwnInfo=(UserTnwnInfo)JSONObject.parseObject(ob, UserTnwnInfo.class);
-
-            if(batchCarryAroundInfo.getResultCode().equals("000000")){
-                userTnwnInfo.setPhonenum(cai.getServiceNum());
-                userTnwnInfo.setLastoperators(cai.getPortOutIdDesc());
-                userTnwnInfo.setLastoperatorscode(cai.getPortOutId());
-                userTnwnInfo.setOperators(cai.getPortInIdDesc());
-                userTnwnInfo.setOperatorscode(cai.getPortInId());
-                userTnwnInfo.setIschinammobile(cai.getPortInIdDesc().indexOf("移动")>-1?"是":"否");
-                userTnwnInfo.setRegioncode(cai.getRegion());
-                userTnwnInfo.setProvincecode(cai.getProvince());
-            }
-
-            list.add(userTnwnInfo);
-        }
-        return list;
     }*/
+
 
     public static List<UserTnwnInfoRes> TransBatchUserInfos(BatchUserReInfo batchUserReInfo){
         List<UserTnwnInfoRes> list=new ArrayList<UserTnwnInfoRes>();
@@ -149,23 +138,38 @@ public class EntityUtil
             res.setResultcode(batchCarryAroundInfo.getResultCode());
             CarryAroundInfo cai=batchCarryAroundInfo.getCarryAroundInfo();
             String ob = JSONObject.toJSONString(cai);
+
             UserTnwnInfo re=(UserTnwnInfo)JSONObject.parseObject(ob, UserTnwnInfo.class);
             if(batchCarryAroundInfo.getResultCode().equals("000000")){
                 re.setPhonenum(cai.getServiceNum());
+
+                String last_mobile_type=null;
+                if(cai.getPortOutIdDesc()!=null){
+                    if(cai.getPortOutIdDesc().indexOf("移动")>-1){
+                        last_mobile_type="01";
+                    }else if(cai.getPortOutIdDesc().indexOf("联通")>-1){
+                        last_mobile_type="02";
+                    }else if(cai.getPortOutIdDesc().indexOf("电信")>-1){
+                        last_mobile_type="03";
+                    }
+                }
+
+
                 re.setLastoperators(cai.getPortOutIdDesc());
-                re.setLastoperatorscode(cai.getPortOutId());
-                re.setOperators(cai.getPortInIdDesc());
+                re.setLastoperatorscode(last_mobile_type);
+                re.setOperators(cai.getNetIdDesc());
               //  re.setOperatorscode(cai.getPortInId());
                 String mobile_type="01";
-                if(cai.getPortInIdDesc().indexOf("移动")>-1){
+                //TODO 因为集团接口与我们自己定义的运营商类型不同，所以用或
+                if(cai.getNetId().equals("002")||cai.getNetId().equals("01")){
                     mobile_type="01";
-                }else if(cai.getPortInIdDesc().indexOf("联")>-1){
+                }else if(cai.getNetId().equals("003")||cai.getNetId().equals("02")){
                     mobile_type="02";
-                }else if(cai.getPortInIdDesc().indexOf("电信")>-1){
+                }else if(cai.getNetId().equals("001")||cai.getNetId().equals("03")){
                     mobile_type="03";
                 }
                 re.setOperatorscode(mobile_type);
-                re.setIschinammobile(cai.getPortInIdDesc().indexOf("移动")>-1?"1":"0");
+                re.setIschinammobile(mobile_type.equals("01")?"1":"0");
                 re.setRegioncode(cai.getRegion());
                 re.setProvincecode(cai.getProvince());
             }
@@ -186,8 +190,8 @@ public class EntityUtil
         List<String> list=new ArrayList<String>();
         // 将给定的正则表达式编译到模式中
         Pattern pattern = Pattern.compile("((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(17([0-3]|[5-9]))|(19([0-3]|[5-9]))|(18[0,5-9]))\\d{8}");
-       // Pattern pattern = Pattern.compile("^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\\\\d{8}$");
-        //String PHONE_NUMBER_REG = "^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\\d{8}$";
+        // Pattern pattern = Pattern.compile("^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\\\\d{8}$");
+        // String PHONE_NUMBER_REG = "^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\\d{8}$";
         // 创建匹配给定输入与此模式的匹配器。
         Matcher matcher = pattern.matcher(str);
         //查找字符串中是否有符合的子字符串
@@ -195,7 +199,6 @@ public class EntityUtil
             //查找到符合的即输出
             list.add(matcher.group());
         }
-
         return list;
     }
 
@@ -204,8 +207,6 @@ public class EntityUtil
         String str="[\"17338320004\",\"13429852099\",\"13233494455\"],";
         List l=checkCellphone(str);
         System.out.println(l.size());
-
-
 
         //String str="{\"serviceNum\": \"13429852098\",\"firstChannelId\": \"251\",\"secondChannelId\": \"104\",\"firstChannelName\": \"杭州致健网络科技有限公司\",\"secondChannelName\": \"杭州致健-英语趣配音\",\"chlGlobalCode\": \"2871515051200300020\"}";
 
@@ -251,26 +252,6 @@ public class EntityUtil
         carryAroundInfo.setRegionName(tUserInfoTemp.getRegionname());
         carryAroundInfo.setProvince(tUserInfoTemp.getProvince());
         carryAroundInfo.setProvinceName(tUserInfoTemp.getProvincename());
-       /* private String serviceNum;
-        private String state;
-        private String stateDesc;
-        private String netId;
-        private String netIdDesc;
-        private String portInId;
-        private String portInIdDesc;
-        private String portOutId;
-        private String portOutIdDesc;
-        private String homeNet;
-        private String homeNetDesc;
-        private String activeTime;
-        private String inactiveTime;
-        private String serviceType;
-        private String serviceTypeDesc;
-        private String region;
-        private String regionName;
-        private String province;
-        private String provinceName;*/
-
         return carryAroundInfo;
     }
 

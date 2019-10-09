@@ -28,4 +28,6 @@ public interface TBNumrangeMapper {
     int updateByPrimaryKeySelective(TBNumrange record);
 
     int updateByPrimaryKey(TBNumrange record);
+
+
 }

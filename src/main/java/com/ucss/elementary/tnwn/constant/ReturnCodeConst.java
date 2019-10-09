@@ -20,4 +20,6 @@ public final class ReturnCodeConst {
     public static final String SENSETIVE_MSG = "提交的信息含有敏感词词汇，请重试";
     //登录信息有误
     public static final String LOGIN_ERROR="501";
+
+    
 }

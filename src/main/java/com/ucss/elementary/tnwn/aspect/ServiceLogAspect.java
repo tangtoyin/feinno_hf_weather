@@ -108,7 +108,6 @@ public class ServiceLogAspect {
                     }
                 }
             }
-
         }
 
         //执行方法
@@ -118,8 +117,8 @@ public class ServiceLogAspect {
         Date endTime = new Date();
         /**System.out.println(DateHelper.date2Str(endTime) + "执行完毕：" + TConverter.toSafeString(endTime.getTime() - startTime.getTime()));
          //System.out.println("执行结果：" + JSON.toJSONString(result));*/
-
-    /*    try {
+/*
+        try {
             if (result != null) {
                 response = JSON.toJSONString(result);
                 resultCode = ((BaseResponse) result).getCode();

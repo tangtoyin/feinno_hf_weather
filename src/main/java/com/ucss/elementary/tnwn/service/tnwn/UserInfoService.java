@@ -3,6 +3,7 @@ package com.ucss.elementary.tnwn.service.tnwn;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ucss.elementary.tnwn.constant.tnwn.Cache;
 import com.ucss.elementary.tnwn.mapper.tnwn.TBNumrangeMapper;
 import com.ucss.elementary.tnwn.mapper.tnwn.TDUserMapper;
 import com.ucss.elementary.tnwn.mapper.tnwn.TUserInfoTempMapper;
@@ -60,14 +61,18 @@ public class UserInfoService {
     @Autowired
     private TBNumrangeMapper tbNumrangeMapper;
 
+    @Autowired
+    SegmentService segmentService;
+
     /**
      * 用户详情
      * @param
      * @return
      * @throws Exception
      */
-    public SingleUserReInfo getUserInfoV1(String phonenumber, String platformcode) throws Exception{
+    public SingleUserReInfo getUserInfoV1(String phonenumber, String platformcode,String OUTERIFCODE,String OUTERIFRESULT) throws Exception{
         {
+
             //TODO：先查询缓存，再查数据库
             final String key=String.format(env.getProperty("redis.user.info.key"),phonenumber);
             //sb02:user:info:key:%s
@@ -76,28 +81,70 @@ public class UserInfoService {
                 //TODO：key存在于缓存
                 String value=stringRedisTemplate.opsForValue().get(key);
                 singleUserReInfo=objectMapper.readValue(value,SingleUserReInfo.class);
+
             }else{
-                //TODO：key不存在于缓存->查数据库并存入缓存
-                Map<String, Object> resultMap = new HashMap<>();
-                resultMap.put("serviceNum", phonenumber);
-                resultMap.put("firstChannelId", env.getProperty("http.group.tnwn.firstchannelid"));
-                resultMap.put("secondChannelId", env.getProperty("http.group.tnwn.secondchannelid"));
-                resultMap.put("firstChannelName",  "杭州致健网络科技有限公司");
-                resultMap.put("secondChannelName", "杭州致健-英语趣配音");
-                resultMap.put("chlGlobalCode", env.getProperty("http.group.tnwn.chlglobalcode"));
-                String url="http://"+env.getProperty("http.group.tnwn.ip")+":"+env.getProperty("http.group.tnwn.port")+env.getProperty("http.group.tnwn.single.cai.url");
-                String json=HttpClientHelper.HttpPostWithJson(url,JSON.toJSONString(resultMap),"Basic "+env.getProperty("http.group.tnwn.auth"));
-                System.out.println(json);
-                singleUserReInfo = new JSONObject().parseObject(json, SingleUserReInfo.class);
-                if (singleUserReInfo!=null){
+                //TODO 先判断区域,不在白名单省份内的手机号码不请求接口
+                boolean flat=segmentService.AreaFilterSearchSingle(phonenumber);
+
+                log.info("是否白名单省内:"+flat);
+                if(flat){
+                    Map<String, Object> resultMap = new HashMap<>();
+                    resultMap.put("serviceNum", phonenumber);
+                    resultMap.put("firstChannelId", env.getProperty("http.group.tnwn.firstchannelid"));
+                    resultMap.put("secondChannelId", env.getProperty("http.group.tnwn.secondchannelid"));
+                    resultMap.put("firstChannelName",  "杭州致健网络科技有限公司");
+                    resultMap.put("secondChannelName", "杭州致健-英语趣配音");
+                    resultMap.put("chlGlobalCode", env.getProperty("http.group.tnwn.chlglobalcode"));
+                    String url="http://"+env.getProperty("http.group.tnwn.ip")+":"+env.getProperty("http.group.tnwn.port")+env.getProperty("http.group.tnwn.single.cai.url");
+                    String json=HttpClientHelper.HttpPostWithJson(url,JSON.toJSONString(resultMap),"Basic "+env.getProperty("http.group.tnwn.auth"));
+                    //System.out.println(json);
+                    log.info(json);
+                    singleUserReInfo = new JSONObject().parseObject(json, SingleUserReInfo.class);
+                    singleUserReInfo.setOUTERIFCODE(singleUserReInfo.getResultCode());
+                    singleUserReInfo.setOUTERIFRESULT(json);
+                    singleUserReInfo.setURL(url+""+resultMap.toString());
+                }
+
+               if(singleUserReInfo==null||!singleUserReInfo.getResultCode().equals("000000")){
+                    //TODO：如果数据库里没有查询到，直接查询号段表判断
+                   TBNumrange tbNumrange=null;
+                   //TODO 从内存里取号段
+                   List<TBNumrange> numrangeList= Cache.hash_numranges.get(phonenumber.substring(0,5));
+                   if(numrangeList!=null&&numrangeList.size()>0){
+                       for(TBNumrange t:numrangeList){
+                           Long beginno=Long.parseLong(t.getBeginno());
+                           Long endno=Long.parseLong(t.getEndno());
+                           Long nowno=Long.parseLong(phonenumber);
+                           if(nowno>=beginno&&nowno<=endno){
+                               tbNumrange=t;
+                           }
+                       }
+                   }
+                   if(tbNumrange!=null){
+                       singleUserReInfo=new SingleUserReInfo();
+                       singleUserReInfo.setSuccess("true");
+                       singleUserReInfo.setResultCode("000000");
+                       singleUserReInfo.setResultMessage("操作成功");
+                       CarryAroundInfo carryAroundInfo=new CarryAroundInfo();
+                       carryAroundInfo.setServiceNum(phonenumber);
+                       carryAroundInfo.setPortInIdDesc(tbNumrange.getServicername());
+                       carryAroundInfo.setNetId(tbNumrange.getServicer());
+                       carryAroundInfo.setNetIdDesc(tbNumrange.getServicername());
+                       singleUserReInfo.setCarryAroundInfo(carryAroundInfo);
+                       log.info("号段表查询netid:"+carryAroundInfo.getNetId());
+                   }
+                }else {
                     if(singleUserReInfo.getResult()!=null){
                         CarryAroundInfo carryAroundInfo= new JSONObject().parseObject(singleUserReInfo.getResult(), CarryAroundInfo.class);
                         singleUserReInfo.setCarryAroundInfo(carryAroundInfo);
+                        log.info("接口返回:netid"+carryAroundInfo.getNetId());
                     }
-                    //TODO redis月底过期
-                    stringRedisTemplate.opsForValue().set(key,objectMapper.writeValueAsString(singleUserReInfo), TQ24SolarTerms.getLastDayByMin(), TimeUnit.MINUTES);
                 }
+
+                //TODO redis月底过期
+                stringRedisTemplate.opsForValue().set(key,objectMapper.writeValueAsString(singleUserReInfo), TQ24SolarTerms.getLastDayByMin(), TimeUnit.MINUTES);
             }
+            log.info("...."+OUTERIFRESULT);
             //TODO：发送消息
             if(singleUserReInfo!=null){
                // rabbitTemplate.setMessageConverter(new Jackson2JsonMessageConverter());
@@ -115,7 +162,7 @@ public class UserInfoService {
      * @return
      * @throws Exception
      */
-    public SingleUserReInfo getUserInfoV1Temp(String phonenumber, String platformcode) throws Exception{
+    public SingleUserReInfo getUserInfoV1Temp(String phonenumber, String platformcode,String code,String result) throws Exception{
         //TODO：先查询缓存，再查数据库
         final String key=String.format(env.getProperty("redis.user.info.key"),phonenumber);
         TUserInfoTemp user = null;
@@ -144,7 +191,8 @@ public class UserInfoService {
             }else{
                 //TODO：如果数据库里没有查询到，直接查询号段表判断
                 TBNumrangeExample example=new TBNumrangeExample();
-                example.createCriteria().andNumrangeEqualTo(phonenumber.substring(0,7));
+               // example.createCriteria().andNumrangeEqualTo(phonenumber.substring(0,7));
+                example.createCriteria().andBeginnoLessThanOrEqualTo(phonenumber).andEndnoGreaterThanOrEqualTo(phonenumber).andIsvalidEqualTo((short) 1);
                 List<TBNumrange> tbNumranges=tbNumrangeMapper.selectByExample(example);
                 if(tbNumranges.size()>0){
                     TBNumrange tbNumrange=tbNumranges.get(0);
@@ -155,12 +203,19 @@ public class UserInfoService {
                     CarryAroundInfo carryAroundInfo=new CarryAroundInfo();
                     carryAroundInfo.setServiceNum(phonenumber);
                     carryAroundInfo.setPortInIdDesc(tbNumrange.getServicername());
+                    carryAroundInfo.setNetId(tbNumrange.getServicer());
+                    carryAroundInfo.setNetIdDesc(tbNumrange.getServicername());
+                    log.info(carryAroundInfo.getNetId()+"-->"+carryAroundInfo.getNetIdDesc());
                     singleUserReInfo.setCarryAroundInfo(carryAroundInfo);
                     stringRedisTemplate.opsForValue().set(key,objectMapper.writeValueAsString(singleUserReInfo),10, TimeUnit.MINUTES);
                 }
             }
         }
 
+        code="123";
+        result="456";
+        singleUserReInfo.setOUTERIFCODE("12333");
+        singleUserReInfo.setOUTERIFRESULT("2222");
         return singleUserReInfo;
     }
 
@@ -181,16 +236,17 @@ public class UserInfoService {
         for(int i=0;i<list_phone.size();i++){
             array[i]=list_phone.get(i);
         }
+
+
+
         resultMap.put("serviceNumBatch", array);
         resultMap.put("firstChannelId", env.getProperty("http.group.tnwn.firstchannelid"));
         resultMap.put("secondChannelId", env.getProperty("http.group.tnwn.secondchannelid"));
         resultMap.put("firstChannelName",  "杭州致健网络科技有限公司");
         resultMap.put("secondChannelName", "杭州致健-英语趣配音");
         resultMap.put("chlGlobalCode", env.getProperty("http.group.tnwn.chlglobalcode"));
-        log.info("批量入参:"+JSON.toJSONString(resultMap));
         String url="http://"+env.getProperty("http.group.tnwn.ip")+":"+env.getProperty("http.group.tnwn.port")+env.getProperty("http.group.tnwn.batch.cai.url");
         String json=HttpClientHelper.HttpPostWithJson(url,JSON.toJSONString(resultMap),"Basic "+env.getProperty("http.group.tnwn.auth"));
-        System.out.println(json);
         batchUserReInfo = new JSONObject().parseObject(json, BatchUserReInfo.class);
         List<BatchCarryAroundInfo> list=batchUserReInfo.getBatchResult();
         if(list!=null&&list.size()>0){
@@ -199,6 +255,45 @@ public class UserInfoService {
                 batchCarryAroundInfo.setCarryAroundInfo(carryAroundInfo);
             }
         }
+
+        //TODO 最后把从接口里未获取到携转信息的号码取出来重新赋值
+        if(list!=null&&list.size()>0){
+            for(BatchCarryAroundInfo batchCarryAroundInfo:list){
+                if(!batchCarryAroundInfo.getResultCode().equals("000000")){
+                    {
+                        TBNumrange tbNumrange=null;
+                        //TODO 从内存里取号段
+                        String str=batchCarryAroundInfo.getCarryAroundInfo().getServiceNum();
+                        List<TBNumrange> numrangeList= Cache.hash_numranges.get(str.substring(0,5));
+                        if(numrangeList!=null&&numrangeList.size()>0){
+                            for(TBNumrange t:numrangeList){
+                                Long beginno=Long.parseLong(t.getBeginno());
+                                Long endno=Long.parseLong(t.getEndno());
+                                Long nowno=Long.parseLong(str);
+                                if(nowno>=beginno&&nowno<=endno){
+                                    tbNumrange=t;
+                                }
+                            }
+                        }
+                        if(tbNumrange!=null){
+                            batchCarryAroundInfo.setSuccess("true");
+                            batchCarryAroundInfo.setResultCode("000000");
+                            batchCarryAroundInfo.setResultMessage("操作成功");
+                            batchCarryAroundInfo.getCarryAroundInfo().setPortInIdDesc(tbNumrange.getServicername());
+                            batchCarryAroundInfo.getCarryAroundInfo().setServiceNum(str);
+                            batchCarryAroundInfo.getCarryAroundInfo().setNetId(tbNumrange.getServicer());
+                            batchCarryAroundInfo.getCarryAroundInfo().setNetIdDesc(tbNumrange.getServicername());
+                        }else{
+                            batchCarryAroundInfo.setSuccess("false");
+                            batchCarryAroundInfo.setResultCode("100001");
+                            batchCarryAroundInfo.setResultMessage("查询失败");
+                            batchCarryAroundInfo.getCarryAroundInfo().setServiceNum(str);
+                        }
+                    }
+                }
+            }
+        }
+
         Long end=System.currentTimeMillis();
         long s=end-start;
         log.info("不使用缓存所用时间为:"+s+"ms");
@@ -225,10 +320,6 @@ public class UserInfoService {
         t.createCriteria().andServicenumIn(list_phone);
         List<TUserInfoTemp> list=tUserInfoTempMapper.selectByExample(t);
 
-        for(String str:list_phone){
-            System.out.println("str:"+str);
-        }
-        System.out.println("ttt:"+list.size());
 
         //把接口里没有查询到的号码放在临时集合中
         for(String str:list_phone){
@@ -240,6 +331,7 @@ public class UserInfoService {
             }
             if(!flat)no_info_list.add(str);
         }
+
 
 
         batchUserReInfo.setBatchuccess("true");
@@ -262,7 +354,8 @@ public class UserInfoService {
         //TODO 添加从数据库查询出来的list
         for(String str:no_info_list){
             TBNumrangeExample example=new TBNumrangeExample();
-            example.createCriteria().andNumrangeEqualTo(str.substring(0,7));
+           // example.createCriteria().andNumrangeEqualTo(str.substring(0,7));
+            example.createCriteria().andBeginnoLessThanOrEqualTo(str).andEndnoGreaterThanOrEqualTo(str).andIsvalidEqualTo((short) 1);
             List<TBNumrange> tbNumranges=tbNumrangeMapper.selectByExample(example);
             BatchCarryAroundInfo bcai=new BatchCarryAroundInfo();
             CarryAroundInfo cai=new CarryAroundInfo();
@@ -283,13 +376,6 @@ public class UserInfoService {
             }
             batchResult.add(bcai);
         }
-
-       /* for(int i=0;i<batchResult.size();i++){
-            BatchCarryAroundInfo batchCarryAroundInfo=batchResult.get(i);
-            System.out.println(batchCarryAroundInfo.getSuccess());
-            CarryAroundInfo ca=batchCarryAroundInfo.getCarryAroundInfo();
-            System.out.println(ca.getServiceNum()+"-->"+ca.getPortInIdDesc());
-        }*/
 
         batchUserReInfo.setBatchResult(batchResult);
         Long end=System.currentTimeMillis();

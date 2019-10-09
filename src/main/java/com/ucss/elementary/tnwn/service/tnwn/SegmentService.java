@@ -1,6 +1,7 @@
 package com.ucss.elementary.tnwn.service.tnwn;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ucss.elementary.tnwn.constant.tnwn.Cache;
 import com.ucss.elementary.tnwn.constant.tnwn.Status;
 import com.ucss.elementary.tnwn.mapper.tnwn.*;
 import com.ucss.elementary.tnwn.model.database.*;
@@ -185,26 +186,28 @@ public class SegmentService {
      *
      */
     public List<UserTnwnInfoRes> AreaDetailSearchV1(List<UserTnwnInfoRes> userTnwnInfoResList, String platformcode) throws Exception{
-
-        //101	核心平台
-
-        //102	ESB
-        //106	和工作
-        //107   务工易
-
-        //103   百事易
-        //104   农情气象
-        //105   田原生活汇
-
         List<UserTnwnInfoRes> l_res=new ArrayList<>();
         for(UserTnwnInfoRes userTnwnInfoRes:userTnwnInfoResList){
             UserTnwnInfo userTnwnInfo=userTnwnInfoRes.getResult();
-            TBNumrangeExample example=new TBNumrangeExample();
-            example.createCriteria().andNumrangeEqualTo(userTnwnInfo.getPhonenum().substring(0,7));
-            List<TBNumrange> list = tbNumrangeMapper.selectByExample(example);
+           /* TBNumrangeExample example=new TBNumrangeExample();
+            System.out.println("userTnwnInfo.getPhonenum():"+userTnwnInfo.getPhonenum());
+            example.createCriteria().andBeginnoLessThanOrEqualTo(userTnwnInfo.getPhonenum()).andEndnoGreaterThanOrEqualTo(userTnwnInfo.getPhonenum()).andIsvalidEqualTo((short) 1);
+            List<TBNumrange> list = tbNumrangeMapper.selectByExample(example);*/
+            TBNumrange tb=null;
             TBNumrange tbNumrange=null;
-            if(list.size()==1){
-                tbNumrange=list.get(0);
+            List<TBNumrange> numrangeList= Cache.hash_numranges.get(userTnwnInfo.getPhonenum().substring(0,5));
+            if(numrangeList!=null&&numrangeList.size()>0){
+                for(TBNumrange t:numrangeList){
+                    Long beginno=Long.parseLong(t.getBeginno());
+                    Long endno=Long.parseLong(t.getEndno());
+                    Long nowno=Long.parseLong(userTnwnInfo.getPhonenum());
+                    if(nowno>=beginno&&nowno<=endno){
+                        tb=t;
+                    }
+                }
+            }
+            if(tb!=null){
+                tbNumrange=tb;
                 //TODO 根据平台名称查询区域编码
                 //TODO 核心平台直接返回locationcode
                 if(platformcode.equals("101")){
@@ -215,7 +218,6 @@ public class SegmentService {
                     List<TBLocation> l=tbLocationMapper.selectByExample(tbLocationExample);
                     if(l.size()>0){
                         TBLocation tbLocation=l.get(0);
-                        //locationname
                         userTnwnInfo.setRegioncode(locationcode);
                         userTnwnInfo.setRegionname(tbLocation.getLocationname());
                         userTnwnInfo.setProvincecode(tbLocation.getProvincecode());
@@ -227,7 +229,6 @@ public class SegmentService {
                             userTnwnInfo.setProvincename(tbl.getLocationname());
                         }
                     }
-
                 }else if(platformcode.equals("103")||platformcode.equals("104")||platformcode.equals("105")){
                     {
                        // String locationcode=tbNumrange.getLocationcode();
@@ -268,7 +269,6 @@ public class SegmentService {
                     if(tbl_list.size()>0){
                         TBLongareacodePla tbLongareacodePla=tbl_list.get(0);
                         userTnwnInfo.setRegioncode(tbLongareacodePla.getPlatformareacode());
-
                         TBLongareacodeExample tbLongareacodeExample=new TBLongareacodeExample();
                         tbLongareacodeExample.createCriteria().andAreacodeEqualTo(tbLongareacodePla.getAreacode());
                         List<TBLongareacode> tblc= tbLongareacodeMapper.selectByExample(tbLongareacodeExample);
@@ -289,6 +289,27 @@ public class SegmentService {
                         }
 
                     }
+                }else if(platformcode.equals("108")||platformcode.equals("109")||platformcode.equals("110")||platformcode.equals("111")){
+                            //TODO
+                            String citycode=tbNumrange.getCitycode();
+                            TBLongareacodeExample tbLongareacodeExample=new TBLongareacodeExample();
+                            tbLongareacodeExample.createCriteria().andAreacodeEqualTo(citycode);
+                            List<TBLongareacode> l=tbLongareacodeMapper.selectByExample(tbLongareacodeExample);
+                            if(l.size()>0){
+                                TBLongareacode tbLongareacode=l.get(0);
+                                userTnwnInfo.setRegioncode(tbLongareacode.getAreacode());
+                                userTnwnInfo.setRegionname(tbLongareacode.getAreaname());
+                                userTnwnInfo.setProvincecode(tbLongareacode.getProvcode());
+
+                                //TODO 根据省编码查省份
+                                TBLocationExample tbLocationExample=new TBLocationExample();
+                                tbLocationExample.createCriteria().andProvincecodeEqualTo(tbLongareacode.getProvcode()).andParentidEqualTo(new BigDecimal(101));
+                                List<TBLocation> ttt=tbLocationMapper.selectByExample(tbLocationExample);
+                                if(ttt.size()==1){
+                                    TBLocation tbl=ttt.get(0);
+                                    userTnwnInfo.setProvincename(tbl.getLocationname());
+                                }
+                        }
                 }
                }
             l_res.add(userTnwnInfoRes);
@@ -359,23 +380,30 @@ public class SegmentService {
      * @throws Exception
      */
     public UserTnwnInfo AreaDetailSearchV1(UserTnwnInfo userTnwnInfo, String platformcode) throws Exception{
-            //101	核心平台
-
-            //102	ESB
-            //106	和工作
-            //107   务工易
-
-           //103   百事易
-           //104   农情气象
-           //105   田原生活汇
-
-        TBNumrangeExample example=new TBNumrangeExample();
-        example.createCriteria().andNumrangeEqualTo(userTnwnInfo.getPhonenum().substring(0,7));
-        List<TBNumrange> list = tbNumrangeMapper.selectByExample(example);
         TBNumrange tbNumrange=null;
-        if(list.size()==1){
-            tbNumrange=list.get(0);
-        }
+
+        long start=System.currentTimeMillis();
+       // TBNumrangeExample example=new TBNumrangeExample();
+       // example.createCriteria().andNumrangeEqualTo(userTnwnInfo.getPhonenum().substring(0,7));
+       // example.createCriteria().andBeginnoLessThanOrEqualTo(userTnwnInfo.getPhonenum()).andEndnoGreaterThanOrEqualTo(userTnwnInfo.getPhonenum()).andIsvalidEqualTo((short) 1);
+       // List<TBNumrange> list = tbNumrangeMapper.selectByExample(example);
+
+        //TODO 从内存里取号段
+        List<TBNumrange> numrangeList= Cache.hash_numranges.get(userTnwnInfo.getPhonenum().substring(0,5));
+        if(numrangeList!=null&&numrangeList.size()>0){
+            for(TBNumrange t:numrangeList){
+                Long beginno=Long.parseLong(t.getBeginno());
+                Long endno=Long.parseLong(t.getEndno());
+                Long nowno=Long.parseLong(userTnwnInfo.getPhonenum());
+                if(nowno>=beginno&&nowno<=endno){
+                    tbNumrange=t;
+                }
+            }
+       }
+        long end=System.currentTimeMillis();
+        log.info("查询号段表:"+(end-start)+"ms");
+
+
 
         if(tbNumrange==null)return userTnwnInfo;
 
@@ -427,10 +455,7 @@ public class SegmentService {
                         TBLocationPla pla=tbLocationPlaList.get(0);
                         userTnwnInfo.setRegioncode(pla.getPlatformareacode());
                     }
-
                 }
-
-
         }else if(platformcode.equals("102")||platformcode.equals("106")||platformcode.equals("107")){ //TODO
             String citycode=tbNumrange.getCitycode();
             TBLongareacodePlaExample tbLongareacodePlaExample=new TBLongareacodePlaExample();
@@ -460,7 +485,31 @@ public class SegmentService {
                 }
 
             }
+        }else if(platformcode.equals("108")||platformcode.equals("109")||platformcode.equals("110")||platformcode.equals("111")){
+            //TODO
+            String citycode=tbNumrange.getCitycode();
+            TBLongareacodeExample tbLongareacodeExample=new TBLongareacodeExample();
+            tbLongareacodeExample.createCriteria().andAreacodeEqualTo(citycode);
+            List<TBLongareacode> l=tbLongareacodeMapper.selectByExample(tbLongareacodeExample);
+            if(l.size()>0){
+                TBLongareacode tbLongareacode=l.get(0);
+                userTnwnInfo.setRegioncode(tbLongareacode.getAreacode());
+                userTnwnInfo.setRegionname(tbLongareacode.getAreaname());
+                userTnwnInfo.setProvincecode(tbLongareacode.getProvcode());
+
+                //TODO 根据省编码查省份
+                TBLocationExample tbLocationExample=new TBLocationExample();
+                tbLocationExample.createCriteria().andProvincecodeEqualTo(tbLongareacode.getProvcode()).andParentidEqualTo(new BigDecimal(101));
+                List<TBLocation> ttt=tbLocationMapper.selectByExample(tbLocationExample);
+                if(ttt.size()==1){
+                    TBLocation tbl=ttt.get(0);
+                    userTnwnInfo.setProvincename(tbl.getLocationname());
+                }
+            }
         }
+
+        long end_=System.currentTimeMillis();
+        log.info("区域查询总共所需时间:"+(end_-end)+"ms");
 
 
         return userTnwnInfo;
@@ -470,12 +519,61 @@ public class SegmentService {
 
 
     /**
-     * 携网转号接口区域过滤
+     * 携网转号接口区域返回区域内的手机号码
      * @param
      * @return
      * @throws Exception
      */
-    public boolean AreaFilterSearch(List<String> phone_list) throws Exception{
+    public  List<String> AreaFilterSearch(List<String> phone_list) throws Exception{
+        List<String> list=new ArrayList<String>();
+
+        //15320189127
+        boolean flat=true;
+        if(env.getProperty("http.group.tnwn.provincewhite").equals("*"))return phone_list;
+
+        //天津、海南、江西、湖北、
+        Hashtable hash=new Hashtable();
+        String[] provinces=env.getProperty("http.group.tnwn.provincewhite").split(",");
+        for(int i=0;i<provinces.length;i++){
+            hash.put(provinces[i],provinces[i]);
+        }
+
+        TBNumrange tbNumrange=null;
+        for(String phone_number:phone_list){
+            List<TBNumrange> numrangeList= Cache.hash_numranges.get(phone_number.substring(0,5));
+            if(numrangeList!=null&&numrangeList.size()>0){
+                for(TBNumrange t:numrangeList){
+                    Long beginno=Long.parseLong(t.getBeginno());
+                    Long endno=Long.parseLong(t.getEndno());
+                    Long nowno=Long.parseLong(phone_number);
+                    if(nowno>=beginno&&nowno<=endno){
+                        tbNumrange=t;
+                    }
+                }
+            }
+
+            TBLongareacodeExample tbLongareacodeExample=new TBLongareacodeExample();
+            tbLongareacodeExample.createCriteria().andAreacodeEqualTo(tbNumrange.getCitycode());
+            List<TBLongareacode> tbl_list = tbLongareacodeMapper.selectByExample(tbLongareacodeExample);
+            if(tbl_list.size()>=1){
+                TBLongareacode tbLongareacode=tbl_list.get(0);
+                String provcode=tbLongareacode.getProvcode();
+                if(!hash.containsKey(provcode)){
+                    flat=false;
+                }
+            }
+        }
+
+        return list;
+    }
+
+    /**
+     * 携网转号接口区域过滤单条
+     * @param
+     * @return
+     * @throws Exception
+     */
+    public boolean AreaFilterSearchSingle(String phone) throws Exception{
         boolean flat=true;
 
         if(env.getProperty("http.group.tnwn.provincewhite").equals("*"))return flat;
@@ -486,13 +584,20 @@ public class SegmentService {
         for(int i=0;i<provinces.length;i++){
             hash.put(provinces[i],provinces[i]);
         }
+            TBNumrange tbNumrange=null;
+            List<TBNumrange> numrangeList= Cache.hash_numranges.get(phone.substring(0,5));
+            if(numrangeList!=null&&numrangeList.size()>0){
+                for(TBNumrange t:numrangeList){
+                    Long beginno=Long.parseLong(t.getBeginno());
+                    Long endno=Long.parseLong(t.getEndno());
+                    Long nowno=Long.parseLong(phone);
+                    if(nowno>=beginno&&nowno<=endno){
+                        tbNumrange=t;
+                    }
+                }
+            }
 
-        for(String phone_number:phone_list){
-            TBNumrangeExample example=new TBNumrangeExample();
-            example.createCriteria().andNumrangeEqualTo(phone_number.substring(0,7));
-            List<TBNumrange> list = tbNumrangeMapper.selectByExample(example);
-            if(list.size()>0){
-                TBNumrange tbNumrange=list.get(0);
+            if(tbNumrange!=null){
                 TBLongareacodeExample tbLongareacodeExample=new TBLongareacodeExample();
                 tbLongareacodeExample.createCriteria().andAreacodeEqualTo(tbNumrange.getCitycode());
                 List<TBLongareacode> tbl_list = tbLongareacodeMapper.selectByExample(tbLongareacodeExample);
@@ -503,11 +608,7 @@ public class SegmentService {
                         flat=false;
                     }
                 }
-
             }
-
-        }
-
 
         return flat;
     }

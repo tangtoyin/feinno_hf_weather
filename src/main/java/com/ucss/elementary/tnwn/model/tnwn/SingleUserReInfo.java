@@ -10,6 +10,10 @@ public class SingleUserReInfo implements Serializable  {
 	private String result;
 	private CarryAroundInfo carryAroundInfo;
 
+	private String OUTERIFCODE;
+	private String OUTERIFRESULT;
+	private String URL;
+
 	public String getSuccess() {
 		return success;
 	}
@@ -48,6 +52,30 @@ public class SingleUserReInfo implements Serializable  {
 
 	public void setResult(String result) {
 		this.result = result;
+	}
+
+	public String getOUTERIFCODE() {
+		return OUTERIFCODE;
+	}
+
+	public void setOUTERIFCODE(String OUTERIFCODE) {
+		this.OUTERIFCODE = OUTERIFCODE;
+	}
+
+	public String getOUTERIFRESULT() {
+		return OUTERIFRESULT;
+	}
+
+	public void setOUTERIFRESULT(String OUTERIFRESULT) {
+		this.OUTERIFRESULT = OUTERIFRESULT;
+	}
+
+	public String getURL() {
+		return URL;
+	}
+
+	public void setURL(String URL) {
+		this.URL = URL;
 	}
 }
 

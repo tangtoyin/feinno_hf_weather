@@ -37,29 +37,30 @@ public class BasicDataController {
     @RequestMapping(value = "/detail", method = RequestMethod.POST)
     public Map<String ,Object> getBasicData(@RequestParam(value = "PARAM") String param, HttpSession session){
         Map<String,Object> map=new HashMap<>();
-        TBNumrange tbNumrange=new TBNumrange();
         JSONObject jsonObject = JSONObject.parseObject(param);
         String phonenumber = jsonObject.get("phonenum").toString();
         int pageSize = Integer.parseInt(jsonObject.get("pageSize").toString());
         int pageNum=Integer.parseInt(jsonObject.get("pageNum").toString());
-        String imsi = jsonObject.get("imsi").toString();
-        Short isvalid = Short.valueOf(jsonObject.get("isvalid").toString());
-        String cityname = jsonObject.get("cityname").toString();
-        String locationcode = jsonObject.get("locationcode").toString();
-        String beginno = jsonObject.get("beginno").toString();
-        String endno = jsonObject.get("endno").toString();
-        String validdate = jsonObject.get("validdate").toString();
-        String servicername = jsonObject.get("servicername").toString();
-        tbNumrange.setNumrange(phonenumber.substring(0,7));
-        tbNumrange.setProcid(imsi);
-        tbNumrange.setCityname(cityname);
-        tbNumrange.setImsi(imsi);
-        tbNumrange.setServicername(servicername);
-        tbNumrange.setIsvalid(isvalid);
-        tbNumrange.setLocationcode(locationcode);
-        tbNumrange.setValiddate(validdate);
-        tbNumrange.setBeginno(beginno);
-        tbNumrange.setEndno(endno);
+        TBNumrange tbNumrange = (TBNumrange) jsonObject.get("tbNumrange");
+
+//        String imsi = jsonObject.get("imsi").toString();
+//        Short isvalid = Short.valueOf(jsonObject.get("isvalid").toString());
+//        String cityname = jsonObject.get("cityname").toString();
+//        String locationcode = jsonObject.get("locationcode").toString();
+//        String beginno = jsonObject.get("beginno").toString();
+//        String endno = jsonObject.get("endno").toString();
+//        String validdate = jsonObject.get("validdate").toString();
+//        String servicername = jsonObject.get("servicername").toString();
+//        tbNumrange.setNumrange(phonenumber.substring(0,7));
+//        tbNumrange.setProcid(imsi);
+//        tbNumrange.setCityname(cityname);
+//        tbNumrange.setImsi(imsi);
+//        tbNumrange.setServicername(servicername);
+//        tbNumrange.setIsvalid(isvalid);
+//        tbNumrange.setLocationcode(locationcode);
+//        tbNumrange.setValiddate(validdate);
+//        tbNumrange.setBeginno(beginno);
+//        tbNumrange.setEndno(endno);
         try {
             List<TBNumrange> tbNumranges = basicDataService.getBasicData(tbNumrange);
             if(tbNumranges!=null||tbNumranges.size()>0){

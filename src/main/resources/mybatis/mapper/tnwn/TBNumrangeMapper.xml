@@ -101,7 +101,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from T_B_NUMRANGE
     where ID = #{id,jdbcType=DECIMAL}
@@ -117,20 +117,20 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.ucss.elementary.tnwn.model.database.TBNumrange" >
-    insert into T_B_NUMRANGE (ID, PROCID, OPERTYPE, 
-      CITYCODE, CITYNAME, NUMRANGE, 
-      IMSI, VALIDDATE, EXPIPRDATE, 
-      TIMESTAMP, TYPE, CLASSIFY, 
-      SERVICER, CREATETIME, UPDATETIME, 
-      SERVICERNAME, ISVALID, LOCATIONCODE, 
-      BEGINNO, ENDNO)
-    values (#{id,jdbcType=DECIMAL}, #{procid,jdbcType=VARCHAR}, #{opertype,jdbcType=VARCHAR}, 
-      #{citycode,jdbcType=VARCHAR}, #{cityname,jdbcType=VARCHAR}, #{numrange,jdbcType=VARCHAR}, 
-      #{imsi,jdbcType=VARCHAR}, #{validdate,jdbcType=VARCHAR}, #{expiprdate,jdbcType=VARCHAR}, 
-      #{timestamp,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{classify,jdbcType=VARCHAR}, 
-      #{servicer,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, 
-      #{servicername,jdbcType=VARCHAR}, #{isvalid,jdbcType=DECIMAL}, #{locationcode,jdbcType=VARCHAR}, 
-      #{beginno,jdbcType=VARCHAR}, #{endno,jdbcType=VARCHAR})
+    insert into T_B_NUMRANGE (ID, PROCID, OPERTYPE,
+    CITYCODE, CITYNAME, NUMRANGE,
+    IMSI, VALIDDATE, EXPIPRDATE,
+    TIMESTAMP, TYPE, CLASSIFY,
+    SERVICER, CREATETIME, UPDATETIME,
+    SERVICERNAME, ISVALID, LOCATIONCODE,
+    BEGINNO, ENDNO)
+    values (#{id,jdbcType=DECIMAL}, #{procid,jdbcType=VARCHAR}, #{opertype,jdbcType=VARCHAR},
+    #{citycode,jdbcType=VARCHAR}, #{cityname,jdbcType=VARCHAR}, #{numrange,jdbcType=VARCHAR},
+    #{imsi,jdbcType=VARCHAR}, #{validdate,jdbcType=VARCHAR}, #{expiprdate,jdbcType=VARCHAR},
+    #{timestamp,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{classify,jdbcType=VARCHAR},
+    #{servicer,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP},
+    #{servicername,jdbcType=VARCHAR}, #{isvalid,jdbcType=DECIMAL}, #{locationcode,jdbcType=VARCHAR},
+    #{beginno,jdbcType=VARCHAR}, #{endno,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ucss.elementary.tnwn.model.database.TBNumrange" >
     insert into T_B_NUMRANGE
@@ -336,25 +336,25 @@
   <update id="updateByExample" parameterType="map" >
     update T_B_NUMRANGE
     set ID = #{record.id,jdbcType=DECIMAL},
-      PROCID = #{record.procid,jdbcType=VARCHAR},
-      OPERTYPE = #{record.opertype,jdbcType=VARCHAR},
-      CITYCODE = #{record.citycode,jdbcType=VARCHAR},
-      CITYNAME = #{record.cityname,jdbcType=VARCHAR},
-      NUMRANGE = #{record.numrange,jdbcType=VARCHAR},
-      IMSI = #{record.imsi,jdbcType=VARCHAR},
-      VALIDDATE = #{record.validdate,jdbcType=VARCHAR},
-      EXPIPRDATE = #{record.expiprdate,jdbcType=VARCHAR},
-      TIMESTAMP = #{record.timestamp,jdbcType=VARCHAR},
-      TYPE = #{record.type,jdbcType=VARCHAR},
-      CLASSIFY = #{record.classify,jdbcType=VARCHAR},
-      SERVICER = #{record.servicer,jdbcType=VARCHAR},
-      CREATETIME = #{record.createtime,jdbcType=TIMESTAMP},
-      UPDATETIME = #{record.updatetime,jdbcType=TIMESTAMP},
-      SERVICERNAME = #{record.servicername,jdbcType=VARCHAR},
-      ISVALID = #{record.isvalid,jdbcType=DECIMAL},
-      LOCATIONCODE = #{record.locationcode,jdbcType=VARCHAR},
-      BEGINNO = #{record.beginno,jdbcType=VARCHAR},
-      ENDNO = #{record.endno,jdbcType=VARCHAR}
+    PROCID = #{record.procid,jdbcType=VARCHAR},
+    OPERTYPE = #{record.opertype,jdbcType=VARCHAR},
+    CITYCODE = #{record.citycode,jdbcType=VARCHAR},
+    CITYNAME = #{record.cityname,jdbcType=VARCHAR},
+    NUMRANGE = #{record.numrange,jdbcType=VARCHAR},
+    IMSI = #{record.imsi,jdbcType=VARCHAR},
+    VALIDDATE = #{record.validdate,jdbcType=VARCHAR},
+    EXPIPRDATE = #{record.expiprdate,jdbcType=VARCHAR},
+    TIMESTAMP = #{record.timestamp,jdbcType=VARCHAR},
+    TYPE = #{record.type,jdbcType=VARCHAR},
+    CLASSIFY = #{record.classify,jdbcType=VARCHAR},
+    SERVICER = #{record.servicer,jdbcType=VARCHAR},
+    CREATETIME = #{record.createtime,jdbcType=TIMESTAMP},
+    UPDATETIME = #{record.updatetime,jdbcType=TIMESTAMP},
+    SERVICERNAME = #{record.servicername,jdbcType=VARCHAR},
+    ISVALID = #{record.isvalid,jdbcType=DECIMAL},
+    LOCATIONCODE = #{record.locationcode,jdbcType=VARCHAR},
+    BEGINNO = #{record.beginno,jdbcType=VARCHAR},
+    ENDNO = #{record.endno,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -445,4 +445,240 @@
       ENDNO = #{endno,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=DECIMAL}
   </update>
+
+  <select id="selectByNumrange" parameterType="com.ucss.elementary.tnwn.model.database.TBNumrange" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    FROM t_b_numrange
+    <where>
+      <if test="id !=null">
+        and ID=id
+      </if>
+      <if test="procid !=null">
+        and PROCID=procid
+      </if>
+      <if test="opertype !=null">
+        and OPERTYPE=opertype
+      </if>
+      <if test="cityname !=null">
+        and CITYNAME=cityname
+      </if>
+      <if test="numrange !=null">
+        and NUMRANGE=numrange
+      </if>
+      <if test="imsi !=null">
+        and IMSI=imsi
+      </if>
+      <if test="type !=null">
+        and TYPE=type
+      </if>
+      <if test="servicer !=null">
+        and SERVICER=servicer
+      </if>
+      <if test="servicername !=null">
+        and SERVICERNAME=servicername
+      </if>
+      <if test="isvalid !=null">
+        and ISVALID=isvalid
+      </if>
+    </where>
+  </select>
+
+  <update id="deleteById" parameterType="BigDecimal">
+   update T_B_NUMRANGE
+    set
+   ISVALID =0,
+    where ID = #{VALUE}
+  </update>
+
+  <update id="updataByTBNumrange" parameterType="com.ucss.elementary.tnwn.model.database.TBNumrange">
+    update T_B_NUMRANGE
+    <set >
+      <if test="procid != null" >
+        PROCID = #{procid,jdbcType=VARCHAR},
+      </if>
+      <if test="opertype != null" >
+        OPERTYPE = #{opertype,jdbcType=VARCHAR},
+      </if>
+      <if test="citycode != null" >
+        CITYCODE = #{citycode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityname != null" >
+        CITYNAME = #{cityname,jdbcType=VARCHAR},
+      </if>
+      <if test="numrange != null" >
+        NUMRANGE = #{numrange,jdbcType=VARCHAR},
+      </if>
+      <if test="imsi != null" >
+        IMSI = #{imsi,jdbcType=VARCHAR},
+      </if>
+      <if test="validdate != null" >
+        VALIDDATE = #{validdate,jdbcType=VARCHAR},
+      </if>
+      <if test="expiprdate != null" >
+        EXPIPRDATE = #{expiprdate,jdbcType=VARCHAR},
+      </if>
+      <if test="timestamp != null" >
+        TIMESTAMP = #{timestamp,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="classify != null" >
+        CLASSIFY = #{classify,jdbcType=VARCHAR},
+      </if>
+      <if test="servicer != null" >
+        SERVICER = #{servicer,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        UPDATETIME = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="servicername != null" >
+        SERVICERNAME = #{servicername,jdbcType=VARCHAR},
+      </if>
+      <if test="isvalid != null" >
+        ISVALID = #{isvalid,jdbcType=DECIMAL},
+      </if>
+      <if test="locationcode != null" >
+        LOCATIONCODE = #{locationcode,jdbcType=VARCHAR},
+      </if>
+      <if test="beginno != null" >
+        BEGINNO = #{beginno,jdbcType=VARCHAR},
+      </if>
+      <if test="endno != null" >
+        ENDNO = #{endno,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <insert id="insertTBNumrange" parameterType="com.ucss.elementary.tnwn.model.database.TBNumrange">
+    insert into T_B_NUMRANGE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="procid != null" >
+        PROCID,
+      </if>
+      <if test="opertype != null" >
+        OPERTYPE,
+      </if>
+      <if test="citycode != null" >
+        CITYCODE,
+      </if>
+      <if test="cityname != null" >
+        CITYNAME,
+      </if>
+      <if test="numrange != null" >
+        NUMRANGE,
+      </if>
+      <if test="imsi != null" >
+        IMSI,
+      </if>
+      <if test="validdate != null" >
+        VALIDDATE,
+      </if>
+      <if test="expiprdate != null" >
+        EXPIPRDATE,
+      </if>
+      <if test="timestamp != null" >
+        TIMESTAMP,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="classify != null" >
+        CLASSIFY,
+      </if>
+      <if test="servicer != null" >
+        SERVICER,
+      </if>
+      <if test="createtime != null" >
+        CREATETIME,
+      </if>
+      <if test="updatetime != null" >
+        UPDATETIME,
+      </if>
+      <if test="servicername != null" >
+        SERVICERNAME,
+      </if>
+      <if test="isvalid != null" >
+        ISVALID,
+      </if>
+      <if test="locationcode != null" >
+        LOCATIONCODE,
+      </if>
+      <if test="beginno != null" >
+        BEGINNO,
+      </if>
+      <if test="endno != null" >
+        ENDNO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="procid != null" >
+        #{procid,jdbcType=VARCHAR},
+      </if>
+      <if test="opertype != null" >
+        #{opertype,jdbcType=VARCHAR},
+      </if>
+      <if test="citycode != null" >
+        #{citycode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityname != null" >
+        #{cityname,jdbcType=VARCHAR},
+      </if>
+      <if test="numrange != null" >
+        #{numrange,jdbcType=VARCHAR},
+      </if>
+      <if test="imsi != null" >
+        #{imsi,jdbcType=VARCHAR},
+      </if>
+      <if test="validdate != null" >
+        #{validdate,jdbcType=VARCHAR},
+      </if>
+      <if test="expiprdate != null" >
+        #{expiprdate,jdbcType=VARCHAR},
+      </if>
+      <if test="timestamp != null" >
+        #{timestamp,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="classify != null" >
+        #{classify,jdbcType=VARCHAR},
+      </if>
+      <if test="servicer != null" >
+        #{servicer,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="servicername != null" >
+        #{servicername,jdbcType=VARCHAR},
+      </if>
+      <if test="isvalid != null" >
+        #{isvalid,jdbcType=DECIMAL},
+      </if>
+      <if test="locationcode != null" >
+        #{locationcode,jdbcType=VARCHAR},
+      </if>
+      <if test="beginno != null" >
+        #{beginno,jdbcType=VARCHAR},
+      </if>
+      <if test="endno != null" >
+        #{endno,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
 </mapper>

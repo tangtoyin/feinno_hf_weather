@@ -7,11 +7,19 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface TBNumrangeMapper {
+
+    List<TBNumrange> selectByNumrange(TBNumrange tbNumrange);
+
+    int deleteById(BigDecimal id);
+
+    int updataByTBNumrange(TBNumrange tbNumrange);
+
     int countByExample(TBNumrangeExample example);
 
     int deleteByExample(TBNumrangeExample example);
 
-    int deleteByPrimaryKey(BigDecimal id);
+    int insertTBNumrange(TBNumrange tbNumrange);
+
 
     int insert(TBNumrange record);
 

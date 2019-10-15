@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ucss.elementary.tnwn.mapper.tnwn.TLTnwninterlogMapper" >
+    <insert id="insert" parameterType="com.ucss.elementary.tnwn.model.database.TLTnwninterlog" >
+       insert into  t_l_tnwninterlog
+       <trim prefix="(" suffix=")" suffixOverrides=",">
+           <if test="id != null">
+             ID,
+           </if>
+           <if test="ifcode !=null">
+            IFCODE,
+           </if>
+           <if test="ifname !=null">
+             IFNAME,
+           </if>
+           <if test="requester !=null">
+               REQUESTER,
+           </if>
+           <if test="phone !=null">
+               PHONE,
+           </if>
+           <if test="ip !=null">
+              IP,
+           </if>
+           <if test="ifurl !=null">
+             IFURL,
+           </if>
+           <if test="ifresultcode !=null">
+              IFRESULTCODE,
+           </if>
+           <if test="outerifname !=null">
+               OUTERIFNAME,
+           </if>
+           <if test="outerifurl !=null">
+               OUTERIFURL,
+           </if>
+           <if test="outerifresult !=null">
+               OUTERIFRESULT,
+           </if>
+           <if test="createtime !=null">
+               CREATETIME,
+           </if>
+           <if test="ifexception !=null">
+               IFEXCEPTION,
+           </if>
+       </trim>
+        <trim prefix="values" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=DECIMAL},
+            </if>
+            <if test="ifcode !=null">
+                #{ifcode,jdbcType=VARCHAR},
+            </if>
+            <if test="ifname !=null">
+                #{ifname,jdbcType=VARCHAR},
+            </if>
+            <if test="requester !=null">
+                #{requester,jdbcType=VARCHAR},
+            </if>
+            <if test="phone !=null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="ip !=null">
+                #{ip,jdbcType=VARCHAR},
+            </if>
+            <if test="ifurl !=null">
+                #{ifurl,jdbcType=VARCHAR},
+            </if>
+            <if test="ifresultcode !=null">
+                #{ifresultcode,jdbcType=VARCHAR},
+            </if>
+            <if test="outerifname !=null">
+                #{outerifname,jdbcType=VARCHAR},
+            </if>
+            <if test="outerifurl !=null">
+                #{outerifurl,jdbcType=VARCHAR},
+            </if>
+            <if test="outerifresult !=null">
+                #{outerifresult,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime !=null">
+                #{createtime,jdbcType=DATE},
+            </if>
+            <if test="ifexception !=null">
+                #{ifexception,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+
+</mapper>

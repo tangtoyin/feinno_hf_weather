@@ -1,36 +1,124 @@
 package com.ucss.elementary.tnwn.controller.tnwn;
 
 import com.github.pagehelper.PageHelper;
-import com.ucss.elementary.tnwn.aspect.CmsPermission;
-import com.ucss.elementary.tnwn.constant.ReturnCodeConst;
-import com.ucss.elementary.tnwn.model.database.SysApiKeyExtension;
-import com.ucss.elementary.tnwn.model.database.SysApikey;
-import com.ucss.elementary.tnwn.model.database.SysUserRoleKey;
-import com.ucss.elementary.tnwn.model.database.TDUser;
-import com.ucss.elementary.tnwn.model.response.BaseResponse;
-import com.ucss.elementary.tnwn.model.response.MapFromPageInfo;
-import com.ucss.elementary.tnwn.service.ApiKeyService;
-import com.ucss.elementary.tnwn.service.UATService;
+import com.github.pagehelper.PageInfo;
+import com.ucss.elementary.tnwn.constant.tnwn.Status;
+import com.ucss.elementary.tnwn.model.database.*;
 import com.ucss.elementary.tnwn.service.tnwn.BasicDataService;
-import com.ucss.elementary.tnwn.util.StringHelper;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import javax.servlet.http.HttpSession;
+import java.math.BigDecimal;
+import java.util.*;
 
 @RestController
 @RequestMapping("/tnwn/basicdata")
 @Api(description = "号段基础数据管理")
 public class BasicDataController {
 
+    public Logger log= LoggerFactory.getLogger(BasicDataController.class);
     @Autowired
     private BasicDataService basicDataService;
 
+
+    /**
+     * 查询基础号段的信息
+     * @param page
+     * @param pageSize
+     * @param tbNumrange
+     * @param session
+     * @return
+     */
+    @RequestMapping(value = "/detail", method = RequestMethod.POST)
+    public Map<String ,Object> getBasicData(@RequestParam(value = "page") int page, @RequestParam(value = "pageSize")int  pageSize, TBNumrange tbNumrange, HttpSession session){
+        Map<String,Object> map=new HashMap<>();
+        try {
+            List<TBNumrange> tbNumranges = basicDataService.getBasicData(tbNumrange);
+            if(tbNumranges!=null||tbNumranges.size()>0){
+                ////条件查询出来的结果和pagesize放入session中
+                session.setAttribute("tbNumranges",tbNumranges);
+                session.setAttribute("pageSize",pageSize);
+                //默认展示第一页的数据
+                log.info("-------进行分页-------");
+                PageHelper.startPage(1,pageSize);
+                PageInfo<TBNumrange> tbNumrangePageInfo=new PageInfo<>(tbNumranges);
+                map.put("pageInfo",tbNumrangePageInfo);
+                map.put("status",Status.success);
+                log.info("-------分页查询成功-------");
+                log.info("当前页码是："+tbNumrangePageInfo.getPageNum()+"----内容总条数："+tbNumrangePageInfo.getTotal());
+            }
+            System.out.println(tbNumranges);
+        }catch (Exception e){
+            e.printStackTrace();
+            log.info("查询基础号段条件出现了异常："+e.getMessage());
+        }
+        return map;
+    }
+
+    /**
+     * 基础查询进行分页，传入页码
+     * @param page
+     * @param session
+     * @param map
+     * @return
+     */
+    @RequestMapping("/page")
+    public Map<String,Object> pageInfo(@RequestParam("page") int page,HttpSession session,Map<String,Object> map){
+        List<TBNumrange> tbNumranges = ( List<TBNumrange>)session.getAttribute("tbNumranges");
+        int  pageSize =(int) session.getAttribute("pageSize");
+        PageHelper.startPage(page,pageSize);
+        PageInfo<TBNumrange> tbNumrangePageInfo=new PageInfo<>(tbNumranges);
+        log.info("当前页数："+tbNumrangePageInfo.getPageNum()+"每页条数的条数："+tbNumrangePageInfo.getPageSize());
+        map.put("pageInfo",tbNumrangePageInfo);
+        return map;
+    }
+
+    /**
+     * 删除只是对ISVALID字段进行修改，0：失效  1：有效
+     * @param id
+     * @param map
+     * @return
+     */
+    @RequestMapping("/deleteById")
+    public Map<String,Object> deleteById(@RequestParam("id")BigDecimal id,Map<String,Object> map){
+      int code=basicDataService.deleteById(id);
+      if(code>0){
+          map.put("code",code);
+          log.info("-----删除成功,删除的id为："+id);
+          return map;
+      }
+      map.put("code",code);
+        log.info("-----删除失败,id为："+id);
+      return map;
+    }
+
+    @RequestMapping("/updateTBNumrange")
+    public Map<String,Object> updataTBNumrange(TBNumrange tbNumrange,Map<String,Object> map){
+        int code = basicDataService.updataTBNumrange(tbNumrange);
+        if(code>0){
+            map.put("code",code);
+            log.info("-----修改成功,修改的id为："+tbNumrange.getId());
+            return map;
+        }
+        map.put("code",code);
+        log.info("-----修改失败,id为："+tbNumrange.getId());
+        return map;
+    }
+
+
+    @RequestMapping("/insertTBNumrange")
+    public Map<String,Object> insertTBNumrange(TBNumrange tbNumrange,Map<String,Object> map){
+        int code = basicDataService.insertTBNumrange(tbNumrange);
+        if(code>0){
+            map.put("code",code);
+            log.info("-----新增成功,修改的id为："+tbNumrange.getId());
+            return map;
+        }
+        map.put("code",code);
+        log.info("-----新增失败,id为："+tbNumrange.getId());
+        return map;
+    }
 }

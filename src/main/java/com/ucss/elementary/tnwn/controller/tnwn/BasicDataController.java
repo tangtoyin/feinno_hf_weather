@@ -1,11 +1,15 @@
 package com.ucss.elementary.tnwn.controller.tnwn;
 
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.ucss.elementary.tnwn.constant.tnwn.Status;
 import com.ucss.elementary.tnwn.model.database.*;
 import com.ucss.elementary.tnwn.service.tnwn.BasicDataService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,18 +27,39 @@ public class BasicDataController {
     @Autowired
     private BasicDataService basicDataService;
 
-
-    /**
-     * 查询基础号段的信息
-     * @param page
-     * @param pageSize
-     * @param tbNumrange
-     * @param session
-     * @return
-     */
+    @ApiOperation(value = "根据typecode和code获取值", notes = "根据typecode和code获取值")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "appcode", dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name = "ts", dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name = "rnd", dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name = "sig", dataType = "String", paramType = "query"),
+    })
     @RequestMapping(value = "/detail", method = RequestMethod.POST)
-    public Map<String ,Object> getBasicData(@RequestParam(value = "page") int page, @RequestParam(value = "pageSize")int  pageSize, TBNumrange tbNumrange, HttpSession session){
+    public Map<String ,Object> getBasicData(@RequestParam(value = "PARAM") String param, HttpSession session){
         Map<String,Object> map=new HashMap<>();
+        TBNumrange tbNumrange=new TBNumrange();
+        JSONObject jsonObject = JSONObject.parseObject(param);
+        String phonenumber = jsonObject.get("phonenum").toString();
+        int pageSize = Integer.parseInt(jsonObject.get("pageSize").toString());
+        int pageNum=Integer.parseInt(jsonObject.get("pageNum").toString());
+        String imsi = jsonObject.get("imsi").toString();
+        Short isvalid = Short.valueOf(jsonObject.get("isvalid").toString());
+        String cityname = jsonObject.get("cityname").toString();
+        String locationcode = jsonObject.get("locationcode").toString();
+        String beginno = jsonObject.get("beginno").toString();
+        String endno = jsonObject.get("endno").toString();
+        String validdate = jsonObject.get("validdate").toString();
+        String servicername = jsonObject.get("servicername").toString();
+        tbNumrange.setNumrange(phonenumber.substring(0,7));
+        tbNumrange.setProcid(imsi);
+        tbNumrange.setCityname(cityname);
+        tbNumrange.setImsi(imsi);
+        tbNumrange.setServicername(servicername);
+        tbNumrange.setIsvalid(isvalid);
+        tbNumrange.setLocationcode(locationcode);
+        tbNumrange.setValiddate(validdate);
+        tbNumrange.setBeginno(beginno);
+        tbNumrange.setEndno(endno);
         try {
             List<TBNumrange> tbNumranges = basicDataService.getBasicData(tbNumrange);
             if(tbNumranges!=null||tbNumranges.size()>0){
@@ -60,14 +85,23 @@ public class BasicDataController {
 
     /**
      * 基础查询进行分页，传入页码
-     * @param page
+     * @param param
      * @param session
      * @param map
      * @return
      */
+    @ApiOperation(value = "根据typecode和code获取值", notes = "根据typecode和code获取值")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "appcode", dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name = "ts", dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name = "rnd", dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name = "sig", dataType = "String", paramType = "query"),
+    })
     @RequestMapping("/page")
-    public Map<String,Object> pageInfo(@RequestParam("page") int page,HttpSession session,Map<String,Object> map){
+    public Map<String,Object> pageInfo(@RequestParam(value = "PARAM") String param,HttpSession session,Map<String,Object> map){
         List<TBNumrange> tbNumranges = ( List<TBNumrange>)session.getAttribute("tbNumranges");
+        JSONObject jsonObject = JSONObject.parseObject(param);
+        int  page = Integer.parseInt(jsonObject.get("page").toString());
         int  pageSize =(int) session.getAttribute("pageSize");
         PageHelper.startPage(page,pageSize);
         PageInfo<TBNumrange> tbNumrangePageInfo=new PageInfo<>(tbNumranges);
@@ -78,25 +112,43 @@ public class BasicDataController {
 
     /**
      * 删除只是对ISVALID字段进行修改，0：失效  1：有效
-     * @param id
+     * @param param
      * @param map
      * @return
      */
+    @ApiOperation(value = "根据typecode和code获取值", notes = "根据typecode和code获取值")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "appcode", dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name = "ts", dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name = "rnd", dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name = "sig", dataType = "String", paramType = "query"),
+    })
     @RequestMapping("/deleteById")
-    public Map<String,Object> deleteById(@RequestParam("id")BigDecimal id,Map<String,Object> map){
-      int code=basicDataService.deleteById(id);
-      if(code>0){
+    public Map<String,Object> deleteById(@RequestParam(value = "PARAM") String param,Map<String,Object> map){
+        JSONObject jsonObject = JSONObject.parseObject(param);
+        BigDecimal id=new BigDecimal(jsonObject.get("id").toString());
+        int code=basicDataService.deleteById(id);
+        if(code>0){
           map.put("code",code);
           log.info("-----删除成功,删除的id为："+id);
           return map;
-      }
-      map.put("code",code);
+        }
+       map.put("code",code);
         log.info("-----删除失败,id为："+id);
       return map;
     }
 
+    @ApiOperation(value = "根据typecode和code获取值", notes = "根据typecode和code获取值")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "appcode", dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name = "ts", dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name = "rnd", dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name = "sig", dataType = "String", paramType = "query"),
+    })
     @RequestMapping("/updateTBNumrange")
-    public Map<String,Object> updataTBNumrange(TBNumrange tbNumrange,Map<String,Object> map){
+    public Map<String,Object> updataTBNumrange(@RequestParam(value = "PARAM") String param,Map<String,Object> map){
+        JSONObject jsonObject = JSONObject.parseObject(param);
+        TBNumrange tbNumrange = (TBNumrange) jsonObject.get("tbNumrange");
         int code = basicDataService.updataTBNumrange(tbNumrange);
         if(code>0){
             map.put("code",code);
@@ -109,8 +161,17 @@ public class BasicDataController {
     }
 
 
+    @ApiOperation(value = "根据typecode和code获取值", notes = "根据typecode和code获取值")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "appcode", dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name = "ts", dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name = "rnd", dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name = "sig", dataType = "String", paramType = "query"),
+    })
     @RequestMapping("/insertTBNumrange")
-    public Map<String,Object> insertTBNumrange(TBNumrange tbNumrange,Map<String,Object> map){
+    public Map<String,Object> insertTBNumrange(@RequestParam(value = "PARAM") String param,Map<String,Object> map){
+        JSONObject jsonObject = JSONObject.parseObject(param);
+        TBNumrange tbNumrange = (TBNumrange) jsonObject.get("tbNumrange");
         int code = basicDataService.insertTBNumrange(tbNumrange);
         if(code>0){
             map.put("code",code);

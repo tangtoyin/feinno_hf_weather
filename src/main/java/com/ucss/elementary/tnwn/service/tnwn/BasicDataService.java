@@ -14,6 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -70,10 +73,28 @@ public class BasicDataService {
     }
 
     public int updataTBNumrange(TBNumrange tbNumrange){
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date=new Date();
+        try {
+            String format = sdf.format(date);
+            Date updatetime = sdf.parse(format);
+            tbNumrange.setCreatetime(updatetime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         return  tbNumrangeMapper.updataByTBNumrange(tbNumrange);
     }
 
     public int insertTBNumrange(TBNumrange tbNumrange){
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date=new Date();
+        try {
+            String format = sdf.format(date);
+            Date createtime = sdf.parse(format);
+            tbNumrange.setCreatetime(createtime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         return tbNumrangeMapper.insertTBNumrange(tbNumrange);
     }
 }

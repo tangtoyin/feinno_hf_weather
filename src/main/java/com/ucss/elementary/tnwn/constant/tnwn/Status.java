@@ -8,7 +8,6 @@ public class Status {
     public static final String success="000000";                     //查询成功且有数据
     public static final String noUserInfo="100001";                  //未查询到用户携转信息！
     public static final String CancellationUserInfo="100002";        //该用户是已注销的携转用户
-    public static final String noNumrange="100003";                   //号段不存在
     public static final String error01="200001";                      //数据校验失败，用户手机号码不能为空
     public static final String error02="200002";                       //数据校验失败，用户手机号码不足11位
     public static final String error03="200003";                        //数据校验失败，IP地址不在白名单内

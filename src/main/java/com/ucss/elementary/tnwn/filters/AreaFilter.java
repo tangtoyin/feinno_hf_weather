@@ -58,7 +58,7 @@ public class AreaFilter implements Filter {
             String phonenumber = jsonObject.get("phonenum").toString();
             List<String> l=new ArrayList<String>();
             l.add(phonenumber);
-            if(!segmentService.AreaFilterSearch(l)){
+            if(segmentService.AreaFilterSearch(l)!=null){
                 o=new TnwnBaseResponse(code,null);
                 filterErrorExtend(req,res,o);
                 return;
@@ -71,7 +71,7 @@ public class AreaFilter implements Filter {
             JSONObject jsonObject = JSONObject.parseObject(PARAM);
             String phonenumber = jsonObject.get("phonenumbatch").toString();
             List<String> list = EntityUtil.checkCellphone(phonenumber);
-            if(!segmentService.AreaFilterSearch(list)){
+            if(segmentService.AreaFilterSearch(list)!=null){
                 o=new TnwnBaseResponse(code,null);
                 filterErrorExtend(req,res,o);
                 return;
@@ -85,7 +85,7 @@ public class AreaFilter implements Filter {
                 String phonenumber = jsonObject.get("phonenum").toString();
                 List<String> l=new ArrayList<String>();
                 l.add(phonenumber);
-                if(!segmentService.AreaFilterSearch(l)){
+                if(segmentService.AreaFilterSearch(l)!=null){
                     o=new NumberArea(code,null,null,null);
                     filterErrorExtend(req,res,o);
                     return;

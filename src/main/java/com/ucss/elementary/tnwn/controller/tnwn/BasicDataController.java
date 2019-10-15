@@ -38,11 +38,13 @@ public class BasicDataController {
     public Map<String ,Object> getBasicData(@RequestParam(value = "PARAM") String param, HttpSession session){
         Map<String,Object> map=new HashMap<>();
         JSONObject jsonObject = JSONObject.parseObject(param);
-        String phonenumber = jsonObject.get("phonenum").toString();
         int pageSize = Integer.parseInt(jsonObject.get("pageSize").toString());
         int pageNum=Integer.parseInt(jsonObject.get("pageNum").toString());
         TBNumrange tbNumrange = (TBNumrange) jsonObject.get("tbNumrange");
-
+        String numrange = tbNumrange.getNumrange();
+        if (numrange!=null&&numrange.length()>7){
+           tbNumrange.setNumrange(numrange.substring(0,7));
+        }
 //        String imsi = jsonObject.get("imsi").toString();
 //        Short isvalid = Short.valueOf(jsonObject.get("isvalid").toString());
 //        String cityname = jsonObject.get("cityname").toString();
@@ -150,6 +152,10 @@ public class BasicDataController {
     public Map<String,Object> updataTBNumrange(@RequestParam(value = "PARAM") String param,Map<String,Object> map){
         JSONObject jsonObject = JSONObject.parseObject(param);
         TBNumrange tbNumrange = (TBNumrange) jsonObject.get("tbNumrange");
+        String numrange = tbNumrange.getNumrange();
+        if (numrange!=null&&numrange.length()>7){
+            tbNumrange.setNumrange(numrange.substring(0,7));
+        }
         int code = basicDataService.updataTBNumrange(tbNumrange);
         if(code>0){
             map.put("code",code);
@@ -173,6 +179,10 @@ public class BasicDataController {
     public Map<String,Object> insertTBNumrange(@RequestParam(value = "PARAM") String param,Map<String,Object> map){
         JSONObject jsonObject = JSONObject.parseObject(param);
         TBNumrange tbNumrange = (TBNumrange) jsonObject.get("tbNumrange");
+        String numrange = tbNumrange.getNumrange();
+        if (numrange!=null&&numrange.length()>7){
+            tbNumrange.setNumrange(numrange.substring(0,7));
+        }
         int code = basicDataService.insertTBNumrange(tbNumrange);
         if(code>0){
             map.put("code",code);

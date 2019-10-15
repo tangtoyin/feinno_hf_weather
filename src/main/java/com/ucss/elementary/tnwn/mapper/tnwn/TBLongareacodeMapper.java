@@ -7,6 +7,14 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface TBLongareacodeMapper {
+    int insertByTBLongareacode(TBLongareacode tbLongareacode);
+
+    List<TBLongareacode> selectByTBLongareacode(TBLongareacode tbLongareacode);
+
+    int deleteById(BigDecimal id);
+
+    int updateByTBLongareacode(TBLongareacode tbLongareacode);
+
     int countByExample(TBLongareacodeExample example);
 
     int deleteByExample(TBLongareacodeExample example);

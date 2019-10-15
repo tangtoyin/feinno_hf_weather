@@ -41,25 +41,26 @@ public class BasicDataController {
         JSONObject jsonObject = JSONObject.parseObject(param);
         int pageSize = Integer.parseInt(jsonObject.get("pageSize").toString());
         int pageNum=Integer.parseInt(jsonObject.get("pageNum").toString());
+        String procid=(String) jsonObject.get("procid");
         String phonenumber=(String) jsonObject.get("phonenum");
         String imsi = jsonObject.get("imsi").toString();
-       Short isvalid = Short.valueOf(jsonObject.get("isvalid").toString());
-       String cityname = jsonObject.get("cityname").toString();
+        Short isvalid = Short.valueOf(jsonObject.get("isvalid").toString());
+        String cityname = jsonObject.get("cityname").toString();
         String locationcode = jsonObject.get("locationcode").toString();
         String beginno = jsonObject.get("beginno").toString();
         String endno = jsonObject.get("endno").toString();
         String validdate = jsonObject.get("validdate").toString();
         String servicername = jsonObject.get("servicername").toString();
-       tbNumrange.setNumrange(phonenumber.substring(0,7));
-        tbNumrange.setProcid(imsi);
-       tbNumrange.setCityname(cityname);
-       tbNumrange.setImsi(imsi);
-       tbNumrange.setServicername(servicername);
+        tbNumrange.setNumrange(phonenumber.substring(0,7));
+        tbNumrange.setCityname(cityname);
+        tbNumrange.setImsi(imsi);
+        tbNumrange.setServicername(servicername);
         tbNumrange.setIsvalid(isvalid);
         tbNumrange.setLocationcode(locationcode);
         tbNumrange.setValiddate(validdate);
-       tbNumrange.setBeginno(beginno);
+        tbNumrange.setBeginno(beginno);
         tbNumrange.setEndno(endno);
+        tbNumrange.setProcid(procid);
         try {
             List<TBNumrange> tbNumranges = basicDataService.getBasicData(tbNumrange);
             if(tbNumranges!=null||tbNumranges.size()>0){
@@ -149,6 +150,7 @@ public class BasicDataController {
     public Map<String,Object> updataTBNumrange(@RequestParam(value = "PARAM") String param,Map<String,Object> map){
         TBNumrange tbNumrange=new TBNumrange();
         JSONObject jsonObject = JSONObject.parseObject(param);
+        String procid=(String) jsonObject.get("procid");
         String phonenumber=(String) jsonObject.get("phonenum");
         String imsi = jsonObject.get("imsi").toString();
         Short isvalid = Short.valueOf(jsonObject.get("isvalid").toString());
@@ -159,7 +161,6 @@ public class BasicDataController {
         String validdate = jsonObject.get("validdate").toString();
         String servicername = jsonObject.get("servicername").toString();
         tbNumrange.setNumrange(phonenumber.substring(0,7));
-        tbNumrange.setProcid(imsi);
         tbNumrange.setCityname(cityname);
         tbNumrange.setImsi(imsi);
         tbNumrange.setServicername(servicername);
@@ -168,6 +169,7 @@ public class BasicDataController {
         tbNumrange.setValiddate(validdate);
         tbNumrange.setBeginno(beginno);
         tbNumrange.setEndno(endno);
+        tbNumrange.setProcid(procid);
         int code = basicDataService.updataTBNumrange(tbNumrange);
         if(code>0){
             map.put("code",code);
@@ -191,6 +193,7 @@ public class BasicDataController {
     public Map<String,Object> insertTBNumrange(@RequestParam(value = "PARAM") String param,Map<String,Object> map){
         TBNumrange tbNumrange=new TBNumrange();
         JSONObject jsonObject = JSONObject.parseObject(param);
+        String procid=(String) jsonObject.get("procid");
         String phonenumber=(String) jsonObject.get("phonenum");
         String imsi = jsonObject.get("imsi").toString();
         Short isvalid = Short.valueOf(jsonObject.get("isvalid").toString());
@@ -201,7 +204,6 @@ public class BasicDataController {
         String validdate = jsonObject.get("validdate").toString();
         String servicername = jsonObject.get("servicername").toString();
         tbNumrange.setNumrange(phonenumber.substring(0,7));
-        tbNumrange.setProcid(imsi);
         tbNumrange.setCityname(cityname);
         tbNumrange.setImsi(imsi);
         tbNumrange.setServicername(servicername);
@@ -210,6 +212,7 @@ public class BasicDataController {
         tbNumrange.setValiddate(validdate);
         tbNumrange.setBeginno(beginno);
         tbNumrange.setEndno(endno);
+        tbNumrange.setProcid(procid);
         int code = basicDataService.insertTBNumrange(tbNumrange);
         if(code>0){
             map.put("code",code);

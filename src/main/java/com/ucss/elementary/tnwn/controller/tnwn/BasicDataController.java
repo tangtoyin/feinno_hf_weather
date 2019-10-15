@@ -37,32 +37,29 @@ public class BasicDataController {
     @RequestMapping(value = "/detail", method = RequestMethod.POST)
     public Map<String ,Object> getBasicData(@RequestParam(value = "PARAM") String param, HttpSession session){
         Map<String,Object> map=new HashMap<>();
+        TBNumrange tbNumrange=new TBNumrange();
         JSONObject jsonObject = JSONObject.parseObject(param);
         int pageSize = Integer.parseInt(jsonObject.get("pageSize").toString());
         int pageNum=Integer.parseInt(jsonObject.get("pageNum").toString());
-        TBNumrange tbNumrange = (TBNumrange) jsonObject.get("tbNumrange");
-        String numrange = tbNumrange.getNumrange();
-        if (numrange!=null&&numrange.length()>7){
-           tbNumrange.setNumrange(numrange.substring(0,7));
-        }
-//        String imsi = jsonObject.get("imsi").toString();
-//        Short isvalid = Short.valueOf(jsonObject.get("isvalid").toString());
-//        String cityname = jsonObject.get("cityname").toString();
-//        String locationcode = jsonObject.get("locationcode").toString();
-//        String beginno = jsonObject.get("beginno").toString();
-//        String endno = jsonObject.get("endno").toString();
-//        String validdate = jsonObject.get("validdate").toString();
-//        String servicername = jsonObject.get("servicername").toString();
-//        tbNumrange.setNumrange(phonenumber.substring(0,7));
-//        tbNumrange.setProcid(imsi);
-//        tbNumrange.setCityname(cityname);
-//        tbNumrange.setImsi(imsi);
-//        tbNumrange.setServicername(servicername);
-//        tbNumrange.setIsvalid(isvalid);
-//        tbNumrange.setLocationcode(locationcode);
-//        tbNumrange.setValiddate(validdate);
-//        tbNumrange.setBeginno(beginno);
-//        tbNumrange.setEndno(endno);
+        String phonenumber=(String) jsonObject.get("phonenum");
+        String imsi = jsonObject.get("imsi").toString();
+       Short isvalid = Short.valueOf(jsonObject.get("isvalid").toString());
+       String cityname = jsonObject.get("cityname").toString();
+        String locationcode = jsonObject.get("locationcode").toString();
+        String beginno = jsonObject.get("beginno").toString();
+        String endno = jsonObject.get("endno").toString();
+        String validdate = jsonObject.get("validdate").toString();
+        String servicername = jsonObject.get("servicername").toString();
+       tbNumrange.setNumrange(phonenumber.substring(0,7));
+        tbNumrange.setProcid(imsi);
+       tbNumrange.setCityname(cityname);
+       tbNumrange.setImsi(imsi);
+       tbNumrange.setServicername(servicername);
+        tbNumrange.setIsvalid(isvalid);
+        tbNumrange.setLocationcode(locationcode);
+        tbNumrange.setValiddate(validdate);
+       tbNumrange.setBeginno(beginno);
+        tbNumrange.setEndno(endno);
         try {
             List<TBNumrange> tbNumranges = basicDataService.getBasicData(tbNumrange);
             if(tbNumranges!=null||tbNumranges.size()>0){
@@ -150,12 +147,27 @@ public class BasicDataController {
     })
     @RequestMapping("/updateTBNumrange")
     public Map<String,Object> updataTBNumrange(@RequestParam(value = "PARAM") String param,Map<String,Object> map){
+        TBNumrange tbNumrange=new TBNumrange();
         JSONObject jsonObject = JSONObject.parseObject(param);
-        TBNumrange tbNumrange = (TBNumrange) jsonObject.get("tbNumrange");
-        String numrange = tbNumrange.getNumrange();
-        if (numrange!=null&&numrange.length()>7){
-            tbNumrange.setNumrange(numrange.substring(0,7));
-        }
+        String phonenumber=(String) jsonObject.get("phonenum");
+        String imsi = jsonObject.get("imsi").toString();
+        Short isvalid = Short.valueOf(jsonObject.get("isvalid").toString());
+        String cityname = jsonObject.get("cityname").toString();
+        String locationcode = jsonObject.get("locationcode").toString();
+        String beginno = jsonObject.get("beginno").toString();
+        String endno = jsonObject.get("endno").toString();
+        String validdate = jsonObject.get("validdate").toString();
+        String servicername = jsonObject.get("servicername").toString();
+        tbNumrange.setNumrange(phonenumber.substring(0,7));
+        tbNumrange.setProcid(imsi);
+        tbNumrange.setCityname(cityname);
+        tbNumrange.setImsi(imsi);
+        tbNumrange.setServicername(servicername);
+        tbNumrange.setIsvalid(isvalid);
+        tbNumrange.setLocationcode(locationcode);
+        tbNumrange.setValiddate(validdate);
+        tbNumrange.setBeginno(beginno);
+        tbNumrange.setEndno(endno);
         int code = basicDataService.updataTBNumrange(tbNumrange);
         if(code>0){
             map.put("code",code);
@@ -177,12 +189,27 @@ public class BasicDataController {
     })
     @RequestMapping("/insertTBNumrange")
     public Map<String,Object> insertTBNumrange(@RequestParam(value = "PARAM") String param,Map<String,Object> map){
+        TBNumrange tbNumrange=new TBNumrange();
         JSONObject jsonObject = JSONObject.parseObject(param);
-        TBNumrange tbNumrange = (TBNumrange) jsonObject.get("tbNumrange");
-        String numrange = tbNumrange.getNumrange();
-        if (numrange!=null&&numrange.length()>7){
-            tbNumrange.setNumrange(numrange.substring(0,7));
-        }
+        String phonenumber=(String) jsonObject.get("phonenum");
+        String imsi = jsonObject.get("imsi").toString();
+        Short isvalid = Short.valueOf(jsonObject.get("isvalid").toString());
+        String cityname = jsonObject.get("cityname").toString();
+        String locationcode = jsonObject.get("locationcode").toString();
+        String beginno = jsonObject.get("beginno").toString();
+        String endno = jsonObject.get("endno").toString();
+        String validdate = jsonObject.get("validdate").toString();
+        String servicername = jsonObject.get("servicername").toString();
+        tbNumrange.setNumrange(phonenumber.substring(0,7));
+        tbNumrange.setProcid(imsi);
+        tbNumrange.setCityname(cityname);
+        tbNumrange.setImsi(imsi);
+        tbNumrange.setServicername(servicername);
+        tbNumrange.setIsvalid(isvalid);
+        tbNumrange.setLocationcode(locationcode);
+        tbNumrange.setValiddate(validdate);
+        tbNumrange.setBeginno(beginno);
+        tbNumrange.setEndno(endno);
         int code = basicDataService.insertTBNumrange(tbNumrange);
         if(code>0){
             map.put("code",code);

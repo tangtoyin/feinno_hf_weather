@@ -4,8 +4,11 @@ import com.ucss.elementary.tnwn.model.database.TBNumrange;
 import com.ucss.elementary.tnwn.model.database.TBNumrangeExample;
 import java.math.BigDecimal;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface TBNumrangeMapper {
 
     List<TBNumrange> selectByNumrange(TBNumrange tbNumrange);

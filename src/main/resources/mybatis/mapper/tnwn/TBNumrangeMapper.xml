@@ -445,7 +445,6 @@
       ENDNO = #{endno,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=DECIMAL}
   </update>
-
   <select id="selectByNumrange" parameterType="com.ucss.elementary.tnwn.model.database.TBNumrange" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
@@ -487,7 +486,7 @@
   <update id="deleteById" parameterType="BigDecimal">
    update T_B_NUMRANGE
     set
-   ISVALID =0,
+   ISVALID =0
     where ID = #{VALUE}
   </update>
 

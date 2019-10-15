@@ -1,6 +1,5 @@
 package com.ucss.elementary.tnwn.service.tnwn;
 
-import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.ucss.elementary.tnwn.mapper.tnwn.SysApikeyMapper;
 import com.ucss.elementary.tnwn.mapper.tnwn.TBNumrangeMapper;
@@ -30,6 +29,7 @@ public class BasicDataService {
 
     @Autowired
     private TBNumrangeMapper tbNumrangeMapper;
+
     public void insert(SysApikey sysApikey){
         sysApikeyMapper.insertSelective(sysApikey);
     }
@@ -73,7 +73,7 @@ public class BasicDataService {
     }
 
     public int updataTBNumrange(TBNumrange tbNumrange){
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date=new Date();
         try {
             String format = sdf.format(date);
@@ -86,7 +86,7 @@ public class BasicDataService {
     }
 
     public int insertTBNumrange(TBNumrange tbNumrange){
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date=new Date();
         try {
             String format = sdf.format(date);

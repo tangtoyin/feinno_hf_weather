@@ -2,9 +2,11 @@ package com.ucss.elementary.tnwn.service.tnwn;
 
 import com.github.pagehelper.PageInfo;
 import com.ucss.elementary.tnwn.mapper.tnwn.SysApikeyMapper;
+import com.ucss.elementary.tnwn.mapper.tnwn.TBLongareacodeMapper;
 import com.ucss.elementary.tnwn.mapper.tnwn.TBNumrangeMapper;
 import com.ucss.elementary.tnwn.model.database.SysApiKeyExtension;
 import com.ucss.elementary.tnwn.model.database.SysApikey;
+import com.ucss.elementary.tnwn.model.database.TBLongareacode;
 import com.ucss.elementary.tnwn.model.database.TBNumrange;
 import com.ucss.elementary.tnwn.util.StringHelper;
 import org.slf4j.Logger;
@@ -12,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.xml.crypto.Data;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -21,15 +24,13 @@ import java.util.List;
 
 @Service
 public class BasicDataService {
-
     public  Logger log= LoggerFactory.getLogger(BasicDataService.class);
-
     @Autowired
     private SysApikeyMapper sysApikeyMapper ;
-
     @Autowired
     private TBNumrangeMapper tbNumrangeMapper;
-
+    @Autowired
+    private TBLongareacodeMapper tbLongareacodeMapper;
     public void insert(SysApikey sysApikey){
         sysApikeyMapper.insertSelective(sysApikey);
     }
@@ -73,12 +74,33 @@ public class BasicDataService {
     }
 
     public int updataTBNumrange(TBNumrange tbNumrange){
+        if(tbNumrange.getNumrange().trim().length()>7&&tbNumrange.getNumrange().trim()!="") {
+            tbNumrange.setNumrange(tbNumrange.getNumrange().substring(0, 7));
+        }
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        SimpleDateFormat sdf1=new SimpleDateFormat("YYYYMMDDHHMMSS");
         Date date=new Date();
         try {
-            String format = sdf.format(date);
+            if(tbNumrange!=null){
+                if(tbNumrange.getType()=="1"||tbNumrange.getType()=="2"||tbNumrange.getType()=="3"){
+                    tbNumrange.setServicername("移动");
+                    tbNumrange.setServicer("Mobile");
+                }else if (tbNumrange.getType()=="01"){
+                    tbNumrange.setServicername("联通");
+                    tbNumrange.setServicer("Unicom");
+                }else if (tbNumrange.getType()=="02"){
+                    tbNumrange.setServicername("电信");
+                    tbNumrange.setServicer("Telecom");
+                }
+            }
+            String format =  sdf.format(date);
             Date updatetime = sdf.parse(format);
             tbNumrange.setCreatetime(updatetime);
+            long l = System.currentTimeMillis();
+            tbNumrange.setValiddate(sdf1.format(tbNumrange.getValiddate()));
+            tbNumrange.setExpiprdate(sdf1.format(tbNumrange.getExpiprdate()));
+            tbNumrange.setTimestamp(String.valueOf(l));
+            tbNumrange.setOpertype("MOD");
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -87,14 +109,67 @@ public class BasicDataService {
 
     public int insertTBNumrange(TBNumrange tbNumrange){
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        SimpleDateFormat sdf1=new SimpleDateFormat("YYYYMMDDHHMMSS");
         Date date=new Date();
         try {
+            if(tbNumrange!=null){
+                if(tbNumrange.getType()=="1"||tbNumrange.getType()=="2"||tbNumrange.getType()=="3"){
+                    tbNumrange.setServicername("移动");
+                    tbNumrange.setServicer("Mobile");
+                }else if (tbNumrange.getType()=="01"){
+                    tbNumrange.setServicername("联通");
+                    tbNumrange.setServicer("Unicom");
+                }else if (tbNumrange.getType()=="02"){
+                    tbNumrange.setServicername("电信");
+                    tbNumrange.setServicer("Telecom");
+                }
+            }
             String format = sdf.format(date);
             Date createtime = sdf.parse(format);
             tbNumrange.setCreatetime(createtime);
+            tbNumrange.setUpdatetime(createtime);
+            long l = System.currentTimeMillis();
+            tbNumrange.setValiddate(sdf1.format(tbNumrange.getValiddate()));
+            tbNumrange.setExpiprdate(sdf1.format(tbNumrange.getExpiprdate()));
+            tbNumrange.setTimestamp(String.valueOf(l));
+            tbNumrange.setOpertype("ADD");
         } catch (ParseException e) {
             e.printStackTrace();
         }
         return tbNumrangeMapper.insertTBNumrange(tbNumrange);
     }
+
+
+    public List<TBLongareacode> selectByTBLongareacode(TBLongareacode tbLongareacode){
+        //如果numrange为空证明是查询所有的号段表信息
+        List<TBLongareacode> tbLongareacodes = tbLongareacodeMapper.selectByTBLongareacode(tbLongareacode);
+        PageInfo<TBLongareacode> tbLongareacodePageInfo=new PageInfo<>(tbLongareacodes);
+        List<TBLongareacode> tbLongareacodeList = tbLongareacodePageInfo.getList();
+        return tbLongareacodeList;
+    }
+
+    public int deleteByTBLongareacodeId(BigDecimal id){
+        return tbLongareacodeMapper.deleteById(id);
+    }
+
+    public int updataTBLongareacode(TBLongareacode tbLongareacode){
+        long l = System.currentTimeMillis();
+        SimpleDateFormat sdf=new SimpleDateFormat("YYYYMMDDHHMMSS");
+        tbLongareacode.setValiddate(sdf.format(tbLongareacode.getValiddate()));
+        tbLongareacode.setExpiredate(sdf.format(tbLongareacode.getExpiredate()));
+        tbLongareacode.setTimestamp(String.valueOf(l));
+        tbLongareacode.setOpertype("MOD");
+        return  tbLongareacodeMapper.updateByTBLongareacode(tbLongareacode);
+    }
+
+    public int insertByTBLongareacode(TBLongareacode tbLongareacode){
+            long l = System.currentTimeMillis();
+        SimpleDateFormat sdf=new SimpleDateFormat("YYYYMMDDHHMMSS");
+        tbLongareacode.setValiddate(sdf.format(tbLongareacode.getValiddate()));
+        tbLongareacode.setExpiredate(sdf.format(tbLongareacode.getExpiredate()));
+            tbLongareacode.setTimestamp(String.valueOf(l));
+            tbLongareacode.setOpertype("ADD");
+        return tbLongareacodeMapper.insertByTBLongareacode(tbLongareacode);
+    }
+
 }

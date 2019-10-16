@@ -13,6 +13,7 @@ import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
@@ -92,7 +93,7 @@ public class BasicDataController {
             @ApiImplicitParam(name = "rnd", dataType = "String", paramType = "query"),
             @ApiImplicitParam(name = "sig", dataType = "String", paramType = "query"),
     })
-    @RequestMapping("/page")
+    @RequestMapping(value="/page",method=RequestMethod.POST)
     public Map<String,Object> pageInfo(@RequestParam(value = "PARAM") String param,HttpSession session,Map<String,Object> map){
         List<TBNumrange> tbNumranges = ( List<TBNumrange>)session.getAttribute("tbNumranges");
         JSONObject jsonObject = JSONObject.parseObject(param);
@@ -118,11 +119,13 @@ public class BasicDataController {
             @ApiImplicitParam(name = "rnd", dataType = "String", paramType = "query"),
             @ApiImplicitParam(name = "sig", dataType = "String", paramType = "query"),
     })
-    @RequestMapping("/delete")
+    @RequestMapping(value = "/delete",method = RequestMethod.POST)
     public Map<String,Object> deleteById(@RequestParam(value = "PARAM") String param,Map<String,Object> map){
         JSONObject jsonObject = JSONObject.parseObject(param);
+        TBNumrange tbNumrange=new TBNumrange();
         BigDecimal id=new BigDecimal(jsonObject.get("id").toString());
-        int code=basicDataService.deleteById(id);
+        tbNumrange.setId(id);
+        int code=basicDataService.deleteById(tbNumrange);
         if(code>0){
           map.put("code",code);
           log.info("-----删除成功,删除的id为："+id);
@@ -140,7 +143,7 @@ public class BasicDataController {
             @ApiImplicitParam(name = "rnd", dataType = "String", paramType = "query"),
             @ApiImplicitParam(name = "sig", dataType = "String", paramType = "query"),
     })
-    @RequestMapping("/update")
+    @RequestMapping(value = "/update",method = RequestMethod.POST)
     public Map<String,Object> updataTBNumrange(@RequestParam(value = "PARAM") String param,Map<String,Object> map){
         TBNumrange tbNumrange=new TBNumrange();
         JSONObject jsonObject = JSONObject.parseObject(param);
@@ -185,7 +188,7 @@ public class BasicDataController {
             @ApiImplicitParam(name = "rnd", dataType = "String", paramType = "query"),
             @ApiImplicitParam(name = "sig", dataType = "String", paramType = "query"),
     })
-    @RequestMapping("/insert")
+    @RequestMapping(value = "/insert",method = RequestMethod.POST)
     public Map<String,Object> insertTBNumrange(@RequestParam(value = "PARAM") String param,Map<String,Object> map){
         TBNumrange tbNumrange=new TBNumrange();
         JSONObject jsonObject = JSONObject.parseObject(param);
@@ -281,7 +284,7 @@ public class BasicDataController {
         return map;
     }
 
-    @RequestMapping("/pageLong")
+    @RequestMapping(value = "/pageLong",method = RequestMethod.POST)
     public Map<String,Object> pageInfolong(@RequestParam(value = "PARAM") String param,HttpSession session,Map<String,Object> map){
         List<TBLongareacode> tbLongareacodes = ( List<TBLongareacode>)session.getAttribute("tbLongareacodes");
         JSONObject jsonObject = JSONObject.parseObject(param);
@@ -309,11 +312,13 @@ public class BasicDataController {
             @ApiImplicitParam(name = "sig", dataType = "String", paramType = "query"),
     })
 
-    @RequestMapping("/deleteLong")
+    @RequestMapping(value = "/deleteLong",method = RequestMethod.POST)
     public Map<String,Object> deleteByIdTBLongareacode(@RequestParam(value = "PARAM") String param,Map<String,Object> map){
         JSONObject jsonObject = JSONObject.parseObject(param);
+        TBLongareacode tbLongareacode=new TBLongareacode();
         BigDecimal id=new BigDecimal(jsonObject.get("id").toString());
-        int code=basicDataService.deleteByTBLongareacodeId(id);
+        tbLongareacode.setId(id);
+        int code=basicDataService.deleteByTBLongareacodeId(tbLongareacode);
         if(code>0){
             map.put("code",code);
             log.info("-----删除成功,删除的id为："+id);
@@ -332,7 +337,7 @@ public class BasicDataController {
             @ApiImplicitParam(name = "rnd", dataType = "String", paramType = "query"),
             @ApiImplicitParam(name = "sig", dataType = "String", paramType = "query"),
     })
-    @RequestMapping("/updateLong")
+    @RequestMapping(value = "/updateLong",method = RequestMethod.POST)
     public Map<String,Object> update(@RequestParam(value = "PARAM") String param,Map<String,Object> map){
         TBLongareacode tbLongareacode=new TBLongareacode();
         JSONObject jsonObject = JSONObject.parseObject(param);
@@ -370,7 +375,7 @@ public class BasicDataController {
             @ApiImplicitParam(name = "rnd", dataType = "String", paramType = "query"),
             @ApiImplicitParam(name = "sig", dataType = "String", paramType = "query"),
     })
-    @RequestMapping("/insertLong")
+    @RequestMapping(value = "/insertLong",method = RequestMethod.POST)
     public Map<String,Object> insertTBLongareacode(@RequestParam(value = "PARAM") String param,Map<String,Object> map){
         TBLongareacode tbLongareacode=new TBLongareacode();
         JSONObject jsonObject = JSONObject.parseObject(param);

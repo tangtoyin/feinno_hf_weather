@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ucss.elementary.tnwn.mapper.tnwn.TLTnwninterlogMapper" >
+    <resultMap id="BaseResultMap" type="com.ucss.elementary.tnwn.model.database.TLTnwninterlog" >
+        <id column="ID" property="id" jdbcType="NUMBER" />
+        <result column="IFCODE" property="ifcode" jdbcType="VARCHAR" />
+        <result column="IFNAME" property="ifname" jdbcType="VARCHAR" />
+        <result column="REQUESTER" property="requester" jdbcType="VARCHAR" />
+        <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+        <result column="IP" property="ip" jdbcType="VARCHAR" />
+        <result column="IFURL" property="ifurl" jdbcType="VARCHAR" />
+        <result column="IFRESULTCODE" property="ifresultcode" jdbcType="VARCHAR" />
+        <result column="IFRESULT" property="ifresult" jdbcType="VARCHAR" />
+        <result column="OUTERIFCODE" property="outerifcode" jdbcType="VARCHAR" />
+        <result column="OUTERIFNAME" property="outerifname" jdbcType="VARCHAR" />
+        <result column="OUTERIFURL" property="outerifurl" jdbcType="VARCHAR" />
+        <result column="OUTERIFRESULT" property="outerifresult" jdbcType="VARCHAR" />
+        <result column="CREATETIME" property="createtime" jdbcType="DATE" />
+        <result column="IFEXCEPTION" property="ifexception" jdbcType="CLOB" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+   ID,IFCODE,IFNAME,REQUESTER,PHONE,IP,IFURL,IFRESULTCODE,IFRESULT,OUTERIFCODE,OUTERIFNAME,OUTERIFURL,OUTERIFRESULT,CREATETIME,IFEXCEPTION
+  </sql>
     <insert id="insert" parameterType="com.ucss.elementary.tnwn.model.database.TLTnwninterlog" >
        insert into  t_l_tnwninterlog
        <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -87,5 +107,53 @@
         </trim>
     </insert>
 
+    <select id="selectTLTnwninterlog" parameterType="com.ucss.elementary.tnwn.model.database.TLTnwninterlog" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from T_L_TNWNINTERLOG
+        <if test="id != null">
+            and ID=#{id,jdbcType=DECIMAL},
+        </if>
+        <if test="ifcode !=null">
+            and ifcode=#{ifcode,jdbcType=VARCHAR},
+        </if>
+        <if test="ifname !=null">
+            and ifname=#{ifname,jdbcType=VARCHAR},
+        </if>
+        <if test="requester !=null">
+            and requester=#{requester,jdbcType=VARCHAR},
+        </if>
+        <if test="phone !=null">
+            and phone=#{phone,jdbcType=VARCHAR},
+        </if>
+        <if test="ip !=null">
+           and ip= #{ip,jdbcType=VARCHAR},
+        </if>
+        <if test="ifurl !=null">
+            and ifurl=#{ifurl,jdbcType=VARCHAR},
+        </if>
+        <if test="ifresultcode !=null">
+            and ifresultcode=#{ifresultcode,jdbcType=VARCHAR},
+        </if>
+        <if test="outerifname !=null">
+            and outerifname=#{outerifname,jdbcType=VARCHAR},
+        </if>
+        <if test="outerifurl !=null">
+            and outerifurl=#{outerifurl,jdbcType=VARCHAR},
+        </if>
+        <if test="outerifresult !=null">
+            and outerifresult=#{outerifresult,jdbcType=VARCHAR},
+        </if>
+        <if test="createtime !=null">
+            and createtime=#{createtime,jdbcType=DATE},
+        </if>
+        <if test="ifexception !=null">
+           and ifexception= #{ifexception,jdbcType=VARCHAR},
+        </if>
+    </select>
 
+     <delete id="deleteById" parameterType="com.ucss.elementary.tnwn.model.database.TLTnwninterlog">
+         DELETE  from T_L_TNWNINTERLOG where ID=id
+     </delete>
+    
 </mapper>

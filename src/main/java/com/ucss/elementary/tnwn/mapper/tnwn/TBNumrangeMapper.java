@@ -13,7 +13,7 @@ public interface TBNumrangeMapper {
 
     List<TBNumrange> selectByNumrange(TBNumrange tbNumrange);
 
-    int deleteById(BigDecimal id);
+    int deleteById(TBNumrange tbNumrange);
 
     int updataByTBNumrange(TBNumrange tbNumrange);
 

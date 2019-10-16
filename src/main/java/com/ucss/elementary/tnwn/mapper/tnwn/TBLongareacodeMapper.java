@@ -4,6 +4,8 @@ import com.ucss.elementary.tnwn.model.database.TBLongareacode;
 import com.ucss.elementary.tnwn.model.database.TBLongareacodeExample;
 import java.math.BigDecimal;
 import java.util.List;
+
+import com.ucss.elementary.tnwn.model.database.TBNumrange;
 import org.apache.ibatis.annotations.Param;
 
 public interface TBLongareacodeMapper {
@@ -11,7 +13,7 @@ public interface TBLongareacodeMapper {
 
     List<TBLongareacode> selectByTBLongareacode(TBLongareacode tbLongareacode);
 
-    int deleteById(BigDecimal id);
+    int deleteById(TBLongareacode tbLongareacode);
 
     int updateByTBLongareacode(TBLongareacode tbLongareacode);
 

@@ -22,6 +22,11 @@
     <result column="LOCATIONCODE" property="locationcode" jdbcType="VARCHAR" />
     <result column="BEGINNO" property="beginno" jdbcType="VARCHAR" />
     <result column="ENDNO" property="endno" jdbcType="VARCHAR" />
+    <association property="tbLongareacode" javaType="com.ucss.elementary.tnwn.model.database.TBLongareacode">
+      <id property="id" column="ID"></id>
+      <result property="areaname" column="AREANAME"></result>
+      <result property="areacode" column="AREACODE"></result>
+    </association>
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -82,7 +87,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    ID, PROCID, OPERTYPE, CITYCODE, CITYNAME, NUMRANGE, IMSI, VALIDDATE, EXPIPRDATE, 
+    ID, PROCID, OPERTYPE, CITYCODE, CITYNAME, NUMRANGE, IMSI, VALIDDATE, EXPIPRDATE,
     TIMESTAMP, TYPE, CLASSIFY, SERVICER, CREATETIME, UPDATETIME, SERVICERNAME, ISVALID, 
     LOCATIONCODE, BEGINNO, ENDNO
   </sql>
@@ -447,47 +452,79 @@
   </update>
   <select id="selectByNumrange" parameterType="com.ucss.elementary.tnwn.model.database.TBNumrange" resultMap="BaseResultMap">
     select
-    <include refid="Base_Column_List" />
-    FROM t_b_numrange
+    n.ID,n.OPERTYPE,n.CITYCODE,n.NUMRANGE,n.VALIDDATE,n.EXPIPRDATE,n.SERVICERNAME,n.ISVALID,n.CREATETIME,n.UPDATETIME,l.AREACODE,l.AREANAME
+    FROM t_b_numrange n,T_B_LONGAREACODE l
     <where>
+      l.areacode=n.citycode
       <if test="id !=null">
-        and ID=id
+        and ID=#{id,jdbcType=DECIMAL}
       </if>
-      <if test="procid !=null">
-        and PROCID=procid
+      <if test="procid != null" >
+        and n.PROCID = #{procid,jdbcType=VARCHAR},
       </if>
-      <if test="opertype !=null">
-        and OPERTYPE=opertype
+      <if test="opertype != null" >
+        and n.OPERTYPE = #{opertype,jdbcType=VARCHAR},
       </if>
-      <if test="cityname !=null">
-        and CITYNAME=cityname
+      <if test="citycode != null" >
+        and n.CITYCODE = #{citycode,jdbcType=VARCHAR},
       </if>
-      <if test="numrange !=null">
-        and NUMRANGE=numrange
+      <if test="cityname != null" >
+        and n.CITYNAME = #{cityname,jdbcType=VARCHAR},
       </if>
-      <if test="imsi !=null">
-        and IMSI=imsi
+      <if test="numrange != null" >
+        and n.NUMRANGE = #{numrange,jdbcType=VARCHAR},
       </if>
-      <if test="type !=null">
-        and TYPE=type
+      <if test="imsi != null" >
+        and n.IMSI = #{imsi,jdbcType=VARCHAR},
       </if>
-      <if test="servicer !=null">
-        and SERVICER=servicer
+      <if test="validdate != null" >
+        and n.VALIDDATE = #{validdate,jdbcType=VARCHAR},
       </if>
-      <if test="servicername !=null">
-        and SERVICERNAME=servicername
+      <if test="expiprdate != null" >
+        and n.EXPIPRDATE = #{expiprdate,jdbcType=VARCHAR},
       </if>
-      <if test="isvalid !=null">
-        and ISVALID=isvalid
+      <if test="timestamp != null" >
+        and n.TIMESTAMP = #{timestamp,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        and n.TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="classify != null" >
+        and n.CLASSIFY = #{classify,jdbcType=VARCHAR},
+      </if>
+      <if test="servicer != null" >
+        and n.SERVICER = #{servicer,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        and n.CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        and n.UPDATETIME = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="servicername != null" >
+        and n.SERVICERNAME = #{servicername,jdbcType=VARCHAR},
+      </if>
+      <if test="isvalid != null" >
+        and n.ISVALID = #{isvalid,jdbcType=DECIMAL},
+      </if>
+      <if test="locationcode != null" >
+        and n.LOCATIONCODE = #{locationcode,jdbcType=VARCHAR},
+      </if>
+      <if test="beginno != null" >
+        and n.BEGINNO = #{beginno,jdbcType=VARCHAR},
+      </if>
+      <if test="endno != null" >
+        and n.ENDNO = #{endno,jdbcType=VARCHAR},
       </if>
     </where>
   </select>
 
-  <update id="deleteById" parameterType="BigDecimal">
+  <update id="deleteById" parameterType="com.ucss.elementary.tnwn.model.database.TBNumrange">
    update T_B_NUMRANGE
     set
+  OPERTYPE ='DEL',
    ISVALID =0
-    where ID = #{VALUE}
+    where ID =  #{id,jdbcType=DECIMAL}
   </update>
 
   <update id="updataByTBNumrange" parameterType="com.ucss.elementary.tnwn.model.database.TBNumrange">

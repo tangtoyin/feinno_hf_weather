@@ -9,7 +9,7 @@
         <module name="tnwn-server" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="1.8">
       <module name="tnwn-server" target="1.8" />
     </bytecodeTargetLevel>
   </component>

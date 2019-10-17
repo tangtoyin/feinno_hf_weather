@@ -45,6 +45,15 @@ public class TBNumrange implements Serializable {
 
     private String endno;
 
+    public TBLongareacode getTbLongareacode() {
+        return tbLongareacode;
+    }
+
+    public void setTbLongareacode(TBLongareacode tbLongareacode) {
+        this.tbLongareacode = tbLongareacode;
+    }
+
+    private TBLongareacode tbLongareacode;
     private static final long serialVersionUID = 1L;
 
     public BigDecimal getId() {

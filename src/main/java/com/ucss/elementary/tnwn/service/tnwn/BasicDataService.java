@@ -69,8 +69,8 @@ public class BasicDataService {
             return tbNumrangePageInfoList;
     }
 
-    public int deleteById(BigDecimal id){
-        return tbNumrangeMapper.deleteById(id);
+    public int deleteById(TBNumrange tbNumrange){
+        return tbNumrangeMapper.deleteById(tbNumrange);
     }
 
     public int updataTBNumrange(TBNumrange tbNumrange){
@@ -108,9 +108,10 @@ public class BasicDataService {
     }
 
     public int insertTBNumrange(TBNumrange tbNumrange){
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         SimpleDateFormat sdf1=new SimpleDateFormat("YYYYMMDDHHMMSS");
-        Date date=new Date();
+        if(tbNumrange.getNumrange().trim().length()>7&&tbNumrange.getNumrange().trim()!="") {
+            tbNumrange.setNumrange(tbNumrange.getNumrange().substring(0, 7));
+        }
         try {
             if(tbNumrange!=null){
                 if(tbNumrange.getType()=="1"||tbNumrange.getType()=="2"||tbNumrange.getType()=="3"){
@@ -124,16 +125,14 @@ public class BasicDataService {
                     tbNumrange.setServicer("Telecom");
                 }
             }
-            String format = sdf.format(date);
-            Date createtime = sdf.parse(format);
-            tbNumrange.setCreatetime(createtime);
-            tbNumrange.setUpdatetime(createtime);
+            tbNumrange.setCreatetime(new Date());
+            tbNumrange.setUpdatetime(new Date());
             long l = System.currentTimeMillis();
             tbNumrange.setValiddate(sdf1.format(tbNumrange.getValiddate()));
             tbNumrange.setExpiprdate(sdf1.format(tbNumrange.getExpiprdate()));
             tbNumrange.setTimestamp(String.valueOf(l));
             tbNumrange.setOpertype("ADD");
-        } catch (ParseException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return tbNumrangeMapper.insertTBNumrange(tbNumrange);
@@ -148,8 +147,8 @@ public class BasicDataService {
         return tbLongareacodeList;
     }
 
-    public int deleteByTBLongareacodeId(BigDecimal id){
-        return tbLongareacodeMapper.deleteById(id);
+    public int deleteByTBLongareacodeId(TBLongareacode tbLongareacode){
+        return tbLongareacodeMapper.deleteById(tbLongareacode);
     }
 
     public int updataTBLongareacode(TBLongareacode tbLongareacode){
@@ -163,12 +162,12 @@ public class BasicDataService {
     }
 
     public int insertByTBLongareacode(TBLongareacode tbLongareacode){
-            long l = System.currentTimeMillis();
+        long l = System.currentTimeMillis();
         SimpleDateFormat sdf=new SimpleDateFormat("YYYYMMDDHHMMSS");
         tbLongareacode.setValiddate(sdf.format(tbLongareacode.getValiddate()));
         tbLongareacode.setExpiredate(sdf.format(tbLongareacode.getExpiredate()));
-            tbLongareacode.setTimestamp(String.valueOf(l));
-            tbLongareacode.setOpertype("ADD");
+        tbLongareacode.setTimestamp(String.valueOf(l));
+        tbLongareacode.setOpertype("ADD");
         return tbLongareacodeMapper.insertByTBLongareacode(tbLongareacode);
     }
 

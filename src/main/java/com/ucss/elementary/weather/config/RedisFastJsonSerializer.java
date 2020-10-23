@@ -18,6 +18,7 @@ public class RedisFastJsonSerializer<T> implements RedisSerializer<T> {
     public RedisFastJsonSerializer(Class<T> clazz) {
         super();
         this.clazz = clazz;
+        //哈哈笑死了
     }
 
     @Override

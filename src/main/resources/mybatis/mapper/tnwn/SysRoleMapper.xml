@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ucss.elementary.tnwn.mapper.tnwn.SysRoleMapper" >
-  <resultMap id="BaseResultMap" type="com.ucss.elementary.tnwn.model.database.SysRole" >
+<mapper namespace="com.ucss.elementary.weather.mapper.tnwn.SysRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.ucss.elementary.weather.model.database.SysRole" >
     <id column="ID" property="id" jdbcType="DECIMAL" />
     <result column="NAME" property="name" jdbcType="VARCHAR" />
     <result column="ISVALID" property="isvalid" jdbcType="DECIMAL" />
@@ -71,7 +71,7 @@
   <sql id="Base_Column_List" >
     ID, NAME, ISVALID, CREATETIME, UPDATETIME, CREATOR, UPDATER
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ucss.elementary.tnwn.model.database.SysRoleExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ucss.elementary.weather.model.database.SysRoleExample" >
     select
     <if test="distinct" >
       distinct
@@ -95,13 +95,13 @@
     delete from SYS_ROLE
     where ID = #{id,jdbcType=DECIMAL}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ucss.elementary.tnwn.model.database.SysRoleExample" >
+  <delete id="deleteByExample" parameterType="com.ucss.elementary.weather.model.database.SysRoleExample" >
     delete from SYS_ROLE
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ucss.elementary.tnwn.model.database.SysRole" >
+  <insert id="insert" parameterType="com.ucss.elementary.weather.model.database.SysRole" >
     insert into SYS_ROLE (ID, NAME, ISVALID, 
       CREATETIME, UPDATETIME, CREATOR, 
       UPDATER)
@@ -109,7 +109,7 @@
       #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, #{creator,jdbcType=DECIMAL}, 
       #{updater,jdbcType=DECIMAL})
   </insert>
-  <insert id="insertSelective" parameterType="com.ucss.elementary.tnwn.model.database.SysRole" >
+  <insert id="insertSelective" parameterType="com.ucss.elementary.weather.model.database.SysRole" >
     <selectKey keyProperty='id' resultType='long' order='BEFORE'  >
       SELECT SEQ_ROLE.nextval as id FROM DUAL
     </selectKey>
@@ -161,7 +161,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ucss.elementary.tnwn.model.database.SysRoleExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.ucss.elementary.weather.model.database.SysRoleExample" resultType="java.lang.Integer" >
     select count(*) from SYS_ROLE
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -209,7 +209,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ucss.elementary.tnwn.model.database.SysRole" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.ucss.elementary.weather.model.database.SysRole" >
     update SYS_ROLE
     <set >
       <if test="name != null" >
@@ -233,7 +233,7 @@
     </set>
     where ID = #{id,jdbcType=DECIMAL}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ucss.elementary.tnwn.model.database.SysRole" >
+  <update id="updateByPrimaryKey" parameterType="com.ucss.elementary.weather.model.database.SysRole" >
     update SYS_ROLE
     set NAME = #{name,jdbcType=VARCHAR},
       ISVALID = #{isvalid,jdbcType=DECIMAL},

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ucss.elementary.tnwn.mapper.tnwn.SysUserRoleMapper" >
-  <resultMap id="BaseResultMap" type="com.ucss.elementary.tnwn.model.database.SysUserRoleKey" >
+<mapper namespace="com.ucss.elementary.weather.mapper.tnwn.SysUserRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.ucss.elementary.weather.model.database.SysUserRoleKey" >
     <id column="USER_ID" property="userId" jdbcType="DECIMAL" />
     <id column="ROLE_ID" property="roleId" jdbcType="DECIMAL" />
   </resultMap>
@@ -66,7 +66,7 @@
   <sql id="Base_Column_List" >
     USER_ID, ROLE_ID
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ucss.elementary.tnwn.model.database.SysUserRoleExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ucss.elementary.weather.model.database.SysUserRoleExample" >
     select
     <if test="distinct" >
       distinct
@@ -80,22 +80,22 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="com.ucss.elementary.tnwn.model.database.SysUserRoleKey" >
+  <delete id="deleteByPrimaryKey" parameterType="com.ucss.elementary.weather.model.database.SysUserRoleKey" >
     delete from SYS_USER_ROLE
     where USER_ID = #{userId,jdbcType=DECIMAL}
       and ROLE_ID = #{roleId,jdbcType=DECIMAL}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ucss.elementary.tnwn.model.database.SysUserRoleExample" >
+  <delete id="deleteByExample" parameterType="com.ucss.elementary.weather.model.database.SysUserRoleExample" >
     delete from SYS_USER_ROLE
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ucss.elementary.tnwn.model.database.SysUserRoleKey" >
+  <insert id="insert" parameterType="com.ucss.elementary.weather.model.database.SysUserRoleKey" >
     insert into SYS_USER_ROLE (USER_ID, ROLE_ID)
     values (#{userId,jdbcType=DECIMAL}, #{roleId,jdbcType=DECIMAL})
   </insert>
-  <insert id="insertSelective" parameterType="com.ucss.elementary.tnwn.model.database.SysUserRoleKey" >
+  <insert id="insertSelective" parameterType="com.ucss.elementary.weather.model.database.SysUserRoleKey" >
     insert into SYS_USER_ROLE
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="userId != null" >
@@ -114,7 +114,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ucss.elementary.tnwn.model.database.SysUserRoleExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.ucss.elementary.weather.model.database.SysUserRoleExample" resultType="java.lang.Integer" >
     select count(*) from SYS_USER_ROLE
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />

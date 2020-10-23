@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ucss.elementary.tnwn.mapper.tnwn.SysRoleMenuMapper" >
-  <resultMap id="BaseResultMap" type="com.ucss.elementary.tnwn.model.database.SysRoleMenu" >
+<mapper namespace="com.ucss.elementary.weather.mapper.tnwn.SysRoleMenuMapper" >
+  <resultMap id="BaseResultMap" type="com.ucss.elementary.weather.model.database.SysRoleMenu" >
     <id column="ROLE_ID" property="roleId" jdbcType="DECIMAL" />
     <id column="MENU_ID" property="menuId" jdbcType="DECIMAL" />
   </resultMap>
@@ -66,7 +66,7 @@
   <sql id="Base_Column_List" >
     ROLE_ID, MENU_ID
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ucss.elementary.tnwn.model.database.SysRoleMenuExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ucss.elementary.weather.model.database.SysRoleMenuExample" >
     select
     <if test="distinct" >
       distinct
@@ -80,22 +80,22 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="com.ucss.elementary.tnwn.model.database.SysRoleMenu" >
+  <delete id="deleteByPrimaryKey" parameterType="com.ucss.elementary.weather.model.database.SysRoleMenu" >
     delete from SYS_ROLE_MENU
     where ROLE_ID = #{roleId,jdbcType=DECIMAL}
       and MENU_ID = #{menuId,jdbcType=DECIMAL}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ucss.elementary.tnwn.model.database.SysRoleMenuExample" >
+  <delete id="deleteByExample" parameterType="com.ucss.elementary.weather.model.database.SysRoleMenuExample" >
     delete from SYS_ROLE_MENU
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ucss.elementary.tnwn.model.database.SysRoleMenu" >
+  <insert id="insert" parameterType="com.ucss.elementary.weather.model.database.SysRoleMenu" >
     insert into SYS_ROLE_MENU (ROLE_ID, MENU_ID)
     values (#{roleId,jdbcType=DECIMAL}, #{menuId,jdbcType=DECIMAL})
   </insert>
-  <insert id="insertSelective" parameterType="com.ucss.elementary.tnwn.model.database.SysRoleMenu" >
+  <insert id="insertSelective" parameterType="com.ucss.elementary.weather.model.database.SysRoleMenu" >
     insert into SYS_ROLE_MENU
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="roleId != null" >
@@ -114,7 +114,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ucss.elementary.tnwn.model.database.SysRoleMenuExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.ucss.elementary.weather.model.database.SysRoleMenuExample" resultType="java.lang.Integer" >
     select count(*) from SYS_ROLE_MENU
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ucss.elementary.tnwn.mapper.tnwn.TLServiceMapper">
-  <resultMap id="BaseResultMap" type="com.ucss.elementary.tnwn.model.database.TLService">
+<mapper namespace="com.ucss.elementary.weather.mapper.tnwn.TLServiceMapper">
+  <resultMap id="BaseResultMap" type="com.ucss.elementary.weather.model.database.TLService">
     <id column="ID" jdbcType="DECIMAL" property="id" />
     <result column="APPCODE" jdbcType="VARCHAR" property="appcode" />
     <result column="METHOD" jdbcType="VARCHAR" property="method" />
@@ -12,7 +12,7 @@
     <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime" />
     <result column="USER_ID" jdbcType="DECIMAL" property="userId" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ucss.elementary.tnwn.model.database.TLServiceWithBLOBs">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ucss.elementary.weather.model.database.TLServiceWithBLOBs">
     <result column="REQUEST" jdbcType="CLOB" property="request" />
     <result column="RESPONSE" jdbcType="CLOB" property="response" />
   </resultMap>
@@ -81,7 +81,7 @@
   <sql id="Blob_Column_List">
     REQUEST, RESPONSE
   </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.ucss.elementary.tnwn.model.database.TLServiceExample" resultMap="ResultMapWithBLOBs">
+  <select id="selectByExampleWithBLOBs" parameterType="com.ucss.elementary.weather.model.database.TLServiceExample" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">
       distinct
@@ -97,7 +97,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" parameterType="com.ucss.elementary.tnwn.model.database.TLServiceExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.ucss.elementary.weather.model.database.TLServiceExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -123,13 +123,13 @@
     delete from T_L_SERVICE
     where ID = #{id,jdbcType=DECIMAL}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ucss.elementary.tnwn.model.database.TLServiceExample">
+  <delete id="deleteByExample" parameterType="com.ucss.elementary.weather.model.database.TLServiceExample">
     delete from T_L_SERVICE
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ucss.elementary.tnwn.model.database.TLServiceWithBLOBs">
+  <insert id="insert" parameterType="com.ucss.elementary.weather.model.database.TLServiceWithBLOBs">
     insert into T_L_SERVICE (ID, APPCODE, METHOD, 
       RESULTCODE, RESULTMESSAGE, CLIENTIP, 
       ELAPSEDTIME, CREATETIME, USER_ID, 
@@ -139,7 +139,7 @@
       #{elapsedtime,jdbcType=DECIMAL}, #{createtime,jdbcType=TIMESTAMP}, #{userId,jdbcType=DECIMAL}, 
       #{request,jdbcType=CLOB}, #{response,jdbcType=CLOB})
   </insert>
-  <insert id="insertSelective" parameterType="com.ucss.elementary.tnwn.model.database.TLServiceWithBLOBs">
+  <insert id="insertSelective" parameterType="com.ucss.elementary.weather.model.database.TLServiceWithBLOBs">
       <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
           SELECT SEQ_SERVICELOG.NEXTVAL AS id FROM DUAL
       </selectKey>
@@ -215,7 +215,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ucss.elementary.tnwn.model.database.TLServiceExample" resultType="java.lang.Integer">
+  <select id="countByExample" parameterType="com.ucss.elementary.weather.model.database.TLServiceExample" resultType="java.lang.Integer">
     select count(*) from T_L_SERVICE
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -294,7 +294,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ucss.elementary.tnwn.model.database.TLServiceWithBLOBs">
+  <update id="updateByPrimaryKeySelective" parameterType="com.ucss.elementary.weather.model.database.TLServiceWithBLOBs">
     update T_L_SERVICE
     <set>
       <if test="appcode != null">
@@ -330,7 +330,7 @@
     </set>
     where ID = #{id,jdbcType=DECIMAL}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ucss.elementary.tnwn.model.database.TLServiceWithBLOBs">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ucss.elementary.weather.model.database.TLServiceWithBLOBs">
     update T_L_SERVICE
     set APPCODE = #{appcode,jdbcType=VARCHAR},
       METHOD = #{method,jdbcType=VARCHAR},
@@ -344,7 +344,7 @@
       RESPONSE = #{response,jdbcType=CLOB}
     where ID = #{id,jdbcType=DECIMAL}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ucss.elementary.tnwn.model.database.TLService">
+  <update id="updateByPrimaryKey" parameterType="com.ucss.elementary.weather.model.database.TLService">
     update T_L_SERVICE
     set APPCODE = #{appcode,jdbcType=VARCHAR},
       METHOD = #{method,jdbcType=VARCHAR},

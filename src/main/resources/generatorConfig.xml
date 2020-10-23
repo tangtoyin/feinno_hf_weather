@@ -3,8 +3,8 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
 
-    <classPathEntry location="E:\.m2\repository\com\oracle\ojdbc14\10.2.0.4.0\ojdbc14-10.2.0.4.0.jar"/>
-
+    <!--<classPathEntry location="E:\.m2\repository\com\oracle\ojdbc14\10.2.0.4.0\ojdbc14-10.2.0.4.0.jar"/>-->
+    <classPathEntry location="D:\maven\repository\com\oracle\ojdbc6\11.2.0.3\ojdbc6-11.2.0.3.jar"/>
     <context id="DB2Tables" targetRuntime="MyBatis3">
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
 
@@ -26,7 +26,7 @@
         </javaTypeResolver>
         <!--model的配置  -->
         <!--targetPackage 自动生成实体类的位置-->
-        <javaModelGenerator targetPackage="com.ucss.elementary.tnwn.model.database"
+        <javaModelGenerator targetPackage="com.ucss.elementary.weather.model.database"
                             targetProject="src\main\java">
             <!--enableSubPackages:是否让schema作为包的后缀-->
             <property name="enableSubPackages" value="false"/>
@@ -46,7 +46,7 @@
         <!--mapper的配置  -->
         <!--注意：更换数据源时，需要将targetPackage最后部分替换为新的数据源名称，如将.dream替换.wgy-->
         <javaClientGenerator type="XMLMAPPER" targetProject="src\main\java"
-                             targetPackage="com.ucss.elementary.tnwn.mapper.tnwn">
+                             targetPackage="com.ucss.elementary.weather.mapper.tnwn">
             <!--<javaClientGenerator type="XMLMAPPER" targetProject="src\main\java"-->
             <!--targetPackage="com.ucss.elementary.mapper.dream">-->
             <property name="enableSubPackages" value="false"/>
@@ -62,7 +62,7 @@
 
         <!--<table tableName="cosm_diagram"/>-->
         <!--<table tableName="cosm_template"/>-->
-        <table tableName="sys_dict"/>
+        <table tableName="T_L_TNWNINTERLOG"/>
 
 
     </context>

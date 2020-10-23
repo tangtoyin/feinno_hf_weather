@@ -1,0 +1,906 @@
+14:42:48.553 [main] INFO  c.u.elementary.weather.ElementaryApp - Starting ElementaryApp on OGUUVTRZRZW1YX9 with PID 11100 (D:\project\feinno_hf_weather\target\classes started by Administrator in D:\project\feinno_hf_weather)
+14:42:48.560 [main] INFO  c.u.elementary.weather.ElementaryApp - No active profile set, falling back to default profiles: default
+14:42:51.656 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.ucss.elementary.tnwn.mapper.tnwn]' package. Please check your configuration.
+14:42:52.374 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+14:42:52.379 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+14:42:52.440 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 27ms. Found 0 repository interfaces.
+14:42:53.458 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$43d57ab1] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+14:42:53.780 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'redisSentinelConfiguration' of type [org.springframework.data.redis.connection.RedisSentinelConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+14:42:53.840 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'redisCacheConfig' of type [com.ucss.elementary.weather.config.RedisCacheConfig$$EnhancerBySpringCGLIB$$35d79fe2] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+14:42:55.135 [main] WARN  io.undertow.websockets.jsr - UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+14:42:55.172 [main] INFO  io.undertow.servlet - Initializing Spring embedded WebApplicationContext
+14:42:55.172 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 6465 ms
+14:42:55.430 [main] INFO  r.clients.jedis.JedisSentinelPool - Trying to find master from available Sentinels...
+14:42:55.575 [main] INFO  r.clients.jedis.JedisSentinelPool - Redis master running at 120.79.86.238:6379, starting Sentinel listeners...
+14:42:55.686 [main] INFO  r.clients.jedis.JedisSentinelPool - Created JedisPool to master at 120.79.86.238:6379
+14:42:55.996 [main] WARN  c.a.d.pool.DruidAbstractDataSource - oracle.jdbc.driver.OracleDriver is deprecated.Having use oracle.jdbc.OracleDriver.
+14:42:58.330 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'segmentController': Unsatisfied dependency expressed through field 'userInfoService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userInfoService': Unsatisfied dependency expressed through field 'tUserInfoTempMapper'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.ucss.elementary.weather.mapper.tnwn.TUserInfoTempMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+14:42:58.332 [main] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-0} closing ...
+14:42:58.344 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+14:42:58.605 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Field tUserInfoTempMapper in com.ucss.elementary.weather.service.tnwn.UserInfoService required a bean of type 'com.ucss.elementary.weather.mapper.tnwn.TUserInfoTempMapper' that could not be found.
+
+The injection point has the following annotations:
+	- @org.springframework.beans.factory.annotation.Autowired(required=true)
+
+
+Action:
+
+Consider defining a bean of type 'com.ucss.elementary.weather.mapper.tnwn.TUserInfoTempMapper' in your configuration.
+
+14:45:03.231 [main] INFO  c.u.elementary.weather.ElementaryApp - Starting ElementaryApp on OGUUVTRZRZW1YX9 with PID 7360 (D:\project\feinno_hf_weather\target\classes started by Administrator in D:\project\feinno_hf_weather)
+14:45:03.243 [main] INFO  c.u.elementary.weather.ElementaryApp - No active profile set, falling back to default profiles: default
+14:45:05.709 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.ucss.elementary.tnwn.mapper.tnwn]' package. Please check your configuration.
+14:45:06.340 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+14:45:06.347 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+14:45:06.426 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 40ms. Found 0 repository interfaces.
+14:45:07.616 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$6b79d3b4] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+14:45:07.901 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'redisSentinelConfiguration' of type [org.springframework.data.redis.connection.RedisSentinelConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+14:45:07.956 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'redisCacheConfig' of type [com.ucss.elementary.weather.config.RedisCacheConfig$$EnhancerBySpringCGLIB$$5d7bf8e5] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+14:45:08.877 [main] WARN  io.undertow.websockets.jsr - UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+14:45:08.914 [main] INFO  io.undertow.servlet - Initializing Spring embedded WebApplicationContext
+14:45:08.914 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 5577 ms
+14:45:08.988 [main] INFO  r.clients.jedis.JedisSentinelPool - Trying to find master from available Sentinels...
+14:45:09.288 [main] INFO  r.clients.jedis.JedisSentinelPool - Redis master running at 120.79.86.238:6379, starting Sentinel listeners...
+14:45:09.354 [main] INFO  r.clients.jedis.JedisSentinelPool - Created JedisPool to master at 120.79.86.238:6379
+14:45:09.630 [main] WARN  c.a.d.pool.DruidAbstractDataSource - oracle.jdbc.driver.OracleDriver is deprecated.Having use oracle.jdbc.OracleDriver.
+14:45:12.799 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+14:45:12.983 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+14:45:14.336 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+14:45:14.368 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 2 custom documentation plugin(s)
+14:45:14.385 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+14:45:14.445 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+14:45:14.509 [main] INFO  org.xnio - XNIO version 3.3.8.Final
+14:45:14.530 [main] INFO  org.xnio.nio - XNIO NIO Implementation Version 3.3.8.Final
+14:45:14.663 [main] INFO  o.s.b.w.e.u.UndertowServletWebServer - Undertow started on port(s) 6802 (http) with context path ''
+14:45:14.666 [main] INFO  c.u.elementary.weather.ElementaryApp - Started ElementaryApp in 12.188 seconds (JVM running for 12.836)
+14:45:14.863 [main] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+14:45:16.941 [main] DEBUG c.u.e.w.m.t.T.selectByExample - ==>  Preparing: select ID, PROCID, OPERTYPE, CITYCODE, CITYNAME, NUMRANGE, IMSI, VALIDDATE, EXPIPRDATE, TIMESTAMP, TYPE, CLASSIFY, SERVICER, CREATETIME, UPDATETIME, SERVICERNAME, ISVALID, LOCATIONCODE, BEGINNO, ENDNO from T_B_NUMRANGE WHERE ( ISVALID = ? ) 
+14:45:17.010 [main] DEBUG c.u.e.w.m.t.T.selectByExample - ==> Parameters: 1(Short)
+14:58:42.157 [main] INFO  c.u.elementary.weather.ElementaryApp - Starting ElementaryApp on OGUUVTRZRZW1YX9 with PID 8744 (D:\project\feinno_hf_weather\target\classes started by Administrator in D:\project\feinno_hf_weather)
+14:58:42.161 [main] INFO  c.u.elementary.weather.ElementaryApp - No active profile set, falling back to default profiles: default
+14:58:44.895 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.ucss.elementary.tnwn.mapper.tnwn]' package. Please check your configuration.
+14:58:45.568 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+14:58:45.578 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+14:58:45.646 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 38ms. Found 0 repository interfaces.
+14:58:46.280 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$13072ec5] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+14:58:47.458 [main] WARN  io.undertow.websockets.jsr - UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+14:58:47.498 [main] INFO  io.undertow.servlet - Initializing Spring embedded WebApplicationContext
+14:58:47.498 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 5164 ms
+14:58:47.697 [main] INFO  r.clients.jedis.JedisSentinelPool - Trying to find master from available Sentinels...
+14:58:47.815 [main] INFO  r.clients.jedis.JedisSentinelPool - Redis master running at 120.79.86.238:6379, starting Sentinel listeners...
+14:58:47.888 [main] INFO  r.clients.jedis.JedisSentinelPool - Created JedisPool to master at 120.79.86.238:6379
+14:58:48.210 [main] WARN  c.a.d.pool.DruidAbstractDataSource - oracle.jdbc.driver.OracleDriver is deprecated.Having use oracle.jdbc.OracleDriver.
+14:58:48.826 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server; nested exception is java.lang.RuntimeException: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'ipFilter': Unsatisfied dependency expressed through field 'sysService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'sysService': Unsatisfied dependency expressed through field 'sysDictMapper'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'sysDictMapper' defined in file [D:\project\feinno_hf_weather\target\classes\com\ucss\elementary\weather\mapper\tnwn\SysDictMapper.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactoryTnwn' defined in class path resource [com/ucss/elementary/weather/config/datasource/MybatisDbConfigTnwn.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactoryTnwn' threw exception; nested exception is org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [D:\project\feinno_hf_weather\target\classes\mybatis\mapper\tnwn\TBLocationMapper.xml]'; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'file [D:\project\feinno_hf_weather\target\classes\mybatis\mapper\tnwn\TBLocationMapper.xml]'. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.ucss.elementary.weather.model.database.TBLocation'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.ucss.elementary.weather.model.database.TBLocation
+14:58:48.827 [main] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-0} closing ...
+14:58:48.842 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+14:58:48.905 [main] ERROR o.s.boot.SpringApplication - Application run failed
+org.springframework.context.ApplicationContextException: Unable to start web server; nested exception is java.lang.RuntimeException: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'ipFilter': Unsatisfied dependency expressed through field 'sysService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'sysService': Unsatisfied dependency expressed through field 'sysDictMapper'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'sysDictMapper' defined in file [D:\project\feinno_hf_weather\target\classes\com\ucss\elementary\weather\mapper\tnwn\SysDictMapper.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactoryTnwn' defined in class path resource [com/ucss/elementary/weather/config/datasource/MybatisDbConfigTnwn.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactoryTnwn' threw exception; nested exception is org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [D:\project\feinno_hf_weather\target\classes\mybatis\mapper\tnwn\TBLocationMapper.xml]'; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'file [D:\project\feinno_hf_weather\target\classes\mybatis\mapper\tnwn\TBLocationMapper.xml]'. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.ucss.elementary.weather.model.database.TBLocation'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.ucss.elementary.weather.model.database.TBLocation
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:157)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:543)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248)
+	at com.ucss.elementary.weather.ElementaryApp.main(ElementaryApp.java:15)
+Caused by: java.lang.RuntimeException: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'ipFilter': Unsatisfied dependency expressed through field 'sysService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'sysService': Unsatisfied dependency expressed through field 'sysDictMapper'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'sysDictMapper' defined in file [D:\project\feinno_hf_weather\target\classes\com\ucss\elementary\weather\mapper\tnwn\SysDictMapper.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactoryTnwn' defined in class path resource [com/ucss/elementary/weather/config/datasource/MybatisDbConfigTnwn.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactoryTnwn' threw exception; nested exception is org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [D:\project\feinno_hf_weather\target\classes\mybatis\mapper\tnwn\TBLocationMapper.xml]'; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'file [D:\project\feinno_hf_weather\target\classes\mybatis\mapper\tnwn\TBLocationMapper.xml]'. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.ucss.elementary.weather.model.database.TBLocation'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.ucss.elementary.weather.model.database.TBLocation
+	at io.undertow.servlet.core.DeploymentManagerImpl.deploy(DeploymentManagerImpl.java:252)
+	at org.springframework.boot.web.embedded.undertow.UndertowServletWebServerFactory.createDeploymentManager(UndertowServletWebServerFactory.java:284)
+	at org.springframework.boot.web.embedded.undertow.UndertowServletWebServerFactory.getWebServer(UndertowServletWebServerFactory.java:208)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:181)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:154)
+	... 8 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'ipFilter': Unsatisfied dependency expressed through field 'sysService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'sysService': Unsatisfied dependency expressed through field 'sysDictMapper'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'sysDictMapper' defined in file [D:\project\feinno_hf_weather\target\classes\com\ucss\elementary\weather\mapper\tnwn\SysDictMapper.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactoryTnwn' defined in class path resource [com/ucss/elementary/weather/config/datasource/MybatisDbConfigTnwn.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactoryTnwn' threw exception; nested exception is org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [D:\project\feinno_hf_weather\target\classes\mybatis\mapper\tnwn\TBLocationMapper.xml]'; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'file [D:\project\feinno_hf_weather\target\classes\mybatis\mapper\tnwn\TBLocationMapper.xml]'. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.ucss.elementary.weather.model.database.TBLocation'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.ucss.elementary.weather.model.database.TBLocation
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:596)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:90)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:374)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1411)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:592)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:204)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:235)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:193)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:188)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAdaptableBeans(ServletContextInitializerBeans.java:170)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.<init>(ServletContextInitializerBeans.java:89)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.getServletContextInitializerBeans(ServletWebServerApplicationContext.java:261)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.selfInitialize(ServletWebServerApplicationContext.java:234)
+	at org.springframework.boot.web.embedded.undertow.UndertowServletWebServerFactory$Initializer.onStartup(UndertowServletWebServerFactory.java:616)
+	at io.undertow.servlet.core.DeploymentManagerImpl$1.call(DeploymentManagerImpl.java:203)
+	at io.undertow.servlet.core.DeploymentManagerImpl$1.call(DeploymentManagerImpl.java:185)
+	at io.undertow.servlet.core.ServletRequestContextThreadSetupAction$1.call(ServletRequestContextThreadSetupAction.java:42)
+	at io.undertow.servlet.core.ContextClassLoaderSetupAction$1.call(ContextClassLoaderSetupAction.java:43)
+	at io.undertow.servlet.core.DeploymentManagerImpl.deploy(DeploymentManagerImpl.java:250)
+	... 12 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'sysService': Unsatisfied dependency expressed through field 'sysDictMapper'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'sysDictMapper' defined in file [D:\project\feinno_hf_weather\target\classes\com\ucss\elementary\weather\mapper\tnwn\SysDictMapper.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactoryTnwn' defined in class path resource [com/ucss/elementary/weather/config/datasource/MybatisDbConfigTnwn.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactoryTnwn' threw exception; nested exception is org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [D:\project\feinno_hf_weather\target\classes\mybatis\mapper\tnwn\TBLocationMapper.xml]'; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'file [D:\project\feinno_hf_weather\target\classes\mybatis\mapper\tnwn\TBLocationMapper.xml]'. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.ucss.elementary.weather.model.database.TBLocation'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.ucss.elementary.weather.model.database.TBLocation
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:596)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:90)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:374)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1411)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:592)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:277)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1248)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1168)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:593)
+	... 34 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'sysDictMapper' defined in file [D:\project\feinno_hf_weather\target\classes\com\ucss\elementary\weather\mapper\tnwn\SysDictMapper.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactoryTnwn' defined in class path resource [com/ucss/elementary/weather/config/datasource/MybatisDbConfigTnwn.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactoryTnwn' threw exception; nested exception is org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [D:\project\feinno_hf_weather\target\classes\mybatis\mapper\tnwn\TBLocationMapper.xml]'; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'file [D:\project\feinno_hf_weather\target\classes\mybatis\mapper\tnwn\TBLocationMapper.xml]'. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.ucss.elementary.weather.model.database.TBLocation'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.ucss.elementary.weather.model.database.TBLocation
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireByType(AbstractAutowireCapableBeanFactory.java:1515)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1395)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:592)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:277)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1248)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1168)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:593)
+	... 47 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactoryTnwn' defined in class path resource [com/ucss/elementary/weather/config/datasource/MybatisDbConfigTnwn.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactoryTnwn' threw exception; nested exception is org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [D:\project\feinno_hf_weather\target\classes\mybatis\mapper\tnwn\TBLocationMapper.xml]'; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'file [D:\project\feinno_hf_weather\target\classes\mybatis\mapper\tnwn\TBLocationMapper.xml]'. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.ucss.elementary.weather.model.database.TBLocation'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.ucss.elementary.weather.model.database.TBLocation
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:627)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:456)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1321)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1160)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:277)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1248)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1168)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireByType(AbstractAutowireCapableBeanFactory.java:1500)
+	... 58 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactoryTnwn' threw exception; nested exception is org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [D:\project\feinno_hf_weather\target\classes\mybatis\mapper\tnwn\TBLocationMapper.xml]'; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'file [D:\project\feinno_hf_weather\target\classes\mybatis\mapper\tnwn\TBLocationMapper.xml]'. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.ucss.elementary.weather.model.database.TBLocation'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.ucss.elementary.weather.model.database.TBLocation
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:185)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:622)
+	... 71 common frames omitted
+Caused by: org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [D:\project\feinno_hf_weather\target\classes\mybatis\mapper\tnwn\TBLocationMapper.xml]'; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'file [D:\project\feinno_hf_weather\target\classes\mybatis\mapper\tnwn\TBLocationMapper.xml]'. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.ucss.elementary.weather.model.database.TBLocation'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.ucss.elementary.weather.model.database.TBLocation
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:534)
+	at org.mybatis.spring.SqlSessionFactoryBean.afterPropertiesSet(SqlSessionFactoryBean.java:424)
+	at org.mybatis.spring.SqlSessionFactoryBean.getObject(SqlSessionFactoryBean.java:554)
+	at com.ucss.elementary.weather.config.datasource.MybatisDbConfigTnwn.sqlSessionFactoryTnwn(MybatisDbConfigTnwn.java:40)
+	at com.ucss.elementary.weather.config.datasource.MybatisDbConfigTnwn$$EnhancerBySpringCGLIB$$5e334c68.CGLIB$sqlSessionFactoryTnwn$1(<generated>)
+	at com.ucss.elementary.weather.config.datasource.MybatisDbConfigTnwn$$EnhancerBySpringCGLIB$$5e334c68$$FastClassBySpringCGLIB$$e1ef25c.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:244)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:363)
+	at com.ucss.elementary.weather.config.datasource.MybatisDbConfigTnwn$$EnhancerBySpringCGLIB$$5e334c68.sqlSessionFactoryTnwn(<generated>)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
+	... 72 common frames omitted
+Caused by: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'file [D:\project\feinno_hf_weather\target\classes\mybatis\mapper\tnwn\TBLocationMapper.xml]'. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.ucss.elementary.weather.model.database.TBLocation'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.ucss.elementary.weather.model.database.TBLocation
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:122)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.parse(XMLMapperBuilder.java:94)
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:532)
+	... 85 common frames omitted
+Caused by: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.ucss.elementary.weather.model.database.TBLocation'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.ucss.elementary.weather.model.database.TBLocation
+	at org.apache.ibatis.builder.BaseBuilder.resolveClass(BaseBuilder.java:118)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElement(XMLMapperBuilder.java:262)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElement(XMLMapperBuilder.java:253)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElements(XMLMapperBuilder.java:245)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:118)
+	... 87 common frames omitted
+Caused by: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.ucss.elementary.weather.model.database.TBLocation'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.ucss.elementary.weather.model.database.TBLocation
+	at org.apache.ibatis.type.TypeAliasRegistry.resolveAlias(TypeAliasRegistry.java:120)
+	at org.apache.ibatis.builder.BaseBuilder.resolveAlias(BaseBuilder.java:149)
+	at org.apache.ibatis.builder.BaseBuilder.resolveClass(BaseBuilder.java:116)
+	... 91 common frames omitted
+Caused by: java.lang.ClassNotFoundException: Cannot find class: com.ucss.elementary.weather.model.database.TBLocation
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:200)
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:89)
+	at org.apache.ibatis.io.Resources.classForName(Resources.java:261)
+	at org.apache.ibatis.type.TypeAliasRegistry.resolveAlias(TypeAliasRegistry.java:116)
+	... 93 common frames omitted
+14:59:57.760 [main] INFO  c.u.elementary.weather.ElementaryApp - Starting ElementaryApp on OGUUVTRZRZW1YX9 with PID 7820 (D:\project\feinno_hf_weather\target\classes started by Administrator in D:\project\feinno_hf_weather)
+14:59:57.764 [main] INFO  c.u.elementary.weather.ElementaryApp - No active profile set, falling back to default profiles: default
+15:00:00.532 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.ucss.elementary.tnwn.mapper.tnwn]' package. Please check your configuration.
+15:00:00.992 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+15:00:00.997 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+15:00:01.042 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 24ms. Found 0 repository interfaces.
+15:00:01.643 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$aef51d94] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+15:00:02.736 [main] WARN  io.undertow.websockets.jsr - UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+15:00:02.775 [main] INFO  io.undertow.servlet - Initializing Spring embedded WebApplicationContext
+15:00:02.776 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 4911 ms
+15:00:02.890 [main] INFO  r.clients.jedis.JedisSentinelPool - Trying to find master from available Sentinels...
+15:00:03.007 [main] INFO  r.clients.jedis.JedisSentinelPool - Redis master running at 120.79.86.238:6379, starting Sentinel listeners...
+15:00:03.077 [main] INFO  r.clients.jedis.JedisSentinelPool - Created JedisPool to master at 120.79.86.238:6379
+15:00:03.388 [main] WARN  c.a.d.pool.DruidAbstractDataSource - oracle.jdbc.driver.OracleDriver is deprecated.Having use oracle.jdbc.OracleDriver.
+15:00:05.954 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+15:00:06.183 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+15:00:07.353 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+15:00:07.384 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 2 custom documentation plugin(s)
+15:00:07.402 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+15:00:07.426 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+15:00:07.454 [main] INFO  org.xnio - XNIO version 3.3.8.Final
+15:00:07.468 [main] INFO  org.xnio.nio - XNIO NIO Implementation Version 3.3.8.Final
+15:00:07.548 [main] INFO  o.s.b.w.e.u.UndertowServletWebServer - Undertow started on port(s) 6802 (http) with context path ''
+15:00:07.552 [main] INFO  c.u.elementary.weather.ElementaryApp - Started ElementaryApp in 10.622 seconds (JVM running for 11.316)
+15:10:43.362 [main] INFO  c.u.elementary.weather.ElementaryApp - Starting ElementaryApp on OGUUVTRZRZW1YX9 with PID 11756 (D:\project\feinno_hf_weather\target\classes started by Administrator in D:\project\feinno_hf_weather)
+15:10:43.367 [main] INFO  c.u.elementary.weather.ElementaryApp - No active profile set, falling back to default profiles: default
+15:10:45.911 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.ucss.elementary.tnwn.mapper.tnwn]' package. Please check your configuration.
+15:10:46.469 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+15:10:46.474 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+15:10:46.536 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 34ms. Found 0 repository interfaces.
+15:10:47.352 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$ee320c46] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+15:10:48.653 [main] WARN  io.undertow.websockets.jsr - UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+15:10:48.687 [main] INFO  io.undertow.servlet - Initializing Spring embedded WebApplicationContext
+15:10:48.687 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 5212 ms
+15:10:48.804 [main] INFO  r.clients.jedis.JedisSentinelPool - Trying to find master from available Sentinels...
+15:10:48.917 [main] INFO  r.clients.jedis.JedisSentinelPool - Redis master running at 120.79.86.238:6379, starting Sentinel listeners...
+15:10:49.059 [main] INFO  r.clients.jedis.JedisSentinelPool - Created JedisPool to master at 120.79.86.238:6379
+15:10:49.791 [main] WARN  c.a.d.pool.DruidAbstractDataSource - oracle.jdbc.driver.OracleDriver is deprecated.Having use oracle.jdbc.OracleDriver.
+15:10:53.002 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+15:10:53.192 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+15:10:54.399 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+15:10:54.430 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 2 custom documentation plugin(s)
+15:10:54.449 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+15:10:54.471 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+15:10:54.506 [main] INFO  org.xnio - XNIO version 3.3.8.Final
+15:10:54.521 [main] INFO  org.xnio.nio - XNIO NIO Implementation Version 3.3.8.Final
+15:10:54.619 [main] INFO  o.s.b.w.e.u.UndertowServletWebServer - Undertow started on port(s) 6802 (http) with context path ''
+15:10:54.622 [main] INFO  c.u.elementary.weather.ElementaryApp - Started ElementaryApp in 11.985 seconds (JVM running for 12.729)
+15:12:16.688 [main] INFO  c.u.elementary.weather.ElementaryApp - Starting ElementaryApp on OGUUVTRZRZW1YX9 with PID 6412 (D:\project\feinno_hf_weather\target\classes started by Administrator in D:\project\feinno_hf_weather)
+15:12:16.692 [main] INFO  c.u.elementary.weather.ElementaryApp - No active profile set, falling back to default profiles: default
+15:12:19.209 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.ucss.elementary.tnwn.mapper.tnwn]' package. Please check your configuration.
+15:12:19.723 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+15:12:19.728 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+15:12:19.775 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 23ms. Found 0 repository interfaces.
+15:12:20.439 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$530acf21] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+15:12:21.790 [main] WARN  io.undertow.websockets.jsr - UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+15:12:21.815 [main] INFO  io.undertow.servlet - Initializing Spring embedded WebApplicationContext
+15:12:21.816 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 5017 ms
+15:12:21.920 [main] INFO  r.clients.jedis.JedisSentinelPool - Trying to find master from available Sentinels...
+15:12:22.038 [main] INFO  r.clients.jedis.JedisSentinelPool - Redis master running at 120.79.86.238:6379, starting Sentinel listeners...
+15:12:22.099 [main] INFO  r.clients.jedis.JedisSentinelPool - Created JedisPool to master at 120.79.86.238:6379
+15:12:22.336 [main] WARN  c.a.d.pool.DruidAbstractDataSource - oracle.jdbc.driver.OracleDriver is deprecated.Having use oracle.jdbc.OracleDriver.
+15:12:24.882 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+15:12:25.120 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+15:12:26.647 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+15:12:26.681 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 2 custom documentation plugin(s)
+15:12:26.702 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+15:12:26.727 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+15:12:26.761 [main] INFO  org.xnio - XNIO version 3.3.8.Final
+15:12:26.776 [main] INFO  org.xnio.nio - XNIO NIO Implementation Version 3.3.8.Final
+15:12:26.863 [main] INFO  o.s.b.w.e.u.UndertowServletWebServer - Undertow started on port(s) 6802 (http) with context path ''
+15:12:26.866 [main] INFO  c.u.elementary.weather.ElementaryApp - Started ElementaryApp in 10.916 seconds (JVM running for 11.596)
+15:13:03.511 [main] INFO  c.u.elementary.weather.ElementaryApp - Starting ElementaryApp on OGUUVTRZRZW1YX9 with PID 7592 (D:\project\feinno_hf_weather\target\classes started by Administrator in D:\project\feinno_hf_weather)
+15:13:03.518 [main] INFO  c.u.elementary.weather.ElementaryApp - No active profile set, falling back to default profiles: default
+15:13:06.914 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.ucss.elementary.tnwn.mapper.tnwn]' package. Please check your configuration.
+15:13:07.289 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+15:13:07.293 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+15:13:07.342 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 32ms. Found 0 repository interfaces.
+15:13:07.936 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$6a226635] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+15:13:09.344 [main] WARN  io.undertow.websockets.jsr - UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+15:13:09.391 [main] INFO  io.undertow.servlet - Initializing Spring embedded WebApplicationContext
+15:13:09.391 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 5772 ms
+15:13:09.732 [main] WARN  c.a.d.pool.DruidAbstractDataSource - oracle.jdbc.driver.OracleDriver is deprecated.Having use oracle.jdbc.OracleDriver.
+15:13:10.994 [main] INFO  r.clients.jedis.JedisSentinelPool - Trying to find master from available Sentinels...
+15:13:11.113 [main] INFO  r.clients.jedis.JedisSentinelPool - Redis master running at 120.79.86.238:6379, starting Sentinel listeners...
+15:13:11.213 [main] INFO  r.clients.jedis.JedisSentinelPool - Created JedisPool to master at 120.79.86.238:6379
+15:13:16.212 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+15:13:16.450 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+15:13:18.061 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+15:13:18.111 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 2 custom documentation plugin(s)
+15:13:18.228 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+15:13:18.311 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+15:13:18.430 [main] INFO  org.xnio - XNIO version 3.3.8.Final
+15:13:18.467 [main] INFO  org.xnio.nio - XNIO NIO Implementation Version 3.3.8.Final
+15:13:18.631 [main] INFO  o.s.b.w.e.u.UndertowServletWebServer - Undertow started on port(s) 6802 (http) with context path ''
+15:13:18.636 [main] INFO  c.u.elementary.weather.ElementaryApp - Started ElementaryApp in 15.956 seconds (JVM running for 16.653)
+15:15:07.549 [main] INFO  c.u.elementary.weather.ElementaryApp - Starting ElementaryApp on OGUUVTRZRZW1YX9 with PID 14012 (D:\project\feinno_hf_weather\target\classes started by Administrator in D:\project\feinno_hf_weather)
+15:15:07.553 [main] INFO  c.u.elementary.weather.ElementaryApp - No active profile set, falling back to default profiles: default
+15:15:10.866 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.ucss.elementary.tnwn.mapper.tnwn]' package. Please check your configuration.
+15:15:11.188 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+15:15:11.191 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+15:15:11.230 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 20ms. Found 0 repository interfaces.
+15:15:11.881 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$b764671c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+15:15:13.337 [main] WARN  io.undertow.websockets.jsr - UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+15:15:13.374 [main] INFO  io.undertow.servlet - Initializing Spring embedded WebApplicationContext
+15:15:13.375 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 5717 ms
+15:15:13.661 [main] WARN  c.a.d.pool.DruidAbstractDataSource - oracle.jdbc.driver.OracleDriver is deprecated.Having use oracle.jdbc.OracleDriver.
+15:15:14.480 [main] INFO  r.clients.jedis.JedisSentinelPool - Trying to find master from available Sentinels...
+15:15:14.591 [main] INFO  r.clients.jedis.JedisSentinelPool - Redis master running at 120.79.86.238:6379, starting Sentinel listeners...
+15:15:14.644 [main] INFO  r.clients.jedis.JedisSentinelPool - Created JedisPool to master at 120.79.86.238:6379
+15:15:16.467 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+15:15:16.634 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+15:15:17.687 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+15:15:17.718 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 2 custom documentation plugin(s)
+15:15:17.738 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+15:15:17.769 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+15:15:17.805 [main] INFO  org.xnio - XNIO version 3.3.8.Final
+15:15:17.819 [main] INFO  org.xnio.nio - XNIO NIO Implementation Version 3.3.8.Final
+15:15:17.908 [main] INFO  o.s.b.w.e.u.UndertowServletWebServer - Undertow started on port(s) 6802 (http) with context path ''
+15:15:17.911 [main] INFO  c.u.elementary.weather.ElementaryApp - Started ElementaryApp in 11.111 seconds (JVM running for 11.808)
+15:17:02.717 [main] INFO  c.u.elementary.weather.ElementaryApp - Starting ElementaryApp on OGUUVTRZRZW1YX9 with PID 5164 (D:\project\feinno_hf_weather\target\classes started by Administrator in D:\project\feinno_hf_weather)
+15:17:02.730 [main] INFO  c.u.elementary.weather.ElementaryApp - No active profile set, falling back to default profiles: default
+15:17:05.991 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.ucss.elementary.tnwn.mapper.tnwn]' package. Please check your configuration.
+15:17:06.336 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+15:17:06.339 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+15:17:06.387 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 27ms. Found 0 repository interfaces.
+15:17:07.019 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$98861630] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+15:17:08.119 [main] WARN  io.undertow.websockets.jsr - UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+15:17:08.160 [main] INFO  io.undertow.servlet - Initializing Spring embedded WebApplicationContext
+15:17:08.161 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 5340 ms
+15:17:08.424 [main] WARN  c.a.d.pool.DruidAbstractDataSource - oracle.jdbc.driver.OracleDriver is deprecated.Having use oracle.jdbc.OracleDriver.
+15:17:09.410 [main] INFO  r.clients.jedis.JedisSentinelPool - Trying to find master from available Sentinels...
+15:17:09.531 [main] INFO  r.clients.jedis.JedisSentinelPool - Redis master running at 120.79.86.238:6379, starting Sentinel listeners...
+15:17:09.606 [main] INFO  r.clients.jedis.JedisSentinelPool - Created JedisPool to master at 120.79.86.238:6379
+15:17:11.428 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+15:17:11.603 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+15:17:13.410 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+15:17:13.466 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 2 custom documentation plugin(s)
+15:17:13.489 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+15:17:13.515 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+15:17:13.547 [main] INFO  org.xnio - XNIO version 3.3.8.Final
+15:17:13.563 [main] INFO  org.xnio.nio - XNIO NIO Implementation Version 3.3.8.Final
+15:17:13.659 [main] INFO  o.s.b.w.e.u.UndertowServletWebServer - Undertow started on port(s) 6802 (http) with context path ''
+15:17:13.664 [main] INFO  c.u.elementary.weather.ElementaryApp - Started ElementaryApp in 11.71 seconds (JVM running for 12.473)
+15:19:40.551 [main] INFO  c.u.elementary.weather.ElementaryApp - Starting ElementaryApp on OGUUVTRZRZW1YX9 with PID 1664 (D:\project\feinno_hf_weather\target\classes started by Administrator in D:\project\feinno_hf_weather)
+15:19:40.560 [main] INFO  c.u.elementary.weather.ElementaryApp - No active profile set, falling back to default profiles: default
+15:19:43.887 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.ucss.elementary.tnwn.mapper.tnwn]' package. Please check your configuration.
+15:19:44.204 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+15:19:44.208 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+15:19:44.257 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 25ms. Found 0 repository interfaces.
+15:19:44.850 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$67c8fd61] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+15:19:46.132 [main] WARN  io.undertow.websockets.jsr - UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+15:19:46.160 [main] INFO  io.undertow.servlet - Initializing Spring embedded WebApplicationContext
+15:19:46.161 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 5496 ms
+15:19:46.457 [main] WARN  c.a.d.pool.DruidAbstractDataSource - oracle.jdbc.driver.OracleDriver is deprecated.Having use oracle.jdbc.OracleDriver.
+15:19:47.317 [main] INFO  r.clients.jedis.JedisSentinelPool - Trying to find master from available Sentinels...
+15:19:47.435 [main] INFO  r.clients.jedis.JedisSentinelPool - Redis master running at 120.79.86.238:6379, starting Sentinel listeners...
+15:19:47.491 [main] INFO  r.clients.jedis.JedisSentinelPool - Created JedisPool to master at 120.79.86.238:6379
+15:19:49.521 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+15:19:49.716 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+15:19:50.699 [main] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+15:19:50.834 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+15:19:50.862 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 2 custom documentation plugin(s)
+15:19:50.883 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+15:19:50.912 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+15:19:50.965 [main] INFO  org.xnio - XNIO version 3.3.8.Final
+15:19:50.987 [main] INFO  org.xnio.nio - XNIO NIO Implementation Version 3.3.8.Final
+15:19:51.069 [main] INFO  o.s.b.w.e.u.UndertowServletWebServer - Undertow started on port(s) 6802 (http) with context path ''
+15:19:51.072 [main] INFO  c.u.elementary.weather.ElementaryApp - Started ElementaryApp in 11.301 seconds (JVM running for 12.03)
+17:33:13.872 [main] INFO  c.u.elementary.weather.ElementaryApp - Starting ElementaryApp on OGUUVTRZRZW1YX9 with PID 14780 (D:\project\feinno_hf_weather\target\classes started by Administrator in D:\project\feinno_hf_weather)
+17:33:13.887 [main] INFO  c.u.elementary.weather.ElementaryApp - No active profile set, falling back to default profiles: default
+17:33:17.828 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.ucss.elementary.tnwn.mapper.tnwn]' package. Please check your configuration.
+17:33:18.460 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+17:33:18.466 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+17:33:18.534 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 26ms. Found 0 repository interfaces.
+17:33:19.433 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$b73eabd0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+17:33:21.494 [main] WARN  io.undertow.websockets.jsr - UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+17:33:21.556 [main] INFO  io.undertow.servlet - Initializing Spring embedded WebApplicationContext
+17:33:21.556 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 7326 ms
+17:33:22.073 [main] WARN  c.a.d.pool.DruidAbstractDataSource - oracle.jdbc.driver.OracleDriver is deprecated.Having use oracle.jdbc.OracleDriver.
+17:33:23.399 [main] INFO  r.clients.jedis.JedisSentinelPool - Trying to find master from available Sentinels...
+17:33:23.566 [main] INFO  r.clients.jedis.JedisSentinelPool - Redis master running at 120.79.86.238:6379, starting Sentinel listeners...
+17:33:23.670 [main] INFO  r.clients.jedis.JedisSentinelPool - Created JedisPool to master at 120.79.86.238:6379
+17:33:26.083 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+17:33:26.282 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+17:33:27.725 [main] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+17:33:27.972 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+17:33:28.042 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 2 custom documentation plugin(s)
+17:33:28.064 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+17:33:28.090 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+17:33:28.192 [main] INFO  org.xnio - XNIO version 3.3.8.Final
+17:33:28.222 [main] INFO  org.xnio.nio - XNIO NIO Implementation Version 3.3.8.Final
+17:33:28.416 [main] INFO  o.s.b.w.e.u.UndertowServletWebServer - Undertow started on port(s) 6802 (http) with context path ''
+17:33:28.421 [main] INFO  c.u.elementary.weather.ElementaryApp - Started ElementaryApp in 15.825 seconds (JVM running for 16.809)
+17:34:08.247 [main] INFO  c.u.elementary.weather.ElementaryApp - Starting ElementaryApp on OGUUVTRZRZW1YX9 with PID 10084 (D:\project\feinno_hf_weather\target\classes started by Administrator in D:\project\feinno_hf_weather)
+17:34:08.254 [main] INFO  c.u.elementary.weather.ElementaryApp - No active profile set, falling back to default profiles: default
+17:34:11.217 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.ucss.elementary.tnwn.mapper.tnwn]' package. Please check your configuration.
+17:34:11.532 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+17:34:11.536 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+17:34:11.574 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 21ms. Found 0 repository interfaces.
+17:34:12.272 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$b477fd7b] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+17:34:13.532 [main] WARN  io.undertow.websockets.jsr - UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+17:34:13.600 [main] INFO  io.undertow.servlet - Initializing Spring embedded WebApplicationContext
+17:34:13.600 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 5154 ms
+17:34:13.909 [main] WARN  c.a.d.pool.DruidAbstractDataSource - oracle.jdbc.driver.OracleDriver is deprecated.Having use oracle.jdbc.OracleDriver.
+17:34:17.025 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+17:34:17.214 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+17:34:18.418 [main] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+17:34:18.578 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+17:34:18.608 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 2 custom documentation plugin(s)
+17:34:18.626 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+17:34:18.658 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+17:34:18.708 [main] INFO  org.xnio - XNIO version 3.3.8.Final
+17:34:18.727 [main] INFO  org.xnio.nio - XNIO NIO Implementation Version 3.3.8.Final
+17:34:18.805 [main] INFO  o.s.b.w.e.u.UndertowServletWebServer - Undertow started on port(s) 6802 (http) with context path ''
+17:34:18.808 [main] INFO  c.u.elementary.weather.ElementaryApp - Started ElementaryApp in 11.613 seconds (JVM running for 12.483)
+20:23:02.250 [main] INFO  c.u.elementary.weather.ElementaryApp - Starting ElementaryApp on HX0BP9AWSR71SBR with PID 1104 (D:\workspace\feinno_hf_weather\target\classes started by Administrator in D:\workspace\feinno_hf_weather)
+20:23:02.254 [main] INFO  c.u.elementary.weather.ElementaryApp - No active profile set, falling back to default profiles: default
+20:23:03.703 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.ucss.elementary.tnwn.mapper.tnwn]' package. Please check your configuration.
+20:23:03.949 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+20:23:03.951 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+20:23:03.985 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 18ms. Found 0 repository interfaces.
+20:23:04.584 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$4b161f35] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+20:23:05.308 [main] WARN  io.undertow.websockets.jsr - UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+20:23:05.327 [main] INFO  io.undertow.servlet - Initializing Spring embedded WebApplicationContext
+20:23:05.328 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 3019 ms
+20:23:05.486 [main] WARN  c.a.d.pool.DruidAbstractDataSource - oracle.jdbc.driver.OracleDriver is deprecated.Having use oracle.jdbc.OracleDriver.
+20:23:07.613 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+20:23:07.740 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+20:23:08.437 [main] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+20:23:08.550 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+20:23:08.564 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 2 custom documentation plugin(s)
+20:23:08.578 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+20:23:08.593 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+20:23:08.614 [main] INFO  org.xnio - XNIO version 3.3.8.Final
+20:23:08.623 [main] INFO  org.xnio.nio - XNIO NIO Implementation Version 3.3.8.Final
+20:23:08.692 [main] INFO  o.s.b.w.e.u.UndertowServletWebServer - Undertow started on port(s) 6802 (http) with context path ''
+20:23:08.696 [main] INFO  c.u.elementary.weather.ElementaryApp - Started ElementaryApp in 6.974 seconds (JVM running for 7.498)
+20:31:50.348 [main] INFO  c.u.elementary.weather.ElementaryApp - Starting ElementaryApp on HX0BP9AWSR71SBR with PID 9276 (D:\workspace\feinno_hf_weather\target\classes started by Administrator in D:\workspace\feinno_hf_weather)
+20:31:50.352 [main] INFO  c.u.elementary.weather.ElementaryApp - No active profile set, falling back to default profiles: default
+20:31:51.672 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.ucss.elementary.tnwn.mapper.tnwn]' package. Please check your configuration.
+20:31:51.830 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.ucss.elementary.weather]' package. Please check your configuration.
+20:31:51.934 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+20:31:51.937 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+20:31:51.976 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 16ms. Found 0 repository interfaces.
+20:31:52.339 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$318f9b92] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+20:31:52.721 [main] WARN  io.undertow.websockets.jsr - UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+20:31:52.739 [main] INFO  io.undertow.servlet - Initializing Spring embedded WebApplicationContext
+20:31:52.740 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2328 ms
+20:31:52.895 [main] WARN  c.a.d.pool.DruidAbstractDataSource - oracle.jdbc.driver.OracleDriver is deprecated.Having use oracle.jdbc.OracleDriver.
+20:31:53.295 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactoryTnwn' defined in class path resource [com/ucss/elementary/weather/config/datasource/MybatisDbConfigTnwn.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactoryTnwn' threw exception; nested exception is java.io.FileNotFoundException: class path resource [mybatis/mapper/tnwn/] cannot be resolved to URL because it does not exist
+20:31:53.296 [main] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-0} closing ...
+20:31:53.304 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+20:31:53.317 [main] ERROR o.s.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactoryTnwn' defined in class path resource [com/ucss/elementary/weather/config/datasource/MybatisDbConfigTnwn.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactoryTnwn' threw exception; nested exception is java.io.FileNotFoundException: class path resource [mybatis/mapper/tnwn/] cannot be resolved to URL because it does not exist
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:627)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:456)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1321)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1160)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:843)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:877)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248)
+	at com.ucss.elementary.weather.ElementaryApp.main(ElementaryApp.java:17)
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactoryTnwn' threw exception; nested exception is java.io.FileNotFoundException: class path resource [mybatis/mapper/tnwn/] cannot be resolved to URL because it does not exist
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:185)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:622)
+	... 19 common frames omitted
+Caused by: java.io.FileNotFoundException: class path resource [mybatis/mapper/tnwn/] cannot be resolved to URL because it does not exist
+	at org.springframework.core.io.ClassPathResource.getURL(ClassPathResource.java:195)
+	at org.springframework.core.io.support.PathMatchingResourcePatternResolver.findPathMatchingResources(PathMatchingResourcePatternResolver.java:498)
+	at org.springframework.core.io.support.PathMatchingResourcePatternResolver.getResources(PathMatchingResourcePatternResolver.java:298)
+	at com.ucss.elementary.weather.config.datasource.MybatisDbConfigTnwn.sqlSessionFactoryTnwn(MybatisDbConfigTnwn.java:37)
+	at com.ucss.elementary.weather.config.datasource.MybatisDbConfigTnwn$$EnhancerBySpringCGLIB$$7cbbb935.CGLIB$sqlSessionFactoryTnwn$1(<generated>)
+	at com.ucss.elementary.weather.config.datasource.MybatisDbConfigTnwn$$EnhancerBySpringCGLIB$$7cbbb935$$FastClassBySpringCGLIB$$c6f33680.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:244)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:363)
+	at com.ucss.elementary.weather.config.datasource.MybatisDbConfigTnwn$$EnhancerBySpringCGLIB$$7cbbb935.sqlSessionFactoryTnwn(<generated>)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
+	... 20 common frames omitted
+20:33:59.188 [main] INFO  c.u.elementary.weather.ElementaryApp - Starting ElementaryApp on HX0BP9AWSR71SBR with PID 12940 (D:\workspace\feinno_hf_weather\target\classes started by Administrator in D:\workspace\feinno_hf_weather)
+20:33:59.191 [main] INFO  c.u.elementary.weather.ElementaryApp - No active profile set, falling back to default profiles: default
+20:34:01.104 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.ucss.elementary.tnwn.mapper.tnwn]' package. Please check your configuration.
+20:34:01.294 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.ucss.elementary.weather]' package. Please check your configuration.
+20:34:01.380 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+20:34:01.383 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+20:34:01.420 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 13ms. Found 0 repository interfaces.
+20:34:01.777 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$63aeaf70] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+20:34:02.222 [main] WARN  io.undertow.websockets.jsr - UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+20:34:02.242 [main] INFO  io.undertow.servlet - Initializing Spring embedded WebApplicationContext
+20:34:02.242 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2898 ms
+20:34:02.379 [main] WARN  c.a.d.pool.DruidAbstractDataSource - oracle.jdbc.driver.OracleDriver is deprecated.Having use oracle.jdbc.OracleDriver.
+20:34:02.804 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactoryTnwn' defined in class path resource [com/ucss/elementary/weather/config/datasource/MybatisDbConfigTnwn.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactoryTnwn' threw exception; nested exception is org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [D:\workspace\feinno_hf_weather\target\classes\mybatis\mapper\tnwn\SysApikeyMapper.xml]'; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'file [D:\workspace\feinno_hf_weather\target\classes\mybatis\mapper\tnwn\SysApikeyMapper.xml]'. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.ucss.elementary.tnwn.model.database.SysApikey'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.ucss.elementary.tnwn.model.database.SysApikey
+20:34:02.805 [main] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-0} closing ...
+20:34:02.813 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+20:34:02.820 [main] ERROR o.s.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactoryTnwn' defined in class path resource [com/ucss/elementary/weather/config/datasource/MybatisDbConfigTnwn.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactoryTnwn' threw exception; nested exception is org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [D:\workspace\feinno_hf_weather\target\classes\mybatis\mapper\tnwn\SysApikeyMapper.xml]'; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'file [D:\workspace\feinno_hf_weather\target\classes\mybatis\mapper\tnwn\SysApikeyMapper.xml]'. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.ucss.elementary.tnwn.model.database.SysApikey'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.ucss.elementary.tnwn.model.database.SysApikey
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:627)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:456)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1321)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1160)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:843)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:877)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248)
+	at com.ucss.elementary.weather.ElementaryApp.main(ElementaryApp.java:17)
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactoryTnwn' threw exception; nested exception is org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [D:\workspace\feinno_hf_weather\target\classes\mybatis\mapper\tnwn\SysApikeyMapper.xml]'; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'file [D:\workspace\feinno_hf_weather\target\classes\mybatis\mapper\tnwn\SysApikeyMapper.xml]'. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.ucss.elementary.tnwn.model.database.SysApikey'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.ucss.elementary.tnwn.model.database.SysApikey
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:185)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:622)
+	... 19 common frames omitted
+Caused by: org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [D:\workspace\feinno_hf_weather\target\classes\mybatis\mapper\tnwn\SysApikeyMapper.xml]'; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'file [D:\workspace\feinno_hf_weather\target\classes\mybatis\mapper\tnwn\SysApikeyMapper.xml]'. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.ucss.elementary.tnwn.model.database.SysApikey'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.ucss.elementary.tnwn.model.database.SysApikey
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:534)
+	at org.mybatis.spring.SqlSessionFactoryBean.afterPropertiesSet(SqlSessionFactoryBean.java:424)
+	at org.mybatis.spring.SqlSessionFactoryBean.getObject(SqlSessionFactoryBean.java:554)
+	at com.ucss.elementary.weather.config.datasource.MybatisDbConfigTnwn.sqlSessionFactoryTnwn(MybatisDbConfigTnwn.java:40)
+	at com.ucss.elementary.weather.config.datasource.MybatisDbConfigTnwn$$EnhancerBySpringCGLIB$$aedacd13.CGLIB$sqlSessionFactoryTnwn$0(<generated>)
+	at com.ucss.elementary.weather.config.datasource.MybatisDbConfigTnwn$$EnhancerBySpringCGLIB$$aedacd13$$FastClassBySpringCGLIB$$3f0db8df.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:244)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:363)
+	at com.ucss.elementary.weather.config.datasource.MybatisDbConfigTnwn$$EnhancerBySpringCGLIB$$aedacd13.sqlSessionFactoryTnwn(<generated>)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
+	... 20 common frames omitted
+Caused by: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'file [D:\workspace\feinno_hf_weather\target\classes\mybatis\mapper\tnwn\SysApikeyMapper.xml]'. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.ucss.elementary.tnwn.model.database.SysApikey'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.ucss.elementary.tnwn.model.database.SysApikey
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:122)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.parse(XMLMapperBuilder.java:94)
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:532)
+	... 33 common frames omitted
+Caused by: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.ucss.elementary.tnwn.model.database.SysApikey'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.ucss.elementary.tnwn.model.database.SysApikey
+	at org.apache.ibatis.builder.BaseBuilder.resolveClass(BaseBuilder.java:118)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElement(XMLMapperBuilder.java:262)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElement(XMLMapperBuilder.java:253)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElements(XMLMapperBuilder.java:245)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:118)
+	... 35 common frames omitted
+Caused by: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.ucss.elementary.tnwn.model.database.SysApikey'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.ucss.elementary.tnwn.model.database.SysApikey
+	at org.apache.ibatis.type.TypeAliasRegistry.resolveAlias(TypeAliasRegistry.java:120)
+	at org.apache.ibatis.builder.BaseBuilder.resolveAlias(BaseBuilder.java:149)
+	at org.apache.ibatis.builder.BaseBuilder.resolveClass(BaseBuilder.java:116)
+	... 39 common frames omitted
+Caused by: java.lang.ClassNotFoundException: Cannot find class: com.ucss.elementary.tnwn.model.database.SysApikey
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:200)
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:89)
+	at org.apache.ibatis.io.Resources.classForName(Resources.java:261)
+	at org.apache.ibatis.type.TypeAliasRegistry.resolveAlias(TypeAliasRegistry.java:116)
+	... 41 common frames omitted
+20:35:47.083 [main] INFO  c.u.elementary.weather.ElementaryApp - Starting ElementaryApp on HX0BP9AWSR71SBR with PID 1276 (D:\workspace\feinno_hf_weather\target\classes started by Administrator in D:\workspace\feinno_hf_weather)
+20:35:47.087 [main] INFO  c.u.elementary.weather.ElementaryApp - No active profile set, falling back to default profiles: default
+20:35:48.334 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.ucss.elementary.tnwn.mapper.tnwn]' package. Please check your configuration.
+20:35:48.642 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+20:35:48.645 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+20:35:48.691 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 21ms. Found 0 repository interfaces.
+20:35:49.090 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$4fff1895] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+20:35:49.499 [main] WARN  io.undertow.websockets.jsr - UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+20:35:49.518 [main] INFO  io.undertow.servlet - Initializing Spring embedded WebApplicationContext
+20:35:49.518 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2375 ms
+20:35:49.658 [main] WARN  c.a.d.pool.DruidAbstractDataSource - oracle.jdbc.driver.OracleDriver is deprecated.Having use oracle.jdbc.OracleDriver.
+20:35:50.103 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactoryTnwn' defined in class path resource [com/ucss/elementary/weather/config/datasource/MybatisDbConfigTnwn.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactoryTnwn' threw exception; nested exception is org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [D:\workspace\feinno_hf_weather\target\classes\mybatis\mapper\tnwn\SysApikeyMapper.xml]'; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'file [D:\workspace\feinno_hf_weather\target\classes\mybatis\mapper\tnwn\SysApikeyMapper.xml]'. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.ucss.elementary.tnwn.model.database.SysApikey'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.ucss.elementary.tnwn.model.database.SysApikey
+20:35:50.104 [main] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-0} closing ...
+20:35:50.112 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+20:35:50.120 [main] ERROR o.s.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactoryTnwn' defined in class path resource [com/ucss/elementary/weather/config/datasource/MybatisDbConfigTnwn.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactoryTnwn' threw exception; nested exception is org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [D:\workspace\feinno_hf_weather\target\classes\mybatis\mapper\tnwn\SysApikeyMapper.xml]'; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'file [D:\workspace\feinno_hf_weather\target\classes\mybatis\mapper\tnwn\SysApikeyMapper.xml]'. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.ucss.elementary.tnwn.model.database.SysApikey'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.ucss.elementary.tnwn.model.database.SysApikey
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:627)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:456)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1321)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1160)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:843)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:877)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248)
+	at com.ucss.elementary.weather.ElementaryApp.main(ElementaryApp.java:17)
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactoryTnwn' threw exception; nested exception is org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [D:\workspace\feinno_hf_weather\target\classes\mybatis\mapper\tnwn\SysApikeyMapper.xml]'; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'file [D:\workspace\feinno_hf_weather\target\classes\mybatis\mapper\tnwn\SysApikeyMapper.xml]'. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.ucss.elementary.tnwn.model.database.SysApikey'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.ucss.elementary.tnwn.model.database.SysApikey
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:185)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:622)
+	... 19 common frames omitted
+Caused by: org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [D:\workspace\feinno_hf_weather\target\classes\mybatis\mapper\tnwn\SysApikeyMapper.xml]'; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'file [D:\workspace\feinno_hf_weather\target\classes\mybatis\mapper\tnwn\SysApikeyMapper.xml]'. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.ucss.elementary.tnwn.model.database.SysApikey'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.ucss.elementary.tnwn.model.database.SysApikey
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:534)
+	at org.mybatis.spring.SqlSessionFactoryBean.afterPropertiesSet(SqlSessionFactoryBean.java:424)
+	at org.mybatis.spring.SqlSessionFactoryBean.getObject(SqlSessionFactoryBean.java:554)
+	at com.ucss.elementary.weather.config.datasource.MybatisDbConfigTnwn.sqlSessionFactoryTnwn(MybatisDbConfigTnwn.java:40)
+	at com.ucss.elementary.weather.config.datasource.MybatisDbConfigTnwn$$EnhancerBySpringCGLIB$$9b2b3638.CGLIB$sqlSessionFactoryTnwn$2(<generated>)
+	at com.ucss.elementary.weather.config.datasource.MybatisDbConfigTnwn$$EnhancerBySpringCGLIB$$9b2b3638$$FastClassBySpringCGLIB$$fd14e7c.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:244)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:363)
+	at com.ucss.elementary.weather.config.datasource.MybatisDbConfigTnwn$$EnhancerBySpringCGLIB$$9b2b3638.sqlSessionFactoryTnwn(<generated>)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
+	... 20 common frames omitted
+Caused by: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'file [D:\workspace\feinno_hf_weather\target\classes\mybatis\mapper\tnwn\SysApikeyMapper.xml]'. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.ucss.elementary.tnwn.model.database.SysApikey'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.ucss.elementary.tnwn.model.database.SysApikey
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:122)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.parse(XMLMapperBuilder.java:94)
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:532)
+	... 33 common frames omitted
+Caused by: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.ucss.elementary.tnwn.model.database.SysApikey'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.ucss.elementary.tnwn.model.database.SysApikey
+	at org.apache.ibatis.builder.BaseBuilder.resolveClass(BaseBuilder.java:118)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElement(XMLMapperBuilder.java:262)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElement(XMLMapperBuilder.java:253)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElements(XMLMapperBuilder.java:245)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:118)
+	... 35 common frames omitted
+Caused by: org.apache.ibatis.type.TypeException: Could not resolve type alias 'com.ucss.elementary.tnwn.model.database.SysApikey'.  Cause: java.lang.ClassNotFoundException: Cannot find class: com.ucss.elementary.tnwn.model.database.SysApikey
+	at org.apache.ibatis.type.TypeAliasRegistry.resolveAlias(TypeAliasRegistry.java:120)
+	at org.apache.ibatis.builder.BaseBuilder.resolveAlias(BaseBuilder.java:149)
+	at org.apache.ibatis.builder.BaseBuilder.resolveClass(BaseBuilder.java:116)
+	... 39 common frames omitted
+Caused by: java.lang.ClassNotFoundException: Cannot find class: com.ucss.elementary.tnwn.model.database.SysApikey
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:200)
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:89)
+	at org.apache.ibatis.io.Resources.classForName(Resources.java:261)
+	at org.apache.ibatis.type.TypeAliasRegistry.resolveAlias(TypeAliasRegistry.java:116)
+	... 41 common frames omitted
+20:37:05.797 [main] INFO  c.u.elementary.weather.ElementaryApp - Starting ElementaryApp on HX0BP9AWSR71SBR with PID 4600 (D:\workspace\feinno_hf_weather\target\classes started by Administrator in D:\workspace\feinno_hf_weather)
+20:37:05.801 [main] INFO  c.u.elementary.weather.ElementaryApp - No active profile set, falling back to default profiles: default
+20:37:07.278 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.ucss.elementary.tnwn.mapper.tnwn]' package. Please check your configuration.
+20:37:07.575 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+20:37:07.579 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+20:37:07.638 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 22ms. Found 0 repository interfaces.
+20:37:08.003 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$55ffc8cc] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+20:37:08.401 [main] WARN  io.undertow.websockets.jsr - UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+20:37:08.420 [main] INFO  io.undertow.servlet - Initializing Spring embedded WebApplicationContext
+20:37:08.420 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2547 ms
+20:37:08.572 [main] WARN  c.a.d.pool.DruidAbstractDataSource - oracle.jdbc.driver.OracleDriver is deprecated.Having use oracle.jdbc.OracleDriver.
+20:37:09.497 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+20:37:09.560 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+20:37:09.915 [main] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+20:37:10.030 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+20:37:10.045 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 2 custom documentation plugin(s)
+20:37:10.058 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+20:37:10.071 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+20:37:10.091 [main] INFO  org.xnio - XNIO version 3.3.8.Final
+20:37:10.098 [main] INFO  org.xnio.nio - XNIO NIO Implementation Version 3.3.8.Final
+20:37:10.151 [main] INFO  o.s.b.w.e.u.UndertowServletWebServer - Undertow started on port(s) 6802 (http) with context path ''
+20:37:10.154 [main] INFO  c.u.elementary.weather.ElementaryApp - Started ElementaryApp in 5.04 seconds (JVM running for 5.708)
+20:51:33.704 [main] INFO  c.u.elementary.weather.ElementaryApp - Starting ElementaryApp on HX0BP9AWSR71SBR with PID 8128 (D:\workspace\feinno_hf_weather\target\classes started by Administrator in D:\workspace\feinno_hf_weather)
+20:51:33.709 [main] INFO  c.u.elementary.weather.ElementaryApp - No active profile set, falling back to default profiles: default
+20:51:37.186 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.ucss.elementary.tnwn.mapper.tnwn]' package. Please check your configuration.
+20:51:37.555 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+20:51:37.558 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+20:51:37.604 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 23ms. Found 0 repository interfaces.
+20:51:38.194 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$fe505f7d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+20:51:38.796 [main] WARN  io.undertow.websockets.jsr - UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+20:51:38.821 [main] INFO  io.undertow.servlet - Initializing Spring embedded WebApplicationContext
+20:51:38.821 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 5010 ms
+20:51:39.080 [main] WARN  c.a.d.pool.DruidAbstractDataSource - oracle.jdbc.driver.OracleDriver is deprecated.Having use oracle.jdbc.OracleDriver.
+20:51:40.510 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+20:51:40.631 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+20:51:41.214 [main] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+20:51:41.345 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+20:51:41.375 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 2 custom documentation plugin(s)
+20:51:41.394 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+20:51:41.414 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+20:51:41.452 [main] INFO  org.xnio - XNIO version 3.3.8.Final
+20:51:41.464 [main] INFO  org.xnio.nio - XNIO NIO Implementation Version 3.3.8.Final
+20:51:41.555 [main] INFO  o.s.b.w.e.u.UndertowServletWebServer - Undertow started on port(s) 6802 (http) with context path ''
+20:51:41.558 [main] INFO  c.u.elementary.weather.ElementaryApp - Started ElementaryApp in 8.592 seconds (JVM running for 9.305)
+20:57:49.711 [main] INFO  c.u.elementary.weather.ElementaryApp - Starting ElementaryApp on HX0BP9AWSR71SBR with PID 6040 (D:\workspace\feinno_hf_weather\target\classes started by Administrator in D:\workspace\feinno_hf_weather)
+20:57:49.715 [main] INFO  c.u.elementary.weather.ElementaryApp - No active profile set, falling back to default profiles: default
+20:57:53.156 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.ucss.elementary.tnwn.mapper.tnwn]' package. Please check your configuration.
+20:57:53.486 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+20:57:53.490 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+20:57:53.543 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 22ms. Found 0 repository interfaces.
+20:57:54.386 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$a2e64d2d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+20:57:54.931 [main] WARN  io.undertow.websockets.jsr - UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+20:57:54.960 [main] INFO  io.undertow.servlet - Initializing Spring embedded WebApplicationContext
+20:57:54.960 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 5150 ms
+20:57:55.494 [main] WARN  c.a.d.pool.DruidAbstractDataSource - oracle.jdbc.driver.OracleDriver is deprecated.Having use oracle.jdbc.OracleDriver.
+20:57:57.074 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+20:57:57.190 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+20:57:57.938 [main] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+20:57:58.064 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+20:57:58.110 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 2 custom documentation plugin(s)
+20:57:58.128 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+20:57:58.151 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+20:57:58.187 [main] INFO  org.xnio - XNIO version 3.3.8.Final
+20:57:58.198 [main] INFO  org.xnio.nio - XNIO NIO Implementation Version 3.3.8.Final
+20:57:58.274 [main] INFO  o.s.b.w.e.u.UndertowServletWebServer - Undertow started on port(s) 6802 (http) with context path ''
+20:57:58.279 [main] INFO  c.u.elementary.weather.ElementaryApp - Started ElementaryApp in 9.418 seconds (JVM running for 10.076)
+20:59:45.762 [main] INFO  c.u.elementary.weather.ElementaryApp - Starting ElementaryApp on HX0BP9AWSR71SBR with PID 4476 (D:\workspace\feinno_hf_weather\target\classes started by Administrator in D:\workspace\feinno_hf_weather)
+20:59:45.766 [main] INFO  c.u.elementary.weather.ElementaryApp - No active profile set, falling back to default profiles: default
+20:59:49.227 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.ucss.elementary.tnwn.mapper.tnwn]' package. Please check your configuration.
+20:59:49.815 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+20:59:49.821 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+20:59:49.885 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 28ms. Found 0 repository interfaces.
+20:59:54.726 [main] INFO  c.u.elementary.weather.ElementaryApp - Starting ElementaryApp on HX0BP9AWSR71SBR with PID 3948 (D:\workspace\feinno_hf_weather\target\classes started by Administrator in D:\workspace\feinno_hf_weather)
+20:59:54.730 [main] INFO  c.u.elementary.weather.ElementaryApp - No active profile set, falling back to default profiles: default
+20:59:57.787 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.ucss.elementary.tnwn.mapper.tnwn]' package. Please check your configuration.
+20:59:58.288 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+20:59:58.292 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+20:59:58.355 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 32ms. Found 0 repository interfaces.
+20:59:58.869 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$df3282d2] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+20:59:59.386 [main] WARN  io.undertow.websockets.jsr - UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+20:59:59.411 [main] INFO  io.undertow.servlet - Initializing Spring embedded WebApplicationContext
+20:59:59.412 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 4612 ms
+20:59:59.654 [main] WARN  c.a.d.pool.DruidAbstractDataSource - oracle.jdbc.driver.OracleDriver is deprecated.Having use oracle.jdbc.OracleDriver.
+21:00:01.506 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+21:00:01.842 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+21:00:02.587 [main] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+21:00:02.719 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+21:00:02.749 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 2 custom documentation plugin(s)
+21:00:02.767 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+21:00:02.787 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+21:00:02.825 [main] INFO  org.xnio - XNIO version 3.3.8.Final
+21:00:02.839 [main] INFO  org.xnio.nio - XNIO NIO Implementation Version 3.3.8.Final
+21:00:02.949 [main] INFO  o.s.b.w.e.u.UndertowServletWebServer - Undertow started on port(s) 6802 (http) with context path ''
+21:00:02.952 [main] INFO  c.u.elementary.weather.ElementaryApp - Started ElementaryApp in 8.978 seconds (JVM running for 9.676)
+21:00:05.000 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信开始:
+21:00:05.855 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信结束,耗时:854ms
+21:00:10.002 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信开始:
+21:00:10.775 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信结束,耗时:772ms
+21:00:15.002 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信开始:
+21:00:15.080 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信结束,耗时:78ms
+21:26:29.818 [main] INFO  c.u.elementary.weather.ElementaryApp - Starting ElementaryApp on HX0BP9AWSR71SBR with PID 11988 (D:\workspace\feinno_hf_weather\target\classes started by Administrator in D:\workspace\feinno_hf_weather)
+21:26:29.822 [main] INFO  c.u.elementary.weather.ElementaryApp - No active profile set, falling back to default profiles: default
+21:26:33.591 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.ucss.elementary.tnwn.mapper.tnwn]' package. Please check your configuration.
+21:26:33.936 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+21:26:33.940 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+21:26:33.989 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 23ms. Found 0 repository interfaces.
+21:26:34.761 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$df81016f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+21:26:35.343 [main] WARN  io.undertow.websockets.jsr - UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+21:26:35.379 [main] INFO  io.undertow.servlet - Initializing Spring embedded WebApplicationContext
+21:26:35.379 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 5446 ms
+21:26:35.639 [main] WARN  c.a.d.pool.DruidAbstractDataSource - oracle.jdbc.driver.OracleDriver is deprecated.Having use oracle.jdbc.OracleDriver.
+21:26:37.680 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+21:26:37.801 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+21:26:38.349 [main] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+21:26:38.496 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+21:26:38.521 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 2 custom documentation plugin(s)
+21:26:38.535 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+21:26:38.557 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+21:26:38.596 [main] INFO  org.xnio - XNIO version 3.3.8.Final
+21:26:38.610 [main] INFO  org.xnio.nio - XNIO NIO Implementation Version 3.3.8.Final
+21:26:38.698 [main] INFO  o.s.b.w.e.u.UndertowServletWebServer - Undertow started on port(s) 6802 (http) with context path ''
+21:26:38.702 [main] INFO  c.u.elementary.weather.ElementaryApp - Started ElementaryApp in 9.654 seconds (JVM running for 10.495)
+21:26:40.002 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信开始:
+21:26:53.922 [main] INFO  c.u.elementary.weather.ElementaryApp - Starting ElementaryApp on HX0BP9AWSR71SBR with PID 2776 (D:\workspace\feinno_hf_weather\target\classes started by Administrator in D:\workspace\feinno_hf_weather)
+21:26:53.926 [main] INFO  c.u.elementary.weather.ElementaryApp - No active profile set, falling back to default profiles: default
+21:26:57.094 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.ucss.elementary.tnwn.mapper.tnwn]' package. Please check your configuration.
+21:26:57.410 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+21:26:57.413 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+21:26:57.454 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 19ms. Found 0 repository interfaces.
+21:26:58.034 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$67231b89] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+21:26:58.612 [main] WARN  io.undertow.websockets.jsr - UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+21:26:58.643 [main] INFO  io.undertow.servlet - Initializing Spring embedded WebApplicationContext
+21:26:58.643 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 4635 ms
+21:26:58.986 [main] WARN  c.a.d.pool.DruidAbstractDataSource - oracle.jdbc.driver.OracleDriver is deprecated.Having use oracle.jdbc.OracleDriver.
+21:27:00.421 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+21:27:00.535 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+21:27:01.115 [main] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+21:27:01.254 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+21:27:01.303 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 2 custom documentation plugin(s)
+21:27:01.323 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+21:27:01.347 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+21:27:01.385 [main] INFO  org.xnio - XNIO version 3.3.8.Final
+21:27:01.397 [main] INFO  org.xnio.nio - XNIO NIO Implementation Version 3.3.8.Final
+21:27:01.480 [main] INFO  o.s.b.w.e.u.UndertowServletWebServer - Undertow started on port(s) 6802 (http) with context path ''
+21:27:01.485 [main] INFO  c.u.elementary.weather.ElementaryApp - Started ElementaryApp in 8.284 seconds (JVM running for 8.992)
+21:27:05.002 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信开始:
+21:27:35.782 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信结束,耗时:30778ms
+21:27:40.003 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信开始:
+21:27:53.400 [main] INFO  c.u.elementary.weather.ElementaryApp - Starting ElementaryApp on HX0BP9AWSR71SBR with PID 9008 (D:\workspace\feinno_hf_weather\target\classes started by Administrator in D:\workspace\feinno_hf_weather)
+21:27:53.404 [main] INFO  c.u.elementary.weather.ElementaryApp - No active profile set, falling back to default profiles: default
+21:27:55.760 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.ucss.elementary.tnwn.mapper.tnwn]' package. Please check your configuration.
+21:27:56.293 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+21:27:56.297 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+21:27:56.342 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 22ms. Found 0 repository interfaces.
+21:27:56.911 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$fb33299] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+21:27:57.473 [main] WARN  io.undertow.websockets.jsr - UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+21:27:57.498 [main] INFO  io.undertow.servlet - Initializing Spring embedded WebApplicationContext
+21:27:57.498 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 4006 ms
+21:27:57.826 [main] WARN  c.a.d.pool.DruidAbstractDataSource - oracle.jdbc.driver.OracleDriver is deprecated.Having use oracle.jdbc.OracleDriver.
+21:27:59.311 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+21:27:59.418 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+21:27:59.975 [main] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+21:28:00.120 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+21:28:00.147 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 2 custom documentation plugin(s)
+21:28:00.161 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+21:28:00.181 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+21:28:00.216 [main] INFO  org.xnio - XNIO version 3.3.8.Final
+21:28:00.228 [main] INFO  org.xnio.nio - XNIO NIO Implementation Version 3.3.8.Final
+21:28:00.312 [main] INFO  o.s.b.w.e.u.UndertowServletWebServer - Undertow started on port(s) 6802 (http) with context path ''
+21:28:00.316 [main] INFO  c.u.elementary.weather.ElementaryApp - Started ElementaryApp in 7.612 seconds (JVM running for 8.317)
+21:28:05.003 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信开始:
+21:28:35.787 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信结束,耗时:30784ms
+21:28:40.001 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信开始:
+21:28:47.888 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信结束,耗时:7887ms
+21:28:50.002 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信开始:
+21:28:50.744 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信结束,耗时:741ms
+21:28:55.001 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信开始:
+21:28:55.745 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信结束,耗时:743ms
+21:29:00.002 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信开始:
+21:29:00.785 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信结束,耗时:782ms
+21:29:05.002 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信开始:
+21:29:05.762 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信结束,耗时:760ms
+21:29:10.001 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信开始:
+21:29:10.744 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信结束,耗时:743ms
+21:29:15.001 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信开始:
+21:29:15.793 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信结束,耗时:791ms
+21:29:20.001 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信开始:
+21:29:20.083 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信结束,耗时:82ms
+21:33:29.774 [main] INFO  c.u.elementary.weather.ElementaryApp - Starting ElementaryApp on HX0BP9AWSR71SBR with PID 7540 (D:\workspace\feinno_hf_weather\target\classes started by Administrator in D:\workspace\feinno_hf_weather)
+21:33:29.777 [main] INFO  c.u.elementary.weather.ElementaryApp - No active profile set, falling back to default profiles: default
+21:33:30.963 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.ucss.elementary.tnwn.mapper.tnwn]' package. Please check your configuration.
+21:33:31.197 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+21:33:31.200 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+21:33:31.259 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 27ms. Found 0 repository interfaces.
+21:33:31.661 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$4349d93d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+21:33:32.117 [main] WARN  io.undertow.websockets.jsr - UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+21:33:32.136 [main] INFO  io.undertow.servlet - Initializing Spring embedded WebApplicationContext
+21:33:32.136 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2307 ms
+21:33:32.275 [main] WARN  c.a.d.pool.DruidAbstractDataSource - oracle.jdbc.driver.OracleDriver is deprecated.Having use oracle.jdbc.OracleDriver.
+21:33:33.312 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+21:33:33.375 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+21:33:33.733 [main] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+21:33:33.818 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+21:33:33.831 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 2 custom documentation plugin(s)
+21:33:33.843 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+21:33:33.856 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+21:33:33.874 [main] INFO  org.xnio - XNIO version 3.3.8.Final
+21:33:33.883 [main] INFO  org.xnio.nio - XNIO NIO Implementation Version 3.3.8.Final
+21:33:33.937 [main] INFO  o.s.b.w.e.u.UndertowServletWebServer - Undertow started on port(s) 6802 (http) with context path ''
+21:33:33.940 [main] INFO  c.u.elementary.weather.ElementaryApp - Started ElementaryApp in 4.684 seconds (JVM running for 5.235)
+21:33:35.001 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信开始:
+21:33:35.839 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信结束,耗时:837ms
+21:33:40.001 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信开始:
+21:33:40.807 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信结束,耗时:806ms
+21:33:45.000 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信开始:
+21:33:45.746 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信结束,耗时:745ms
+21:33:50.001 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信开始:
+21:33:50.744 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信结束,耗时:743ms
+21:33:55.001 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信开始:
+21:33:55.744 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信结束,耗时:742ms
+21:34:00.002 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信开始:
+21:34:00.744 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信结束,耗时:742ms
+21:34:05.002 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信开始:
+21:34:05.746 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信结束,耗时:743ms
+21:34:10.000 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信开始:
+21:34:10.742 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信结束,耗时:742ms
+21:34:15.003 [scheduling-1] INFO  c.u.e.weather.tasks.SendSmsTask - 发送短信开始:

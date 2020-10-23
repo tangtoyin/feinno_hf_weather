@@ -1,0 +1,33 @@
+12:21:33.786 [main] INFO  c.ucss.elementary.tnwn.ElementaryApp - Starting ElementaryApp on OGUUVTRZRZW1YX9 with PID 3008 (D:\project\elmt.tnwn\target\classes started by Administrator in D:\project\elmt.tnwn)
+12:21:33.792 [main] INFO  c.ucss.elementary.tnwn.ElementaryApp - No active profile set, falling back to default profiles: default
+12:21:39.016 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+12:21:39.030 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+12:21:39.150 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 57ms. Found 0 repository interfaces.
+12:21:40.098 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$1f8ac32d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+12:21:40.607 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'redisSentinelConfiguration' of type [org.springframework.data.redis.connection.RedisSentinelConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+12:21:40.671 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'redisCacheConfig' of type [com.ucss.elementary.weather.config.RedisCacheConfig$$EnhancerBySpringCGLIB$$e1a7ca19] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+12:21:42.061 [main] WARN  io.undertow.websockets.jsr - UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+12:21:42.103 [main] INFO  io.undertow.servlet - Initializing Spring embedded WebApplicationContext
+12:21:42.104 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 7453 ms
+12:21:42.671 [main] INFO  r.clients.jedis.JedisSentinelPool - Trying to find master from available Sentinels...
+12:21:42.820 [main] INFO  r.clients.jedis.JedisSentinelPool - Redis master running at 120.79.86.238:6379, starting Sentinel listeners...
+12:21:42.957 [main] INFO  r.clients.jedis.JedisSentinelPool - Created JedisPool to master at 120.79.86.238:6379
+12:21:43.454 [main] WARN  c.a.d.pool.DruidAbstractDataSource - oracle.jdbc.driver.OracleDriver is deprecated.Having use oracle.jdbc.OracleDriver.
+12:21:48.865 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+12:21:49.134 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+12:21:50.437 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+12:21:50.735 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 2 custom documentation plugin(s)
+12:21:50.810 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+12:21:53.507 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: detailUsingPOST_1
+12:21:53.645 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: detailUsingPOST_2
+12:21:53.689 [main] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: auditUsingPOST_1
+12:21:53.758 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+12:21:54.200 [main] INFO  org.xnio - XNIO version 3.3.8.Final
+12:21:54.258 [main] INFO  org.xnio.nio - XNIO NIO Implementation Version 3.3.8.Final
+12:21:54.404 [main] INFO  o.s.b.w.e.u.UndertowServletWebServer - Undertow started on port(s) 6803 (http) with context path ''
+12:21:54.409 [main] INFO  c.ucss.elementary.tnwn.ElementaryApp - Started ElementaryApp in 22.963 seconds (JVM running for 24.583)
+12:21:54.670 [main] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+12:21:56.184 [main] DEBUG c.u.e.t.m.t.T.selectByExample - ==>  Preparing: select ID, PROCID, OPERTYPE, CITYCODE, CITYNAME, NUMRANGE, IMSI, VALIDDATE, EXPIPRDATE, TIMESTAMP, TYPE, CLASSIFY, SERVICER, CREATETIME, UPDATETIME, SERVICERNAME, ISVALID, LOCATIONCODE, BEGINNO, ENDNO from T_B_NUMRANGE WHERE ( ISVALID = ? and NUMRANGE = ? ) 
+12:21:56.248 [main] DEBUG c.u.e.t.m.t.T.selectByExample - ==> Parameters: 1(Short), 1511190(String)
+12:21:56.312 [main] DEBUG c.u.e.t.m.t.T.selectByExample - <==      Total: 1
+12:21:56.315 [main] INFO  c.u.e.t.c.tnwn.TimerApplication - 号段表加载时间:1903

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ucss.elementary.tnwn.mapper.tnwn.TDUserMapper">
-  <resultMap id="BaseResultMap" type="com.ucss.elementary.tnwn.model.database.TDUser">
+<mapper namespace="com.ucss.elementary.weather.mapper.tnwn.TDUserMapper">
+  <resultMap id="BaseResultMap" type="com.ucss.elementary.weather.model.database.TDUser">
     <id column="ID" jdbcType="DECIMAL" property="id" />
     <result column="PHONEBIND" jdbcType="VARCHAR" property="phonebind" />
     <result column="EMAILBIND" jdbcType="VARCHAR" property="emailbind" />
@@ -85,7 +85,7 @@
     ISVALID, CREATETIME, UPDATETIME, AUDITADMIN_ID, AUDITSTATUS, AUDITTIME, AUDITREASON, 
     LOGINNAME, LOGINERRORCOUNT, LASTLOGINERRORTIME
   </sql>
-  <select id="selectByExample" parameterType="com.ucss.elementary.tnwn.model.database.TDUserExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.ucss.elementary.weather.model.database.TDUserExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -109,13 +109,13 @@
     delete from T_D_USER
     where ID = #{id,jdbcType=DECIMAL}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ucss.elementary.tnwn.model.database.TDUserExample">
+  <delete id="deleteByExample" parameterType="com.ucss.elementary.weather.model.database.TDUserExample">
     delete from T_D_USER
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ucss.elementary.tnwn.model.database.TDUser">
+  <insert id="insert" parameterType="com.ucss.elementary.weather.model.database.TDUser">
     insert into T_D_USER (ID, PHONEBIND, EMAILBIND, 
       PASSWORD, NICKNAME, REGIONCODE, 
       HEADIMAGE, GENDER, USERTYPE, 
@@ -131,7 +131,7 @@
       #{auditreason,jdbcType=VARCHAR}, #{loginname,jdbcType=VARCHAR}, #{loginerrorcount,jdbcType=DECIMAL}, 
       #{lastloginerrortime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.ucss.elementary.tnwn.model.database.TDUser">
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.ucss.elementary.weather.model.database.TDUser">
     <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
       SELECT SEQ_USER.NEXTVAL AS id FROM DUAL
     </selectKey>
@@ -255,7 +255,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ucss.elementary.tnwn.model.database.TDUserExample" resultType="java.lang.Integer">
+  <select id="countByExample" parameterType="com.ucss.elementary.weather.model.database.TDUserExample" resultType="java.lang.Integer">
     select count(*) from T_D_USER
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -351,7 +351,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ucss.elementary.tnwn.model.database.TDUser">
+  <update id="updateByPrimaryKeySelective" parameterType="com.ucss.elementary.weather.model.database.TDUser">
     update T_D_USER
     <set>
       <if test="phonebind != null">
@@ -411,7 +411,7 @@
     </set>
     where ID = #{id,jdbcType=DECIMAL}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ucss.elementary.tnwn.model.database.TDUser">
+  <update id="updateByPrimaryKey" parameterType="com.ucss.elementary.weather.model.database.TDUser">
     update T_D_USER
     set PHONEBIND = #{phonebind,jdbcType=VARCHAR},
       EMAILBIND = #{emailbind,jdbcType=VARCHAR},
@@ -459,7 +459,7 @@ select u.*
     </foreach>
     ) cd
   </insert>
-  <select id="getUserList" parameterType="map" resultType="com.ucss.elementary.tnwn.model.database.TDUserNewExtension">
+  <select id="getUserList" parameterType="map" resultType="com.ucss.elementary.weather.model.database.TDUserNewExtension">
     with tmp as
     (select u.id,listagg(r.name,',') within group(order by u.id) rolenames
     from t_D_user u
